@@ -13,7 +13,7 @@ export const copy = {
       "Short video lessons, a clear path, and a friendly little guide who's happy you showed up. A few minutes a day is all it takes.",
     cta: "Download on the App Store",
     screenshot: "home.png",
-    screenshotAlt: "Ziggy home screen showing today's lesson path",
+    screenshotAlt: "Ziggy Practice tab with flashcards, quiz mode, and today's goals",
   },
 
   features: [
@@ -21,19 +21,19 @@ export const copy = {
       title: "Learn from real video",
       body: "Every sign is taught with clear, real video — hands, face, and movement all easy to see. No stick figures, no guesswork.",
       screenshot: "lesson.png",
-      screenshotAlt: "A Ziggy lesson playing a sign video with answer choices",
+      screenshotAlt: "A Ziggy lesson asking which sign is shown, with a real signer and answer choices",
     },
     {
       title: "A path that always knows what's next",
       body: "One tap and you're learning. Your path picks up right where you left off, so you never wonder what to do today.",
       screenshot: "path.png",
-      screenshotAlt: "The Ziggy learning path with completed and upcoming lessons",
+      screenshotAlt: "The Ziggy home learning path with a Continue button on the current lesson",
     },
     {
       title: "Progress that feels good to keep",
       body: "Streaks, little celebrations, and signs you can actually use — you'll see yourself getting better week by week.",
       screenshot: "celebration.png",
-      screenshotAlt: "A Ziggy celebration screen after finishing a lesson",
+      screenshotAlt: "Ziggy Profile showing signs learned, stars, streak, and medals",
     },
   ],
 
