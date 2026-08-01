@@ -20,6 +20,7 @@ Open http://localhost:3000. Edits hot-reload.
 |---|---|
 | All marketing copy (headlines, benefits, buttons) | `src/lib/copy.ts` |
 | All URLs (App Store, privacy, terms, contact) | `src/lib/links.ts` |
+| Privacy / Terms copy | `src/lib/legal.ts` → `/privacy` and `/terms` |
 | Brand colors, shadows, tokens | `src/app/globals.css` |
 | Page section order | `src/app/page.tsx` |
 | Individual sections | `src/components/*.tsx` |

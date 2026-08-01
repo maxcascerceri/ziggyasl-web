@@ -9,7 +9,7 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://ziggyasl.com"),
+  metadataBase: new URL("https://www.ziggyasl.com"),
   title: "Ziggy — Learn ASL",
   description:
     "Ziggy makes learning American Sign Language feel easy, friendly, and worth coming back to every day. Short video lessons, a clear path, and progress you can see.",

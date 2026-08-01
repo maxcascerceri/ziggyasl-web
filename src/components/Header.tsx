@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { copy } from "@/lib/copy";
 import { links } from "@/lib/links";
@@ -44,35 +45,31 @@ export function Header() {
         }}
         transition={reduceMotion ? { duration: 0 } : uiSpring}
       >
-        <a href="#" className="flex min-h-11 items-center gap-2.5">
+        <Link href={links.home} className="flex min-h-11 items-center gap-2.5">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/brand/app-icon.png"
             alt=""
             className="h-14 w-14 rounded-[15px] outline outline-1 -outline-offset-1 outline-black/10"
           />
-          <span className="text-[1.65rem] font-bold tracking-tight text-ink leading-none">
+          <span className="text-[1.65rem] font-bold leading-none tracking-tight text-ink">
             {copy.brand}
             <span className="text-brand">.</span>
           </span>
-        </a>
+        </Link>
         <nav className="flex items-center gap-1 sm:gap-2">
-          <a
-            href={links.privacy}
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href={links.privacyPath}
             className="hidden min-h-11 items-center px-3 text-sm font-medium text-secondary transition-colors hover:text-ink md:flex"
           >
             {copy.footer.privacy}
-          </a>
-          <a
-            href={links.terms}
-            target="_blank"
-            rel="noopener noreferrer"
+          </Link>
+          <Link
+            href={links.termsPath}
             className="hidden min-h-11 items-center px-3 text-sm font-medium text-secondary transition-colors hover:text-ink md:flex"
           >
             {copy.footer.terms}
-          </a>
+          </Link>
           <AppStoreButton label={copy.header.cta} compact />
         </nav>
       </motion.div>
