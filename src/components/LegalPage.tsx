@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { links } from "@/lib/links";
 
-type Section = { heading: string; body: string };
+type Section = { heading: string; body: string | string[] };
 
 export function LegalPage({
   title,
@@ -33,14 +33,24 @@ export function LegalPage({
           {intro}
         </p>
 
-        {sections.map((section) => (
-          <section key={section.heading} className="mt-8">
-            <h2 className="text-lg font-semibold text-ink">{section.heading}</h2>
-            <p className="mt-2 text-pretty text-base leading-relaxed text-ink/90">
-              {section.body}
-            </p>
-          </section>
-        ))}
+        {sections.map((section) => {
+          const paragraphs = Array.isArray(section.body)
+            ? section.body
+            : [section.body];
+          return (
+            <section key={section.heading} className="mt-8">
+              <h2 className="text-lg font-semibold text-ink">{section.heading}</h2>
+              {paragraphs.map((paragraph) => (
+                <p
+                  key={paragraph.slice(0, 48)}
+                  className="mt-2 text-pretty text-base leading-relaxed text-ink/90"
+                >
+                  {paragraph}
+                </p>
+              ))}
+            </section>
+          );
+        })}
 
         <section className="mt-8">
           <h2 className="text-lg font-semibold text-ink">
