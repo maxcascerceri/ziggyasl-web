@@ -70,4 +70,14 @@ export const copy = {
     contact: "Contact",
     note: "Made for learning ASL every day.",
   },
+
+  note: {
+    getZiggy: "Get Ziggy",
+    openInApp: "Already have Ziggy? Open in the app",
+    expiredTitle: "This sign is no longer available.",
+    expiredMessage: "Notes stay for 30 days.",
+    play: "Play",
+    report: "Report",
+    videoLabel: "A sign in American Sign Language",
+  },
 };

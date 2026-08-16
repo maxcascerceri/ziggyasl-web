@@ -11,7 +11,7 @@ export const privacy = {
       body: [
         "Lesson progress, streaks, settings, and similar app data are saved on your device.",
         "If you choose to tell us your first name during onboarding (or when you first send a sign), we store it on your device and, if you send a sign, with that note so the other person knows who it is from.",
-        "If you send a sign through Ziggy, we store the video you recorded, a still image from that video, the sign’s gloss, and an anonymous identifier on Google Firebase so the recipient can open it in Ziggy. These notes expire after 30 days. You can delete your sent signs in Settings.",
+        "If you send a sign through Ziggy, we store the video you recorded, a still image from that video, the sign’s gloss, and an anonymous identifier on Google Firebase. Anyone with the link can open that note in Ziggy or on ziggyasl.com for 30 days. You can delete your sent signs in Settings.",
         "If you allow notifications so you can know when someone sends a sign back, we store a push token with that anonymous identifier. We do not use that token for advertising.",
         "We do not require an email or password. Sending a sign uses an anonymous account created on your device.",
       ],
