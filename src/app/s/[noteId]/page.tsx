@@ -27,20 +27,12 @@ export async function generateMetadata({
   const robots = { index: false, follow: false } as const;
 
   if (!isSignNoteId(noteId)) {
-    return {
-      title: genericTitle,
-      description: genericDescription,
-      robots,
-    };
+    return unavailableMetadata(noteId, robots);
   }
 
   const note = await fetchSignNote(noteId);
   if (!note || note.isExpired) {
-    return {
-      title: genericTitle,
-      description: genericDescription,
-      robots,
-    };
+    return unavailableMetadata(noteId, robots);
   }
 
   const title = `${note.senderName} sent you a sign`;
@@ -58,15 +50,34 @@ export async function generateMetadata({
       url: `https://www.ziggyasl.com/s/${note.id}`,
       siteName: "Ziggy",
       type: "website",
-      images: note.posterURL
-        ? [{ url: note.posterURL, width: 600, height: 600 }]
-        : undefined,
     },
     twitter: {
       card: "summary",
       title,
       description,
-      images: note.posterURL ? [note.posterURL] : undefined,
+    },
+  };
+}
+
+function unavailableMetadata(
+  noteId: string,
+  robots: { index: false; follow: false },
+): Metadata {
+  return {
+    title: genericTitle,
+    description: genericDescription,
+    robots,
+    openGraph: {
+      title: genericTitle,
+      description: genericDescription,
+      url: `https://www.ziggyasl.com/s/${noteId}`,
+      siteName: "Ziggy",
+      type: "website",
+    },
+    twitter: {
+      card: "summary",
+      title: genericTitle,
+      description: genericDescription,
     },
   };
 }
