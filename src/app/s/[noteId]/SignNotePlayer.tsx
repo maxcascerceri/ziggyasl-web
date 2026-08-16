@@ -38,7 +38,9 @@ export function SignNotePlayer({
   }
 
   const frame =
-    "relative mx-auto aspect-[9/16] w-full max-h-[min(72vh,520px)] overflow-hidden rounded-[28px] bg-black shadow-card outline outline-1 -outline-offset-1 outline-black/20";
+    "relative mx-auto h-[min(72vh,520px)] w-auto max-w-full aspect-[9/16] overflow-hidden rounded-[28px] bg-black shadow-card outline outline-1 -outline-offset-1 outline-black/20";
+
+  const mediaClass = "absolute inset-0 h-full w-full object-cover";
 
   if (isImage) {
     return (
@@ -47,7 +49,7 @@ export function SignNotePlayer({
         <img
           src={src}
           alt={label}
-          className="h-full w-full object-contain"
+          className={mediaClass}
         />
       </div>
     );
@@ -66,7 +68,7 @@ export function SignNotePlayer({
         playsInline
         autoPlay={!reduceMotion}
         controls={false}
-        className="h-full w-full object-contain"
+        className={mediaClass}
         aria-label={label}
       />
       {showPosterGate ? (
