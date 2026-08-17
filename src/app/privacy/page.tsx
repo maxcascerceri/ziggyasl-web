@@ -7,7 +7,7 @@ import { privacy } from "@/lib/legal";
 export const metadata: Metadata = {
   title: "Privacy Policy — Ziggy ASL",
   description:
-    "How Ziggy ASL handles information on your device and, if you send a sign, with Google Firebase.",
+    "How Ziggy ASL handles information on your device.",
 };
 
 export default function PrivacyPolicyPage() {
