@@ -4,15 +4,17 @@ export const privacy = {
   title: "Privacy Policy",
   updated: "Last updated: August 2026",
   intro:
-    "Ziggy ASL (“we,” “our,” or “the app”) is an American Sign Language learning app. This Privacy Policy explains what information the app handles when you use Ziggy.",
+    "Ziggy ASL (“we,” “our,” or “the app”) is an American Sign Language learning app. This Privacy Policy explains what information the app handles when you use Ziggy, including when you send a sign to someone.",
   sections: [
     {
       heading: "1. Information we handle",
       body: [
         "Lesson progress, streaks, settings, and similar app data are saved on your device.",
-        "If you keep a Your Turn or practice video in My Signs, that video stays on your device. We do not upload it.",
-        "If you choose to tell us your first name during onboarding, we store it on your device so we can teach you how to spell it in ASL.",
-        "We do not require an email or password.",
+        "If you keep a Your Turn or practice video in My Signs, that video stays on your device. We do not upload it unless you choose to send or share it.",
+        "If you choose to tell us your first name during onboarding (or when you first send a sign), we store it on your device and, if you send a sign, with that note so the other person knows who it is from.",
+        "If you send a sign through Ziggy, we store the video you recorded, a still image from that video, the sign’s gloss, and an anonymous identifier on Google Firebase so the recipient can open it in Ziggy. These notes expire after 30 days. You can delete your sent signs in Settings.",
+        "If you allow notifications so you can know when someone sends a sign back, we store a push token with that anonymous identifier. We do not use that token for advertising.",
+        "We do not require an email or password. Sending a sign uses an anonymous account created on your device.",
       ],
     },
     {
@@ -21,7 +23,7 @@ export const privacy = {
     },
     {
       heading: "3. Third parties",
-      body: "We do not sell your data or share it with advertisers or data brokers. Apple may process purchase-related information when you subscribe.",
+      body: "We do not sell your data or share it with advertisers or data brokers. Videos and note metadata you choose to send are stored with Google Firebase (Google Cloud) so they can be delivered in Ziggy. Apple may process purchase-related information when you subscribe.",
     },
     {
       heading: "4. Children",
@@ -29,7 +31,7 @@ export const privacy = {
     },
     {
       heading: "5. Your choices",
-      body: "You can skip providing a first name. Uninstalling the app removes data stored only on your device.",
+      body: "You can skip providing a first name. You can delete sent signs and the anonymous identifier in Settings. Uninstalling the app removes data stored only on your device.",
     },
     {
       heading: "6. Changes",
