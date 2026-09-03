@@ -2,47 +2,62 @@
 
 export const privacy = {
   title: "Privacy Policy",
-  updated: "Last updated: August 2026",
+  updated: "Last updated: September 2026",
   intro:
-    "Ziggy ASL (“we,” “our,” or “the app”) is an American Sign Language learning app. This Privacy Policy explains what information the app handles when you use Ziggy, including when you send a sign to someone.",
+    "Ziggy ASL (“Ziggy,” “we,” “our,” or “the app”) is an American Sign Language learning app. This Privacy Policy explains what information Ziggy handles, why we handle it, and the choices available to you.",
   sections: [
     {
-      heading: "1. Information we handle",
+      heading: "1. Information stored on your device",
       body: [
-        "Lesson progress, streaks, settings, and similar app data are saved on your device.",
-        "If you keep a Your Turn or practice video in My Signs, that video stays on your device. We do not upload it unless you choose to send or share it.",
-        "If you choose to tell us your first name during onboarding (or when you first send a sign), we store it on your device and, if you send a sign, with that note so the other person knows who it is from.",
-        "If you send a sign through Ziggy, we store the video you recorded, a still image from that video, the sign’s gloss, and an anonymous identifier on Google Firebase so the recipient can open it in Ziggy. These notes expire after 30 days. You can delete your sent signs in Settings.",
-        "If you allow notifications so you can know when someone sends a sign back, we store a push token with that anonymous identifier. We do not use that token for advertising.",
-        "We do not require an email or password. Sending a sign uses an anonymous account created on your device.",
+        "Your first name, onboarding answers, lesson progress, streaks, favorites, settings, and similar learning data are stored locally on your device. You can skip providing a first name.",
+        "Practice recordings are stored in the app’s private storage. Ziggy does not upload those recordings unless you deliberately use a feature that sends or exports them.",
+        "Depending on your device and account settings, Apple iCloud Backup or Android’s private Google backup service may back up eligible local app data. Those backup services are controlled by Apple or Google and your device settings.",
       ],
     },
     {
-      heading: "2. Subscriptions",
-      body: "If you subscribe to Premium, payment is processed by Apple. We do not receive or store your payment details. Apple handles billing according to its own privacy policy. We use RevenueCat to check whether your subscription is active.",
+      heading: "2. App services and diagnostics",
+      body: [
+        "Ziggy uses Google Firebase to deliver app content and operate supporting services. Firebase may process app and installation identifiers, device and network information, and service request data.",
+        "We use Firebase Crashlytics to understand crashes and reliability problems. Crashlytics may process crash logs, diagnostics, app state, device information, and installation identifiers. We use this information to maintain and improve Ziggy, not for advertising.",
+      ],
     },
     {
-      heading: "3. Third parties",
-      body: "We do not sell your data or share it with advertisers or data brokers. Videos and note metadata you choose to send are stored with Google Firebase (Google Cloud) so they can be delivered in Ziggy. Apple may process purchase-related information when you subscribe.",
+      heading: "3. Subscriptions",
+      body: [
+        "On iOS, purchases are processed by Apple through the App Store. On Android, purchases are processed by Google through Google Play. We do not receive or store your complete payment-card details.",
+        "We use RevenueCat to manage subscription access. RevenueCat may process an app-specific user identifier, purchase and subscription history, entitlement status, and device or platform information so Ziggy can determine whether Premium is active and restore purchases.",
+      ],
     },
     {
-      heading: "4. Children",
-      body: "The app is not directed at children under 13, and we do not knowingly collect personal information from children under 13.",
+      heading: "4. Sign Notes",
+      body: [
+        "Some versions of Ziggy may let you send a recorded sign to a person you choose. Where this feature is available, Ziggy uploads the recording, a preview image, the sign’s label, an optional display name, and an anonymous identifier to Google Firebase so the recipient can open it. If you enable reply notifications, Ziggy also stores a notification token with that identifier.",
+        "A recipient or anyone with the unique sharing link may be able to view the Sign Note. Sign Notes are displayed as available for up to 30 days. Removal from active systems or backups may take longer where reasonably necessary for service operation, security, abuse handling, or legal obligations.",
+        "Sign Notes are not available in every platform version. When the feature is unavailable, Ziggy does not upload your practice recordings as Sign Notes.",
+      ],
     },
     {
-      heading: "5. Your choices",
-      body: "You can skip providing a first name. You can delete sent signs and the anonymous identifier in Settings. Uninstalling the app removes data stored only on your device.",
+      heading: "5. Providers, security, retention, and your choices",
+      body: [
+        "Our service providers include Google Firebase and Google Cloud, RevenueCat, Apple, and Google Play. They process information on our behalf or as the applicable storefront under their own terms and privacy practices. We do not sell your personal information or share it with advertisers or data brokers.",
+        "Information sent between Ziggy and our service providers is transmitted using encrypted connections. No storage or transmission method is completely secure.",
+        "We retain service and diagnostic information only for as long as reasonably necessary to operate, secure, support, and improve Ziggy or meet legal obligations. Provider retention periods may also apply.",
+        "You can remove data stored only on your device by using available in-app controls or uninstalling Ziggy. Device backups may remain until removed through your Apple or Google account settings. Where an in-app deletion control is available, you may use it; you may also contact support@ziggyasl.com to ask about deletion of information associated with Ziggy.",
+      ],
     },
     {
-      heading: "6. Changes",
-      body: "We may update this policy from time to time. The “Last updated” date above will change when we do. Continued use of the app means you accept the updated policy.",
+      heading: "6. Children and changes to this policy",
+      body: [
+        "Ziggy is not directed at children under 13, and we do not knowingly collect personal information from children under 13. If you believe a child has provided personal information, contact us so we can review and address it.",
+        "We may update this policy as Ziggy or applicable requirements change. We will update the “Last updated” date when we do.",
+      ],
     },
   ],
 };
 
 export const terms = {
   title: "Terms of Use",
-  updated: "Last updated: June 2026",
+  updated: "Last updated: September 2026",
   intro:
     "By downloading or using Ziggy ASL (“the app,” “we,” “our”), you agree to these Terms. If you do not agree, do not use the app.",
   sections: [
@@ -52,39 +67,53 @@ export const terms = {
     },
     {
       heading: "2. Subscriptions",
-      body: "Some features require a Premium subscription. Pricing, free trials, billing, and cancellation are shown in the app and handled by Apple. Refunds follow Apple’s policies. We may change subscription options or pricing over time.",
+      body: [
+        "A Ziggy Premium subscription is required for full access after any onboarding preview. Available plans, localized prices, billing periods, and any trial for which you are eligible are shown before purchase.",
+        "Subscriptions automatically renew for the displayed billing period unless canceled before renewal. If you begin an eligible free trial and do not cancel before it ends, the subscription converts to the displayed paid plan and continues to renew automatically.",
+        "Purchases made on iOS are processed by Apple through the App Store. Purchases made on Android are processed by Google through Google Play. We use RevenueCat to manage subscription access. We may change available plans or prices as permitted by the applicable storefront and law.",
+      ],
     },
     {
-      heading: "3. Educational content only",
-      body: "Lessons and signs are for general learning only. Sign language varies by region and community. The app is not a substitute for certified instruction, interpretation, or any professional advice. We do not guarantee any particular learning result.",
+      heading: "3. Cancellation and refunds",
+      body: "You can manage or cancel your subscription through the store account used to purchase it. Canceling stops future renewals but generally does not refund the current billing period. Refund eligibility is determined by Apple, Google Play, applicable law, and any policy we expressly provide.",
     },
     {
-      heading: "4. Acceptable use",
-      body: "You may not misuse the app, attempt to reverse-engineer it, copy or resell its content, or use it in any way that violates the law or harms others. We may restrict access if these Terms are violated.",
+      heading: "4. Educational content only",
+      body: "Lessons and signs are for general learning only. Sign language varies by region and community. The app is not a substitute for certified instruction, interpretation, or professional advice. We do not guarantee any particular learning result.",
     },
     {
-      heading: "5. Intellectual property",
-      body: "The app, its design, branding, lessons, and media belong to us or our licensors. These Terms give you only a limited right to use the app for personal learning.",
+      heading: "5. User content",
+      body: [
+        "Some versions of Ziggy may let you record, export, or send content. You keep any rights you hold in your content and give us a limited license to host, process, transmit, and display it only as needed to provide and protect the feature.",
+        "Only share content you have the right and permission to share. You are responsible for the recipients you choose and for content shared outside Ziggy through your device’s sharing tools.",
+        "We may remove content or restrict access where reasonably necessary to operate the service, investigate reports, protect people, or enforce these Terms or the law.",
+      ],
     },
     {
-      heading: "6. Disclaimer of warranties",
-      body: "The app is provided “as is” and “as available,” without warranties of any kind, express or implied, including merchantability, fitness for a particular purpose, and non-infringement. We do not guarantee that the app will be uninterrupted, error-free, or accurate.",
+      heading: "6. Acceptable use",
+      body: "You may not misuse Ziggy; harass, threaten, exploit, or impersonate others; share illegal, abusive, hateful, sexually exploitative, infringing, or deceptive content; attempt unauthorized access; reverse-engineer the app except where law permits; copy or resell its content; or use Ziggy in a way that violates law or harms others. We may remove content or restrict access when these Terms are violated.",
     },
     {
-      heading: "7. Limitation of liability",
-      body: "To the fullest extent permitted by law, we and our affiliates are not liable for any indirect, incidental, special, consequential, or punitive damages, or for any loss of data, profits, or goodwill, arising from your use of the app. Our total liability for any claim related to the app will not exceed the amount you paid us in the twelve months before the claim, or zero if you paid nothing. Some jurisdictions do not allow certain limits; where that applies, our liability is limited as much as the law allows.",
+      heading: "7. Intellectual property",
+      body: "Ziggy, its design, branding, lessons, and media belong to us or our licensors. These Terms give you a limited, personal, non-transferable right to use the app for its intended purpose. They do not transfer ownership of Ziggy content or trademarks.",
     },
     {
-      heading: "8. Indemnity",
-      body: "You agree to defend and hold us harmless from any claims, damages, or expenses (including reasonable legal fees) arising from your misuse of the app or violation of these Terms.",
+      heading: "8. Disclaimer of warranties",
+      body: "Ziggy is provided “as is” and “as available,” without warranties of any kind, express or implied, including merchantability, fitness for a particular purpose, and non-infringement. We do not guarantee that the app will be uninterrupted, error-free, or accurate.",
     },
     {
-      heading: "9. Changes",
-      body: "We may update these Terms at any time by posting a new version on this page. Continued use of the app after changes means you accept the updated Terms.",
+      heading: "9. Limitation of liability and indemnity",
+      body: [
+        "To the fullest extent permitted by law, we and our affiliates are not liable for indirect, incidental, special, consequential, or punitive damages, or for loss of data, profits, or goodwill, arising from your use of Ziggy. Our total liability for a claim related to Ziggy will not exceed the amount you paid us in the twelve months before the claim, or zero if you paid nothing. Some jurisdictions do not allow certain limits; where that applies, liability is limited only as permitted by law.",
+        "To the extent permitted by law, you agree to defend and hold us harmless from claims, damages, or expenses arising from your misuse of Ziggy, your content, or your violation of these Terms.",
+      ],
     },
     {
-      heading: "10. General",
-      body: "These Terms are governed by the laws of the United States and the state in which we operate, without regard to conflict-of-law rules. If any part of these Terms is unenforceable, the rest remains in effect.",
+      heading: "10. Changes and general terms",
+      body: [
+        "We may update these Terms by posting a new version and updating the date above. Continued use after an update means the revised Terms apply.",
+        "These Terms are governed by the laws of the United States and the state in which we operate, without regard to conflict-of-law rules. If any provision is unenforceable, the remaining provisions remain in effect. Our failure to enforce a provision is not a waiver.",
+      ],
     },
   ],
 };
