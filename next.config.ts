@@ -17,6 +17,10 @@ const nextConfig: NextConfig = {
         source: "/apple-app-site-association",
         headers: aasaHeaders,
       },
+      {
+        source: "/.well-known/assetlinks.json",
+        headers: aasaHeaders,
+      },
     ];
   },
 };
