@@ -1,0 +1,14 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.ziggyasl.app",
+      "sha256_cert_fingerprints": [
+        "1A:19:2C:36:FC:DE:53:11:BB:B8:D1:D4:43:79:A6:B4:6E:87:89:3B:7B:20:65:50:B0:2A:41:43:91:C4:60:C7"
+      ]
+    }
+  }
+]
