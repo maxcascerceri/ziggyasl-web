@@ -4,14 +4,16 @@ export const copy = {
   brand: "Ziggy",
 
   header: {
-    cta: "Get the app",
+    appStoreCta: "App Store",
+    playStoreCta: "Google Play",
   },
 
   hero: {
     headline: "Learn ASL the way it's actually signed",
     subline:
       "Short video lessons, a clear path, and a friendly little guide who's happy you showed up. A few minutes a day is all it takes.",
-    cta: "Download on the App Store",
+    appStoreCta: "App Store",
+    playStoreCta: "Google Play",
     screenshot: "home.png",
     screenshotAlt: "Ziggy Practice tab with flashcards, quiz mode, and today's goals",
   },
@@ -61,7 +63,8 @@ export const copy = {
   finalCta: {
     headline: "Your first sign takes two minutes",
     subline: "Start with a free lesson and see how it feels.",
-    cta: "Download on the App Store",
+    appStoreCta: "App Store",
+    playStoreCta: "Google Play",
   },
 
   footer: {

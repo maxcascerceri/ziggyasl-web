@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { AppStoreButton } from "@/components/AppStoreButton";
+import { StoreButtons } from "@/components/StoreButtons";
 import { copy } from "@/lib/copy";
 import { links } from "@/lib/links";
 import {
@@ -147,7 +147,12 @@ function AvailableState({
       </div>
 
       <div className="mt-8 flex flex-col items-center gap-3">
-        <AppStoreButton label={copy.note.getZiggy} />
+        <StoreButtons
+          appStoreLabel={copy.header.appStoreCta}
+          playStoreLabel={copy.header.playStoreCta}
+          compact
+          className="lg:justify-center"
+        />
         <a
           href={ziggyOpenURL(noteId)}
           className="inline-flex min-h-11 items-center px-3 text-sm font-semibold text-secondary transition-colors hover:text-ink"
@@ -175,7 +180,12 @@ function UnavailableState() {
       </h1>
       <p className="mt-2 text-base text-secondary">{copy.note.expiredMessage}</p>
       <div className="mt-8">
-        <AppStoreButton label={copy.note.getZiggy} />
+        <StoreButtons
+          appStoreLabel={copy.header.appStoreCta}
+          playStoreLabel={copy.header.playStoreCta}
+          compact
+          className="lg:justify-center"
+        />
       </div>
     </div>
   );

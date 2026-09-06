@@ -6,7 +6,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { copy } from "@/lib/copy";
 import { links } from "@/lib/links";
 import { uiSpring } from "@/lib/motion";
-import { AppStoreButton } from "./AppStoreButton";
+import { StoreButtons } from "./StoreButtons";
 
 /**
  * Wide transparent bar at the top of the page; springs into a compact
@@ -70,7 +70,12 @@ export function Header() {
           >
             {copy.footer.terms}
           </Link>
-          <AppStoreButton label={copy.header.cta} compact />
+          <StoreButtons
+            appStoreLabel={copy.header.appStoreCta}
+            playStoreLabel={copy.header.playStoreCta}
+            compact
+            className="justify-end lg:justify-end"
+          />
         </nav>
       </motion.div>
     </header>

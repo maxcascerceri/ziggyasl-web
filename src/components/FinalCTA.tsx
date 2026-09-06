@@ -1,6 +1,6 @@
 import { copy } from "@/lib/copy";
-import { AppStoreButton } from "./AppStoreButton";
 import { FadeIn } from "./Motion";
+import { StoreButtons } from "./StoreButtons";
 
 export function FinalCTA() {
   return (
@@ -24,8 +24,12 @@ export function FinalCTA() {
           <p className="mx-auto mt-4 max-w-md text-pretty text-lg text-secondary">
             {copy.finalCta.subline}
           </p>
-          <div className="mt-9">
-            <AppStoreButton label={copy.finalCta.cta} />
+          <div className="mt-9 flex justify-center">
+            <StoreButtons
+              appStoreLabel={copy.finalCta.appStoreCta}
+              playStoreLabel={copy.finalCta.playStoreCta}
+              className="lg:justify-center"
+            />
           </div>
         </div>
       </FadeIn>

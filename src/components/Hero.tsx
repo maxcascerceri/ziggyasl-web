@@ -9,9 +9,9 @@ import {
 } from "framer-motion";
 import { copy } from "@/lib/copy";
 import { easeOut } from "@/lib/motion";
-import { AppStoreButton } from "./AppStoreButton";
 import { PhoneMockup } from "./PhoneMockup";
 import { RiseIn } from "./Motion";
+import { StoreButtons } from "./StoreButtons";
 
 export function Hero() {
   const reduceMotion = useReducedMotion();
@@ -64,7 +64,10 @@ export function Hero() {
           </RiseIn>
           <RiseIn delay={0.16}>
             <div className="mt-9">
-              <AppStoreButton label={copy.hero.cta} />
+              <StoreButtons
+                appStoreLabel={copy.hero.appStoreCta}
+                playStoreLabel={copy.hero.playStoreCta}
+              />
             </div>
           </RiseIn>
         </div>

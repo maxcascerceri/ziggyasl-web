@@ -18,11 +18,11 @@ export function AppStoreButton({
       href={links.appStore}
       target="_blank"
       rel="noopener noreferrer"
-      className={`cta-clay relative isolate inline-flex select-none items-center justify-center gap-2 rounded-full bg-brand font-semibold text-white ${
-        compact ? "px-6 py-3 text-base" : "px-8 py-4 text-lg"
+      className={`cta-clay relative isolate inline-flex select-none items-center justify-center gap-1.5 rounded-full bg-brand font-semibold text-white ${
+        compact ? "px-4 py-2.5 text-sm sm:px-5 sm:py-3 sm:text-base" : "px-5 py-3.5 text-base sm:px-6 sm:py-4 sm:text-lg"
       }`}
     >
-      <AppleLogo className={compact ? "h-5 w-5" : "h-5 w-5"} />
+      <AppleLogo className={compact ? "h-4 w-4 sm:h-5 sm:w-5" : "h-5 w-5"} />
       {label}
     </a>
   );
