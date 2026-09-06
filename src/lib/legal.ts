@@ -15,10 +15,11 @@ export const privacy = {
       ],
     },
     {
-      heading: "2. App services and diagnostics",
+      heading: "2. App services, analytics, and diagnostics",
       body: [
         "Ziggy uses Google Firebase to deliver app content and operate supporting services. Firebase may process app and installation identifiers, device and network information, and service request data.",
-        "We use Firebase Crashlytics to understand crashes and reliability problems. Crashlytics may process crash logs, diagnostics, app state, device information, and installation identifiers. We use this information to maintain and improve Ziggy, not for advertising.",
+        "On iOS, Ziggy uses Google Analytics for Firebase to understand which screens and learning features people use, such as lessons, practice, and onboarding. These events use an anonymous app-install identifier. We do not send your name, your lesson or practice videos, payment details, or Apple’s advertising identifier for this, and we do not use this data for advertising or ads personalization.",
+        "Some Android builds may use Firebase Crashlytics to understand crashes and reliability problems. Crashlytics may process crash logs, diagnostics, app state, device information, and installation identifiers. We use diagnostics to maintain and improve Ziggy, not for advertising.",
       ],
     },
     {
