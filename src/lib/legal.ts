@@ -40,7 +40,7 @@ export const privacy = {
     {
       heading: "5. Providers, security, retention, and your choices",
       body: [
-        "Our service providers include Google Firebase and Google Cloud, RevenueCat, Apple, and Google Play. They process information on our behalf or as the applicable storefront under their own terms and privacy practices. We do not sell your personal information or share it with advertisers or data brokers.",
+        "Our service providers include Google Firebase, Google Analytics for Firebase, Google Cloud, RevenueCat, Apple, and Google Play. They process information on our behalf or as the applicable storefront under their own terms and privacy practices. We do not sell your personal information or share it with advertisers or data brokers.",
         "Information sent between Ziggy and our service providers is transmitted using encrypted connections. No storage or transmission method is completely secure.",
         "We retain service and diagnostic information only for as long as reasonably necessary to operate, secure, support, and improve Ziggy or meet legal obligations. Provider retention periods may also apply.",
         "You can remove data stored only on your device by using available in-app controls or uninstalling Ziggy. Device backups may remain until removed through your Apple or Google account settings. Where an in-app deletion control is available, you may use it; you may also contact support@ziggyasl.com to ask about deletion of information associated with Ziggy.",
