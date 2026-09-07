@@ -47,3 +47,11 @@ The CTA buttons point at `links.appStore` in `src/lib/links.ts` — currently a
 When the local version is approved: push to GitHub, import into Vercel
 (or Netlify / Cloudflare Pages), then point `ziggyasl.com` DNS at the host
 from GoDaddy.
+
+## Team ops (`/team`)
+
+Password-gated shop for Creators, Work, Money, and a RevenueCat glance. Not linked from the public header.
+
+Local: `OPS_TEAM_PASSWORD` in `.env.local` (see `.env.example`). Open http://localhost:3000/team.
+
+Without `FIREBASE_SERVICE_ACCOUNT`, data is stored in `.data/ops.json`. With a service account JSON in that env var, data lives under Firestore `ops/**` in project `asl-app-718bf`. RevenueCat needs `REVENUECAT_SECRET_API_KEY` and `REVENUECAT_PROJECT_ID`.

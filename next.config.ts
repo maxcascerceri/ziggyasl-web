@@ -7,6 +7,7 @@ const aasaHeaders = [
 
 const nextConfig: NextConfig = {
   skipTrailingSlashRedirect: true,
+  serverExternalPackages: ["firebase-admin"],
   async headers() {
     return [
       {

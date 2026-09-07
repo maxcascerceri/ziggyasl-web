@@ -1,0 +1,16 @@
+{
+  "name": "Ziggy team",
+  "short_name": "Ziggy team",
+  "start_url": "/team",
+  "scope": "/team",
+  "display": "standalone",
+  "background_color": "#F7F9FF",
+  "theme_color": "#F7F9FF",
+  "icons": [
+    {
+      "src": "/brand/app-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}
