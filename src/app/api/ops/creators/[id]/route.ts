@@ -2,11 +2,11 @@ import { NextResponse } from "next/server";
 import { parseActor } from "@/lib/ops/actors";
 import {
   deleteCreator,
-  findCreatorByHandle,
+  findCreatorByLink,
   getCreator,
   upsertCreator,
 } from "@/lib/ops/store";
-import { addDaysIso, paymentLabel, stageLabel, todayIso } from "@/lib/ops/format";
+import { usd } from "@/lib/ops/format";
 import type { Creator } from "@/lib/ops/types";
 
 type Ctx = { params: Promise<{ id: string }> };
@@ -23,30 +23,24 @@ export async function PATCH(req: Request, ctx: Ctx) {
   const actor = parseActor(req.headers.get("x-ops-actor"));
   const existing = await getCreator(id);
   if (!existing) return NextResponse.json({ error: "Not found" }, { status: 404 });
-  const body = (await req.json()) as Record<string, unknown> & { outreach?: boolean };
+  const body = (await req.json()) as Record<string, unknown>;
 
-  if (body.outreach) {
+  if (body.outreach === true) {
     const creator = await upsertCreator(
       actor,
-      {
-        id,
-        lastContact: todayIso(),
-        nextFollowUp: addDaysIso(3),
-      },
-      `${actor} logged outreach with @${existing.handle || existing.name}`,
+      { id, reachedOut: true },
+      `Reached out ${existing.name}`,
     );
     return NextResponse.json({ creator });
   }
 
-  const handle =
-    body.handle !== undefined
-      ? String(body.handle).replace(/^@/, "")
-      : existing.handle;
-  if (handle) {
-    const dup = await findCreatorByHandle(handle, id);
+  const link =
+    body.link !== undefined ? String(body.link).trim() : existing.link;
+  if (link) {
+    const dup = await findCreatorByLink(link, id);
     if (dup) {
       return NextResponse.json(
-        { error: `Handle @${handle} is already on the list.` },
+        { error: "That link is already on the list." },
         { status: 409 },
       );
     }
@@ -55,26 +49,19 @@ export async function PATCH(req: Request, ctx: Ctx) {
   const patch: Partial<Creator> & { id: string } = { id };
   for (const key of [
     "name",
-    "handle",
-    "platform",
-    "targetRate",
-    "quotedRate",
-    "dealTotal",
-    "postsExpected",
-    "postsDelivered",
-    "payment",
-    "owner",
-    "lastContact",
-    "nextFollowUp",
-    "notes",
-    "stage",
+    "link",
+    "reachedOut",
+    "active",
+    "dealAmount",
+    "videos",
+    "posted",
+    "paid",
   ] as const) {
     if (key in body) (patch as Record<string, unknown>)[key] = body[key];
   }
-  if (body.handle !== undefined) patch.handle = handle;
+  if (body.link !== undefined) patch.link = link;
 
-  const summary = summaryFor(actor, existing, patch);
-  const creator = await upsertCreator(actor, patch, summary);
+  const creator = await upsertCreator(actor, patch, summaryFor(existing, patch));
   return NextResponse.json({ creator });
 }
 
@@ -82,31 +69,20 @@ export async function DELETE(req: Request, ctx: Ctx) {
   const { id } = await ctx.params;
   const actor = parseActor(req.headers.get("x-ops-actor"));
   const existing = await getCreator(id);
-  await deleteCreator(
-    actor,
-    id,
-    `${actor} deleted @${existing?.handle || existing?.name || "creator"}`,
-  );
+  await deleteCreator(actor, id, `${existing?.name ?? "Creator"} deleted`);
   return NextResponse.json({ ok: true });
 }
 
-function summaryFor(
-  actor: string,
-  existing: Creator,
-  patch: Partial<Creator>,
-): string {
-  const who = `@${existing.handle || existing.name}`;
-  if (patch.stage && patch.stage !== existing.stage) {
-    return `${actor} moved ${who} to ${stageLabel[patch.stage]}`;
+function summaryFor(existing: Creator, patch: Partial<Creator>): string {
+  const who = existing.name || "Creator";
+  if (patch.reachedOut && !existing.reachedOut) return `Reached out ${who}`;
+  if (patch.active && !existing.active) return `${who} is active`;
+  if (patch.paid && !existing.paid) return `Paid ${who}`;
+  if (patch.dealAmount !== undefined && patch.dealAmount !== existing.dealAmount) {
+    return `${who} deal ${usd(Number(patch.dealAmount))}`;
   }
-  if (patch.payment && patch.payment !== existing.payment) {
-    return `${actor} marked ${who} ${paymentLabel[patch.payment]}`;
+  if (patch.posted !== undefined && patch.posted !== existing.posted) {
+    return `${who} posted ${patch.posted}/${patch.videos ?? existing.videos}`;
   }
-  if (
-    patch.quotedRate !== undefined &&
-    patch.quotedRate !== existing.quotedRate
-  ) {
-    return `${actor} changed ${who} quote to $${patch.quotedRate}`;
-  }
-  return `${actor} edited ${who}`;
+  return `Edited ${who}`;
 }

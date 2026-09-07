@@ -15,31 +15,15 @@ function LoginForm() {
       <form
         method="post"
         action="/api/ops/login"
-        className="w-full max-w-sm rounded-3xl border border-divider bg-white p-7"
+        className="w-full max-w-sm rounded-[28px] bg-white p-8 shadow-card"
         autoComplete="on"
       >
-        <p className="text-sm font-medium text-secondary">Ziggy team</p>
-        <h1 className="mt-1 text-2xl font-semibold tracking-tight">Sign in</h1>
-        <p className="mt-2 text-sm text-secondary">
-          Shared password for Bernie, Jared, and Max. Chrome can save it.
-        </p>
+        <h1 className="text-2xl font-semibold tracking-tight">Team</h1>
 
-        <label className="mt-6 block">
-          <span className="mb-1.5 block text-sm font-medium text-secondary">
-            Account
-          </span>
-          <input
-            type="text"
-            name="username"
-            autoComplete="username"
-            defaultValue="Ziggy team"
-            className={inputClass}
-          />
-        </label>
-
+        <input type="hidden" name="username" autoComplete="username" defaultValue="Team" />
         <input type="hidden" name="next" value={next} />
 
-        <label className="mt-4 block">
+        <label className="mt-6 block">
           <span className="mb-1.5 block text-sm font-medium text-secondary">
             Password
           </span>

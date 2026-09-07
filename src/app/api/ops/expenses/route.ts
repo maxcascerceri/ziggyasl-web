@@ -24,7 +24,7 @@ export async function POST(req: Request) {
       note: String(body.note ?? ""),
       active: body.active !== false,
     },
-    `${actor} added ${name || "an expense"} ${usd(amount)}`,
+    `Added ${name || "an expense"} ${usd(amount)}`,
   );
   return NextResponse.json({ expense });
 }

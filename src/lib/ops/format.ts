@@ -1,30 +1,9 @@
-import type { Creator, Expense } from "./types";
-
-export function monthlyRunRate(expenses: Expense[]): number {
-  return expenses
-    .filter((e) => e.active)
-    .reduce((sum, e) => {
-      if (e.cadence === "monthly") return sum + e.amount;
-      if (e.cadence === "yearly") return sum + e.amount / 12;
-      return sum;
-    }, 0);
-}
-
-export function thisMonthTotal(expenses: Expense[]): number {
-  return expenses
-    .filter((e) => e.active)
-    .reduce((sum, e) => {
-      if (e.cadence === "yearly") return sum + e.amount / 12;
-      return sum + e.amount;
-    }, 0);
-}
+import type { Creator } from "./types";
 
 export function remainingCreatorCash(creators: Creator[]): number {
   return creators.reduce((sum, c) => {
-    if (c.stage !== "active" && c.stage !== "negotiation") return sum;
-    if (c.payment === "paid" || c.payment === "n/a") return sum;
-    if (c.payment === "half") return sum + c.dealTotal / 2;
-    return sum + c.dealTotal;
+    if (!c.active || c.paid) return sum;
+    return sum + c.dealAmount;
   }, 0);
 }
 
@@ -52,6 +31,26 @@ export function isOverdue(date: string | null): boolean {
   return date < todayIso();
 }
 
+export function dateLabel(date: string | null): string {
+  if (!date) return "No date";
+  const today = todayIso();
+  const tomorrow = addDaysIso(1);
+  const yesterday = addDaysIso(-1);
+  if (date === today) return "Today";
+  if (date === tomorrow) return "Tomorrow";
+  if (date === yesterday) return "Yesterday";
+  const end = addDaysIso(6);
+  if (date > today && date <= end) {
+    return new Date(`${date}T12:00:00`).toLocaleDateString("en-US", {
+      weekday: "short",
+    });
+  }
+  return new Date(`${date}T12:00:00`).toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+  });
+}
+
 export function relativeTime(iso: string): string {
   const then = new Date(iso).getTime();
   const now = Date.now();
@@ -69,24 +68,47 @@ export function relativeTime(iso: string): string {
   });
 }
 
-export const stageLabel: Record<string, string> = {
-  wishlist: "Wishlist",
-  outreach: "Outreach",
-  negotiation: "Negotiation",
-  active: "Active",
-  done: "Done",
-  passed: "Passed",
-};
+export function activityDay(iso: string): "Today" | "Yesterday" | "Earlier" {
+  const day = iso.slice(0, 10);
+  if (day === todayIso()) return "Today";
+  if (day === addDaysIso(-1)) return "Yesterday";
+  return "Earlier";
+}
+
+export function linkLabel(link: string): string {
+  const raw = link.trim();
+  if (!raw) return "";
+  try {
+    const url = new URL(raw.includes("://") ? raw : `https://${raw}`);
+    const host = url.hostname.replace(/^www\./, "");
+    const path = url.pathname.replace(/\/$/, "");
+    return path && path !== "/" ? `${host}${path}` : host;
+  } catch {
+    return raw.replace(/^https?:\/\//, "");
+  }
+}
+
+export function hrefFor(link: string): string {
+  const raw = link.trim();
+  if (!raw) return "";
+  if (/^https?:\/\//i.test(raw)) return raw;
+  return `https://${raw}`;
+}
 
 export const statusLabel: Record<string, string> = {
-  not_started: "Haven’t started",
-  working: "Working on",
-  completed: "Completed",
+  not_started: "Todo",
+  working: "Doing",
+  completed: "Done",
 };
 
-export const paymentLabel: Record<string, string> = {
-  unpaid: "Unpaid",
-  half: "50%",
-  paid: "Paid",
-  "n/a": "n/a",
+export const statusPill: Record<string, string> = {
+  not_started: "bg-canvas text-secondary",
+  working: "bg-pastel-blue text-[#3d6a94]",
+  completed: "bg-pastel-mint text-[#2d7a62]",
 };
+
+export const NEXT_STATUS = {
+  not_started: "working",
+  working: "completed",
+  completed: "not_started",
+} as const;

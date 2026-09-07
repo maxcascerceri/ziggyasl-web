@@ -16,7 +16,6 @@ type StoreShape = {
   tasks: Task[];
   expenses: Expense[];
   activity: Activity[];
-  rcCache: { fetchedAt: string; payload: unknown } | null;
 };
 
 const empty = (): StoreShape => ({
@@ -24,7 +23,6 @@ const empty = (): StoreShape => ({
   tasks: [],
   expenses: [],
   activity: [],
-  rcCache: null,
 });
 
 function filePath() {
@@ -113,13 +111,56 @@ async function logActivity(
   return row;
 }
 
+function guessLink(platform: string, handle: string): string {
+  const h = handle.replace(/^@/, "");
+  if (!h) return "";
+  if (platform === "IG") return `https://www.instagram.com/${h}`;
+  if (platform === "YouTube") return `https://www.youtube.com/@${h}`;
+  return `https://www.tiktok.com/@${h}`;
+}
+
+export function normalizeCreator(
+  raw: Record<string, unknown> & { id: string },
+): Creator {
+  const stage = String(raw.stage ?? "");
+  const payment = String(raw.payment ?? "");
+  const handle = String(raw.handle ?? "").replace(/^@/, "");
+  const platform = String(raw.platform ?? "TikTok");
+  const link =
+    String(raw.link ?? "").trim() ||
+    (handle ? guessLink(platform, handle) : "");
+  return {
+    id: raw.id,
+    name: String(raw.name ?? ""),
+    link,
+    reachedOut: Boolean(
+      raw.reachedOut ?? (stage !== "" && stage !== "wishlist"),
+    ),
+    active: Boolean(
+      raw.active ?? (stage === "active" || stage === "negotiation"),
+    ),
+    dealAmount: Number(raw.dealAmount ?? raw.dealTotal ?? 0) || 0,
+    videos: Number(raw.videos ?? raw.postsExpected ?? 0) || 0,
+    posted: Number(raw.posted ?? raw.postsDelivered ?? 0) || 0,
+    paid: Boolean(raw.paid ?? payment === "paid"),
+    updatedAt: String(raw.updatedAt ?? ""),
+    updatedBy: (raw.updatedBy as Creator["updatedBy"]) ?? "Team",
+  };
+}
+
 export async function listCreators(): Promise<Creator[]> {
   const db = getDb();
   if (db) {
     const snap = await items(db, "creators").get();
-    return snap.docs.map((d) => ({ id: d.id, ...d.data() }) as Creator);
+    return snap.docs.map((d) =>
+      normalizeCreator({ id: d.id, ...d.data() } as Record<string, unknown> & {
+        id: string;
+      }),
+    );
   }
-  return readFileStore().creators;
+  return readFileStore().creators.map((c) =>
+    normalizeCreator(c as unknown as Record<string, unknown> & { id: string }),
+  );
 }
 
 export async function getCreator(id: string): Promise<Creator | null> {
@@ -134,33 +175,33 @@ export async function upsertCreator(
 ): Promise<Creator> {
   const db = getDb();
   const file = db ? null : readFileStore();
-  const existing = input.id
-    ? (db
-        ? ((await items(db, "creators").doc(input.id).get()).data() as Creator | undefined)
-        : file?.creators.find((c) => c.id === input.id))
+  const existingRaw = input.id
+    ? db
+      ? ((await items(db, "creators").doc(input.id).get()).data() as
+          | Record<string, unknown>
+          | undefined)
+      : (file?.creators.find((c) => c.id === input.id) as
+          | Record<string, unknown>
+          | undefined)
+    : undefined;
+  const existing = existingRaw && input.id
+    ? normalizeCreator({ id: input.id, ...existingRaw })
     : undefined;
   const id = input.id ?? newId();
   const next: Creator = {
     id,
     name: input.name ?? existing?.name ?? "",
-    handle: (input.handle ?? existing?.handle ?? "").replace(/^@/, ""),
-    platform: input.platform ?? existing?.platform ?? "TikTok",
-    targetRate: num(input.targetRate, existing?.targetRate, 0),
-    quotedRate: num(input.quotedRate, existing?.quotedRate, 0),
-    dealTotal: num(input.dealTotal, existing?.dealTotal, 0),
-    postsExpected: num(input.postsExpected, existing?.postsExpected, 0),
-    postsDelivered: num(input.postsDelivered, existing?.postsDelivered, 0),
-    payment: input.payment ?? existing?.payment ?? (input.stage === "wishlist" || existing?.stage === "wishlist" ? "n/a" : "unpaid"),
-    owner: input.owner ?? existing?.owner ?? "Bernie",
-    lastContact: input.lastContact !== undefined ? input.lastContact : existing?.lastContact ?? null,
-    nextFollowUp:
-      input.nextFollowUp !== undefined ? input.nextFollowUp : existing?.nextFollowUp ?? null,
-    notes: input.notes ?? existing?.notes ?? "",
-    stage: input.stage ?? existing?.stage ?? "wishlist",
+    link: (input.link ?? existing?.link ?? "").trim(),
+    reachedOut: input.reachedOut ?? existing?.reachedOut ?? false,
+    active: input.active ?? existing?.active ?? false,
+    dealAmount: num(input.dealAmount, existing?.dealAmount, 0),
+    videos: num(input.videos, existing?.videos, 0),
+    posted: num(input.posted, existing?.posted, 0),
+    paid: input.paid ?? existing?.paid ?? false,
     updatedAt: nowIso(),
     updatedBy: actor,
   };
-  if (next.stage === "wishlist" && !input.payment && !existing) next.payment = "n/a";
+  if (next.active) next.reachedOut = true;
   if (db) {
     await items(db, "creators").doc(id).set(next as unknown as Record<string, unknown>);
     await logActivity(db, null, {
@@ -211,11 +252,14 @@ export async function deleteCreator(actor: Actor, id: string, summary: string) {
   });
 }
 
-export async function findCreatorByHandle(handle: string, exceptId?: string) {
-  const needle = handle.replace(/^@/, "").toLowerCase();
+export async function findCreatorByLink(link: string, exceptId?: string) {
+  const needle = link.trim().toLowerCase().replace(/\/$/, "");
+  if (!needle) return undefined;
   const all = await listCreators();
   return all.find(
-    (c) => c.handle.toLowerCase() === needle && c.id !== exceptId,
+    (c) =>
+      c.link.trim().toLowerCase().replace(/\/$/, "") === needle &&
+      c.id !== exceptId,
   );
 }
 
@@ -245,7 +289,7 @@ export async function upsertTask(
     id,
     title: input.title ?? existing?.title ?? "",
     status: input.status ?? existing?.status ?? "not_started",
-    assignee: input.assignee ?? existing?.assignee ?? actor,
+    assignee: input.assignee ?? existing?.assignee ?? "Bernie",
     dueAt: input.dueAt !== undefined ? input.dueAt : existing?.dueAt ?? null,
     updatedAt: nowIso(),
     updatedBy: actor,
@@ -390,33 +434,6 @@ export async function listActivity(): Promise<Activity[]> {
     return snap.docs.map((d) => ({ id: d.id, ...d.data() }) as Activity);
   }
   return readFileStore().activity.slice(0, 50);
-}
-
-export async function getRcCache(): Promise<{
-  fetchedAt: string;
-  payload: unknown;
-} | null> {
-  const db = getDb();
-  if (db) {
-    const snap = await items(db, "rcCache").doc("overview").get();
-    if (!snap.exists) return null;
-    const data = snap.data() as { fetchedAt: string; payload: unknown };
-    return data;
-  }
-  return readFileStore().rcCache;
-}
-
-export async function setRcCache(payload: unknown) {
-  const row = { fetchedAt: nowIso(), payload };
-  const db = getDb();
-  if (db) {
-    await items(db, "rcCache").doc("overview").set(row);
-    return row;
-  }
-  const file = readFileStore();
-  file.rcCache = row;
-  writeFileStore(file);
-  return row;
 }
 
 function num(

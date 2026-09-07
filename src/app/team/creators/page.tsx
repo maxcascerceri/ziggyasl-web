@@ -2,40 +2,30 @@
 
 import { Suspense, useCallback, useEffect, useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useActor } from "@/components/ops/OpsChrome";
 import { Sheet } from "@/components/ops/Sheet";
-import { Field, PrimaryButton, inputClass } from "@/components/ops/fields";
+import {
+  Chip,
+  Field,
+  ListSkeleton,
+  PageHeader,
+  Pill,
+  PrimaryButton,
+  Surface,
+  inputClass,
+} from "@/components/ops/fields";
 import { opsFetch } from "@/components/ops/api";
-import {
-  ACTORS,
-  CREATOR_STAGES,
-  PAYMENTS,
-  PLATFORMS,
-  type Creator,
-  type CreatorStage,
-} from "@/lib/ops/types";
-import {
-  isOverdue,
-  paymentLabel,
-  stageLabel,
-  usd,
-} from "@/lib/ops/format";
+import type { Creator } from "@/lib/ops/types";
+import { hrefFor, linkLabel, usd } from "@/lib/ops/format";
 
 const empty: Partial<Creator> = {
   name: "",
-  handle: "",
-  platform: "TikTok",
-  targetRate: 0,
-  quotedRate: 0,
-  dealTotal: 0,
-  postsExpected: 0,
-  postsDelivered: 0,
-  payment: "n/a",
-  owner: "Bernie",
-  lastContact: null,
-  nextFollowUp: null,
-  notes: "",
-  stage: "wishlist",
+  link: "",
+  reachedOut: false,
+  active: false,
+  dealAmount: 0,
+  videos: 0,
+  posted: 0,
+  paid: false,
 };
 
 export default function CreatorsRoute() {
@@ -47,22 +37,22 @@ export default function CreatorsRoute() {
 }
 
 function CreatorsPage() {
-  const { actor } = useActor();
   const router = useRouter();
   const params = useSearchParams();
   const [creators, setCreators] = useState<Creator[]>([]);
-  const [stage, setStage] = useState<CreatorStage | "all">("all");
+  const [ready, setReady] = useState(false);
+  const [filter, setFilter] = useState<"all" | "to_reach" | "active">("all");
+  const [q, setQ] = useState("");
   const [open, setOpen] = useState<Partial<Creator> | null>(null);
+  const [baseline, setBaseline] = useState("");
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
 
   const load = useCallback(async () => {
-    const data = await opsFetch<{ creators: Creator[] }>(
-      "/api/ops/creators",
-      actor,
-    );
+    const data = await opsFetch<{ creators: Creator[] }>("/api/ops/creators");
     setCreators(data.creators);
-  }, [actor]);
+    setReady(true);
+  }, []);
 
   useEffect(() => {
     void load();
@@ -72,19 +62,33 @@ function CreatorsPage() {
     const id = params.get("id");
     if (!id || creators.length === 0) return;
     const hit = creators.find((c) => c.id === id);
-    if (hit) setOpen(hit);
+    if (hit) {
+      setOpen(hit);
+      setBaseline(JSON.stringify(hit));
+    }
   }, [params, creators]);
 
-  const filtered = useMemo(
-    () => (stage === "all" ? creators : creators.filter((c) => c.stage === stage)),
-    [creators, stage],
-  );
+  const filtered = useMemo(() => {
+    const needle = q.trim().toLowerCase();
+    return creators.filter((c) => {
+      if (filter === "to_reach" && c.reachedOut) return false;
+      if (filter === "active" && !c.active) return false;
+      if (!needle) return true;
+      return (
+        c.name.toLowerCase().includes(needle) ||
+        c.link.toLowerCase().includes(needle)
+      );
+    });
+  }, [creators, filter, q]);
 
   function close() {
     setOpen(null);
     setError("");
+    setBaseline("");
     router.replace("/team/creators");
   }
+
+  const dirty = !!open && JSON.stringify(open) !== baseline;
 
   async function save() {
     if (!open) return;
@@ -92,12 +96,12 @@ function CreatorsPage() {
     setError("");
     try {
       if (open.id) {
-        await opsFetch(`/api/ops/creators/${open.id}`, actor, {
+        await opsFetch(`/api/ops/creators/${open.id}`, {
           method: "PATCH",
           body: JSON.stringify(open),
         });
       } else {
-        await opsFetch("/api/ops/creators", actor, {
+        await opsFetch("/api/ops/creators", {
           method: "POST",
           body: JSON.stringify(open),
         });
@@ -111,105 +115,144 @@ function CreatorsPage() {
     }
   }
 
-  async function outreach(id: string) {
+  async function markReached(id: string) {
     setBusy(true);
     try {
-      await opsFetch(`/api/ops/creators/${id}`, actor, {
+      await opsFetch(`/api/ops/creators/${id}`, {
         method: "PATCH",
         body: JSON.stringify({ outreach: true }),
       });
       await load();
-      const data = await opsFetch<{ creator: Creator }>(
-        `/api/ops/creators/${id}`,
-        actor,
-      );
-      setOpen(data.creator);
-    } catch (e) {
-      setError(e instanceof Error ? e.message : "Could not log outreach.");
     } finally {
       setBusy(false);
     }
   }
 
   async function remove(id: string) {
-    if (!confirm("Remove this creator?")) return;
-    await opsFetch(`/api/ops/creators/${id}`, actor, { method: "DELETE" });
+    if (!confirm("Delete this?")) return;
+    await opsFetch(`/api/ops/creators/${id}`, { method: "DELETE" });
     await load();
     close();
   }
 
-  function copyHandle(handle: string) {
-    void navigator.clipboard.writeText(`@${handle}`);
+  function startNew() {
+    const next = { ...empty };
+    setOpen(next);
+    setBaseline(JSON.stringify(next));
+  }
+
+  function pill(c: Creator) {
+    if (c.active && !c.paid) {
+      return <Pill className="bg-pastel-peach text-[#b45a24]">Unpaid</Pill>;
+    }
+    if (c.active) {
+      return <Pill className="bg-pastel-mint text-[#2d7a62]">Active</Pill>;
+    }
+    if (c.reachedOut) {
+      return <Pill className="bg-pastel-yellow text-[#8a6a12]">Reached out</Pill>;
+    }
+    return <Pill className="bg-canvas text-secondary">To reach</Pill>;
   }
 
   return (
     <div>
-      <header className="mb-5 flex items-end justify-between gap-3">
-        <div>
-          <h1 className="text-2xl font-semibold tracking-tight">Creators</h1>
-          <p className="mt-1 text-sm text-secondary">
-            Wishlist through active deals. Oldest follow-up first.
-          </p>
-        </div>
-        <PrimaryButton onClick={() => setOpen({ ...empty })}>Add</PrimaryButton>
-      </header>
+      <PageHeader
+        title="Creators"
+        subtitle="Name, link, outreach, deal."
+        action={<PrimaryButton onClick={startNew}>Add</PrimaryButton>}
+      />
+
+      <input
+        className={`${inputClass} mb-3`}
+        placeholder="Search"
+        value={q}
+        onChange={(e) => setQ(e.target.value)}
+      />
 
       <div className="-mx-1 mb-4 flex gap-1 overflow-x-auto px-1 pb-1">
-        {(["all", ...CREATOR_STAGES] as const).map((s) => (
-          <button
-            key={s}
-            type="button"
-            onClick={() => setStage(s)}
-            className={`min-h-11 shrink-0 rounded-full px-3 text-sm font-semibold ${
-              stage === s ? "bg-soft text-brand" : "text-secondary"
-            }`}
-          >
-            {s === "all" ? "All" : stageLabel[s]}
-          </button>
-        ))}
+        <Chip on={filter === "all"} onClick={() => setFilter("all")}>
+          All
+        </Chip>
+        <Chip on={filter === "to_reach"} onClick={() => setFilter("to_reach")}>
+          To reach
+        </Chip>
+        <Chip on={filter === "active"} onClick={() => setFilter("active")}>
+          Active
+        </Chip>
       </div>
 
-      <ul className="divide-y divide-divider overflow-hidden rounded-2xl border border-divider bg-white">
-        {filtered.length === 0 && (
-          <li className="px-4 py-10 text-sm text-secondary">
-            Add a creator Bernie should email.
-          </li>
-        )}
-        {filtered.map((c) => {
-          const hot = isOverdue(c.nextFollowUp);
-          const over = c.quotedRate > 0 && c.targetRate > 0 && c.quotedRate > c.targetRate;
-          return (
-            <li key={c.id}>
-              <button
-                type="button"
-                onClick={() => setOpen(c)}
-                className="flex w-full min-h-16 items-center gap-3 px-4 py-3 text-left"
-              >
-                <div className="min-w-0 flex-1">
-                  <p className="truncate font-semibold">
-                    {c.name || `@${c.handle}`}
-                  </p>
-                  <p className="truncate text-sm text-secondary">
-                    @{c.handle} · {c.platform} · {stageLabel[c.stage]}
-                    {over ? " · quote over target" : ""}
-                  </p>
-                </div>
-                <div className="shrink-0 text-right text-sm">
-                  <p className={hot ? "font-semibold text-pastel-peach-icon" : "text-secondary"}>
-                    {c.nextFollowUp ?? "No follow-up"}
-                  </p>
-                  <p className="text-secondary">{paymentLabel[c.payment]}</p>
-                </div>
-              </button>
-            </li>
-          );
-        })}
-      </ul>
+      {!ready ? (
+        <ListSkeleton />
+      ) : (
+        <Surface>
+          {filtered.length === 0 ? (
+            <p className="px-5 py-12 text-center text-[15px] text-secondary">
+              No creators yet.
+            </p>
+          ) : (
+            <ul>
+              {filtered.map((c) => {
+                const initial = (c.name || "?").slice(0, 1).toUpperCase();
+                const href = hrefFor(c.link);
+                return (
+                  <li
+                    key={c.id}
+                    className="flex items-center gap-1 border-b border-divider/70 last:border-0"
+                  >
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setOpen(c);
+                        setBaseline(JSON.stringify(c));
+                      }}
+                      className="flex min-h-[4.25rem] min-w-0 flex-1 items-center gap-3 px-4 py-3 text-left hover:bg-canvas/70"
+                    >
+                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-soft text-sm font-semibold text-brand">
+                        {initial}
+                      </span>
+                      <div className="min-w-0 flex-1">
+                        <p className="truncate font-semibold">{c.name || "Untitled"}</p>
+                        <p className="truncate text-[13px] text-secondary">
+                          {c.active
+                            ? `${usd(c.dealAmount)} · ${c.posted}/${c.videos} posted`
+                            : linkLabel(c.link) || "No link"}
+                        </p>
+                      </div>
+                      {pill(c)}
+                    </button>
+                    {href && (
+                      <a
+                        href={href}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="shrink-0 px-2 text-[13px] font-semibold text-brand"
+                      >
+                        Open
+                      </a>
+                    )}
+                    {!c.reachedOut && c.id && (
+                      <button
+                        type="button"
+                        disabled={busy}
+                        className="shrink-0 pr-4 text-[13px] font-semibold text-brand"
+                        onClick={() => void markReached(c.id)}
+                      >
+                        Reached out
+                      </button>
+                    )}
+                  </li>
+                );
+              })}
+            </ul>
+          )}
+        </Surface>
+      )}
 
       <Sheet
         open={!!open}
+        dirty={dirty}
         onClose={close}
-        title={open?.id ? open.name || `@${open.handle}` : "New creator"}
+        title={open?.id ? open.name || "Creator" : "New creator"}
       >
         {open && (
           <div>
@@ -223,186 +266,88 @@ function CreatorsPage() {
                 onChange={(e) => setOpen({ ...open, name: e.target.value })}
               />
             </Field>
-            <Field label="Handle">
-              <div className="flex gap-2">
-                <input
-                  className={inputClass}
-                  value={open.handle ?? ""}
-                  onChange={(e) => setOpen({ ...open, handle: e.target.value })}
-                />
-                {open.handle && (
-                  <button
-                    type="button"
-                    className="min-h-11 shrink-0 rounded-xl px-3 text-sm font-semibold text-brand"
-                    onClick={() => copyHandle(open.handle!)}
-                  >
-                    Copy
-                  </button>
-                )}
-              </div>
-            </Field>
-            <Field label="Platform">
-              <select
-                className={inputClass}
-                value={open.platform}
-                onChange={(e) =>
-                  setOpen({ ...open, platform: e.target.value as Creator["platform"] })
-                }
-              >
-                {PLATFORMS.map((p) => (
-                  <option key={p}>{p}</option>
-                ))}
-              </select>
-            </Field>
-            <Field label="Stage">
-              <select
-                className={inputClass}
-                value={open.stage}
-                onChange={(e) =>
-                  setOpen({ ...open, stage: e.target.value as CreatorStage })
-                }
-              >
-                {CREATOR_STAGES.map((s) => (
-                  <option key={s} value={s}>
-                    {stageLabel[s]}
-                  </option>
-                ))}
-              </select>
-            </Field>
-            <div className="grid grid-cols-2 gap-3">
-              <Field label="Target rate">
-                <input
-                  type="number"
-                  className={inputClass}
-                  value={open.targetRate ?? 0}
-                  onChange={(e) =>
-                    setOpen({ ...open, targetRate: Number(e.target.value) })
-                  }
-                />
-              </Field>
-              <Field label="Quoted rate">
-                <input
-                  type="number"
-                  className={inputClass}
-                  value={open.quotedRate ?? 0}
-                  onChange={(e) =>
-                    setOpen({ ...open, quotedRate: Number(e.target.value) })
-                  }
-                />
-              </Field>
-            </div>
-            {!!open.quotedRate &&
-              !!open.targetRate &&
-              open.quotedRate > open.targetRate && (
-                <p className="mb-4 text-sm text-pastel-yellow-icon">
-                  Quoted {usd(open.quotedRate)} is over the {usd(open.targetRate)}{" "}
-                  target.
-                </p>
-              )}
-            <Field label="Deal total">
+            <Field label="Social link">
               <input
-                type="number"
                 className={inputClass}
-                value={open.dealTotal ?? 0}
-                onChange={(e) =>
-                  setOpen({ ...open, dealTotal: Number(e.target.value) })
-                }
+                placeholder="tiktok.com/@…"
+                value={open.link ?? ""}
+                onChange={(e) => setOpen({ ...open, link: e.target.value })}
               />
             </Field>
-            <div className="grid grid-cols-2 gap-3">
-              <Field label="Posts expected">
-                <input
-                  type="number"
-                  className={inputClass}
-                  value={open.postsExpected ?? 0}
-                  onChange={(e) =>
-                    setOpen({ ...open, postsExpected: Number(e.target.value) })
-                  }
-                />
-              </Field>
-              <Field label="Posts delivered">
-                <input
-                  type="number"
-                  className={inputClass}
-                  value={open.postsDelivered ?? 0}
-                  onChange={(e) =>
-                    setOpen({ ...open, postsDelivered: Number(e.target.value) })
-                  }
-                />
-              </Field>
-            </div>
-            <Field label="Payment">
-              <select
-                className={inputClass}
-                value={open.payment}
+            <label className="mb-3 flex min-h-11 items-center gap-2 text-[15px]">
+              <input
+                type="checkbox"
+                checked={!!open.reachedOut}
                 onChange={(e) =>
-                  setOpen({ ...open, payment: e.target.value as Creator["payment"] })
+                  setOpen({ ...open, reachedOut: e.target.checked })
                 }
-              >
-                {PAYMENTS.map((p) => (
-                  <option key={p} value={p}>
-                    {paymentLabel[p]}
-                  </option>
-                ))}
-              </select>
-            </Field>
-            <Field label="Owner">
-              <select
-                className={inputClass}
-                value={open.owner}
-                onChange={(e) =>
-                  setOpen({ ...open, owner: e.target.value as Creator["owner"] })
-                }
-              >
-                {ACTORS.map((a) => (
-                  <option key={a}>{a}</option>
-                ))}
-              </select>
-            </Field>
-            <div className="grid grid-cols-2 gap-3">
-              <Field label="Last contact">
-                <input
-                  type="date"
-                  className={inputClass}
-                  value={open.lastContact ?? ""}
-                  onChange={(e) =>
-                    setOpen({
-                      ...open,
-                      lastContact: e.target.value || null,
-                    })
-                  }
-                />
-              </Field>
-              <Field label="Next follow-up">
-                <input
-                  type="date"
-                  className={inputClass}
-                  value={open.nextFollowUp ?? ""}
-                  onChange={(e) =>
-                    setOpen({
-                      ...open,
-                      nextFollowUp: e.target.value || null,
-                    })
-                  }
-                />
-              </Field>
-            </div>
-            <Field label="Notes">
-              <textarea
-                className={`${inputClass} min-h-24 py-2`}
-                value={open.notes ?? ""}
-                onChange={(e) => setOpen({ ...open, notes: e.target.value })}
               />
-            </Field>
-            <div className="mt-2 flex flex-col gap-2">
-              {open.id && (
-                <PrimaryButton
-                  disabled={busy}
-                  onClick={() => void outreach(open.id!)}
-                >
-                  Logged outreach
-                </PrimaryButton>
-              )}
+              Reached out
+            </label>
+            <label className="mb-4 flex min-h-11 items-center gap-2 text-[15px]">
+              <input
+                type="checkbox"
+                checked={!!open.active}
+                onChange={(e) =>
+                  setOpen({
+                    ...open,
+                    active: e.target.checked,
+                    reachedOut: e.target.checked ? true : open.reachedOut,
+                  })
+                }
+              />
+              Active deal
+            </label>
+            {open.active && (
+              <>
+                <div className="grid grid-cols-2 gap-3">
+                  <Field label="Pay">
+                    <input
+                      type="number"
+                      className={inputClass}
+                      value={open.dealAmount ?? 0}
+                      onChange={(e) =>
+                        setOpen({
+                          ...open,
+                          dealAmount: Number(e.target.value),
+                        })
+                      }
+                    />
+                  </Field>
+                  <Field label="Videos">
+                    <input
+                      type="number"
+                      className={inputClass}
+                      value={open.videos ?? 0}
+                      onChange={(e) =>
+                        setOpen({ ...open, videos: Number(e.target.value) })
+                      }
+                    />
+                  </Field>
+                </div>
+                <Field label="Posted so far">
+                  <input
+                    type="number"
+                    className={inputClass}
+                    value={open.posted ?? 0}
+                    onChange={(e) =>
+                      setOpen({ ...open, posted: Number(e.target.value) })
+                    }
+                  />
+                </Field>
+                <label className="mb-4 flex min-h-11 items-center gap-2 text-[15px]">
+                  <input
+                    type="checkbox"
+                    checked={!!open.paid}
+                    onChange={(e) =>
+                      setOpen({ ...open, paid: e.target.checked })
+                    }
+                  />
+                  Paid
+                </label>
+              </>
+            )}
+            <div className="sticky bottom-0 mt-2 flex flex-col gap-2 bg-white pt-2 pb-[env(safe-area-inset-bottom)]">
               <PrimaryButton disabled={busy} onClick={() => void save()}>
                 {busy ? "Saving…" : "Save"}
               </PrimaryButton>

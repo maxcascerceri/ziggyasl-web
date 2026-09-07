@@ -50,8 +50,8 @@ from GoDaddy.
 
 ## Team ops (`/team`)
 
-Password-gated shop for Creators, Work, Money, and a RevenueCat glance. Not linked from the public header.
+Password-gated shop for Creators, Work, and Money. Not linked from the public header.
 
 Local: `OPS_TEAM_PASSWORD` in `.env.local` (see `.env.example`). Open http://localhost:3000/team.
 
-Without `FIREBASE_SERVICE_ACCOUNT`, data is stored in `.data/ops.json`. With a service account JSON in that env var, data lives under Firestore `ops/**` in project `asl-app-718bf`. RevenueCat needs `REVENUECAT_SECRET_API_KEY` and `REVENUECAT_PROJECT_ID`.
+Without `FIREBASE_SERVICE_ACCOUNT`, data is stored in `.data/ops.json`. With a service account JSON in that env var, data lives under Firestore `ops/**` in project `asl-app-718bf`.

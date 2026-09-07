@@ -1,17 +1,14 @@
-import type { Actor } from "@/lib/ops/types";
-
-export function actorHeader(actor: Actor): HeadersInit {
-  return { "Content-Type": "application/json", "x-ops-actor": actor };
-}
-
 export async function opsFetch<T>(
   path: string,
-  actor: Actor,
   init?: RequestInit,
 ): Promise<T> {
   const res = await fetch(path, {
     ...init,
-    headers: { ...actorHeader(actor), ...(init?.headers ?? {}) },
+    headers: {
+      "Content-Type": "application/json",
+      "x-ops-actor": "Team",
+      ...(init?.headers ?? {}),
+    },
   });
   const data = (await res.json().catch(() => ({}))) as T & { error?: string };
   if (!res.ok) {

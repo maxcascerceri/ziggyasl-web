@@ -21,10 +21,10 @@ export async function POST(req: Request) {
     {
       title,
       status: (body.status as never) ?? "not_started",
-      assignee: (body.assignee as never) ?? actor,
+      assignee: (body.assignee as never) ?? "Bernie",
       dueAt: (body.dueAt as string | null) ?? null,
     },
-    `${actor} added “${title || "a task"}”`,
+    `Added “${title || "a task"}”`,
   );
   return NextResponse.json({ task });
 }

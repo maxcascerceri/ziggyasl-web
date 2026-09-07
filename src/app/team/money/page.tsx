@@ -2,9 +2,16 @@
 
 import { Suspense, useCallback, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useActor } from "@/components/ops/OpsChrome";
 import { Sheet } from "@/components/ops/Sheet";
-import { Field, PrimaryButton, inputClass } from "@/components/ops/fields";
+import {
+  Field,
+  ListSkeleton,
+  PageHeader,
+  Pill,
+  PrimaryButton,
+  Surface,
+  inputClass,
+} from "@/components/ops/fields";
 import { opsFetch } from "@/components/ops/api";
 import {
   CADENCES,
@@ -13,13 +20,15 @@ import {
   type Expense,
   type ExpenseCategory,
 } from "@/lib/ops/types";
-import {
-  monthlyRunRate,
-  remainingCreatorCash,
-  thisMonthTotal,
-  usd,
-} from "@/lib/ops/format";
+import { remainingCreatorCash, usd } from "@/lib/ops/format";
 import type { Creator } from "@/lib/ops/types";
+
+const categoryPill: Record<string, string> = {
+  Tools: "bg-pastel-blue text-[#3d6a94]",
+  Ads: "bg-pastel-peach text-[#b45a24]",
+  People: "bg-pastel-mint text-[#2d7a62]",
+  Other: "bg-canvas text-secondary",
+};
 
 export default function MoneyRoute() {
   return (
@@ -30,21 +39,23 @@ export default function MoneyRoute() {
 }
 
 function MoneyPage() {
-  const { actor } = useActor();
   const router = useRouter();
   const params = useSearchParams();
   const [expenses, setExpenses] = useState<Expense[]>([]);
   const [creators, setCreators] = useState<Creator[]>([]);
+  const [ready, setReady] = useState(false);
   const [open, setOpen] = useState<Partial<Expense> | null>(null);
+  const [baseline, setBaseline] = useState("");
 
   const load = useCallback(async () => {
     const [e, c] = await Promise.all([
-      opsFetch<{ expenses: Expense[] }>("/api/ops/expenses", actor),
-      opsFetch<{ creators: Creator[] }>("/api/ops/creators", actor),
+      opsFetch<{ expenses: Expense[] }>("/api/ops/expenses"),
+      opsFetch<{ creators: Creator[] }>("/api/ops/creators"),
     ]);
     setExpenses(e.expenses);
     setCreators(c.creators);
-  }, [actor]);
+    setReady(true);
+  }, []);
 
   useEffect(() => {
     void load();
@@ -54,97 +65,120 @@ function MoneyPage() {
     const id = params.get("id");
     if (!id) return;
     const hit = expenses.find((x) => x.id === id);
-    if (hit) setOpen(hit);
+    if (hit) {
+      setOpen(hit);
+      setBaseline(JSON.stringify(hit));
+    }
   }, [params, expenses]);
 
   const remaining = remainingCreatorCash(creators);
+  const dirty = !!open && JSON.stringify(open) !== baseline;
 
   async function save() {
     if (!open) return;
     if (open.id) {
-      await opsFetch(`/api/ops/expenses/${open.id}`, actor, {
+      await opsFetch(`/api/ops/expenses/${open.id}`, {
         method: "PATCH",
         body: JSON.stringify(open),
       });
     } else {
-      await opsFetch("/api/ops/expenses", actor, {
+      await opsFetch("/api/ops/expenses", {
         method: "POST",
         body: JSON.stringify(open),
       });
     }
     await load();
     setOpen(null);
+    setBaseline("");
     router.replace("/team/money");
   }
 
   async function remove(id: string) {
-    if (!confirm("Delete this line?")) return;
-    await opsFetch(`/api/ops/expenses/${id}`, actor, { method: "DELETE" });
+    if (!confirm("Delete this?")) return;
+    await opsFetch(`/api/ops/expenses/${id}`, { method: "DELETE" });
     await load();
     setOpen(null);
+    router.replace("/team/money");
+  }
+
+  function startNew() {
+    const next = {
+      name: "",
+      amount: 0,
+      cadence: "monthly" as const,
+      category: "Other" as const,
+      note: "",
+      active: true,
+    };
+    setOpen(next);
+    setBaseline(JSON.stringify(next));
   }
 
   return (
     <div>
-      <header className="mb-5 flex items-end justify-between">
-        <div>
-          <h1 className="text-2xl font-semibold tracking-tight">Money</h1>
-          <p className="mt-1 text-sm text-secondary">
-            Recurring templates. Amounts stay editable.
-          </p>
-        </div>
-        <PrimaryButton
-          onClick={() =>
-            setOpen({
-              name: "",
-              amount: 0,
-              cadence: "monthly",
-              category: "Other",
-              note: "",
-              active: true,
-            })
-          }
-        >
-          Add
-        </PrimaryButton>
-      </header>
+      <PageHeader
+        title="Money"
+        subtitle="What we pay."
+        action={<PrimaryButton onClick={startNew}>Add</PrimaryButton>}
+      />
+      {remaining > 0 && (
+        <p className="mb-4 text-[14px] text-secondary">
+          Unpaid deals {usd(remaining)}
+        </p>
+      )}
 
-      <div className="mb-5 grid grid-cols-2 gap-3 md:grid-cols-3">
-        <Stat label="This month" value={usd(thisMonthTotal(expenses))} />
-        <Stat label="Monthly run-rate" value={usd(monthlyRunRate(expenses))} />
-        <Stat label="Creator deals (from pipeline)" value={usd(remaining)} />
-      </div>
-
-      <ul className="divide-y divide-divider overflow-hidden rounded-2xl border border-divider bg-white">
-        {expenses.length === 0 && (
-          <li className="px-4 py-10 text-sm text-secondary">
-            Add a line like rent, tools, or ads.
-          </li>
-        )}
-        {expenses.map((e) => (
-          <li key={e.id}>
-            <button
-              type="button"
-              onClick={() => setOpen(e)}
-              className="flex w-full min-h-14 items-center justify-between gap-3 px-4 py-3 text-left"
-            >
-              <span>
-                <span className="font-semibold">{e.name}</span>
-                <span className="ml-2 text-sm text-secondary">
-                  {e.cadence.replace("_", " ")} · {e.category}
-                  {!e.active ? " · off" : ""}
-                </span>
-              </span>
-              <span className="font-medium">{usd(e.amount)}</span>
-            </button>
-          </li>
-        ))}
-      </ul>
+      {!ready ? (
+        <ListSkeleton />
+      ) : (
+        <Surface>
+          {expenses.length === 0 ? (
+            <p className="px-5 py-12 text-center text-[15px] text-secondary">
+              No expenses yet.
+            </p>
+          ) : (
+            <ul>
+              {expenses.map((e) => (
+                <li
+                  key={e.id}
+                  className="border-b border-divider/70 last:border-0"
+                >
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setOpen(e);
+                      setBaseline(JSON.stringify(e));
+                    }}
+                    className="flex w-full min-h-[4.25rem] items-center gap-3 px-4 py-3 text-left hover:bg-canvas/70"
+                  >
+                    <div className="min-w-0 flex-1">
+                      <p className="font-semibold">{e.name}</p>
+                      <p className="mt-0.5 text-[13px] text-secondary">
+                        {e.cadence.replace("_", " ")}
+                        {!e.active ? " · off" : ""}
+                      </p>
+                    </div>
+                    <Pill
+                      className={categoryPill[e.category] ?? categoryPill.Other}
+                    >
+                      {e.category}
+                    </Pill>
+                    <span className="shrink-0 text-[15px] font-semibold tabular-nums">
+                      {usd(e.amount)}
+                    </span>
+                  </button>
+                </li>
+              ))}
+            </ul>
+          )}
+        </Surface>
+      )}
 
       <Sheet
         open={!!open}
+        dirty={dirty}
         onClose={() => {
           setOpen(null);
+          setBaseline("");
           router.replace("/team/money");
         }}
         title={open?.id ? "Edit line" : "New line"}
@@ -206,7 +240,7 @@ function MoneyPage() {
                 onChange={(e) => setOpen({ ...open, note: e.target.value })}
               />
             </Field>
-            <label className="mb-5 flex min-h-11 items-center gap-2 text-sm">
+            <label className="mb-4 flex min-h-11 items-center gap-2 text-sm">
               <input
                 type="checkbox"
                 checked={open.active !== false}
@@ -214,30 +248,23 @@ function MoneyPage() {
               />
               Active
             </label>
-            <PrimaryButton className="w-full" onClick={() => void save()}>
-              Save
-            </PrimaryButton>
-            {open.id && (
-              <button
-                type="button"
-                className="mt-2 min-h-11 w-full text-sm text-secondary"
-                onClick={() => void remove(open.id!)}
-              >
-                Delete
-              </button>
-            )}
+            <div className="sticky bottom-0 bg-white pt-2 pb-[env(safe-area-inset-bottom)]">
+              <PrimaryButton className="w-full" onClick={() => void save()}>
+                Save
+              </PrimaryButton>
+              {open.id && (
+                <button
+                  type="button"
+                  className="mt-2 min-h-11 w-full text-sm text-secondary"
+                  onClick={() => void remove(open.id!)}
+                >
+                  Delete
+                </button>
+              )}
+            </div>
           </div>
         )}
       </Sheet>
-    </div>
-  );
-}
-
-function Stat({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="rounded-2xl border border-divider bg-white px-4 py-3">
-      <p className="text-sm text-secondary">{label}</p>
-      <p className="mt-1 text-xl font-semibold">{value}</p>
     </div>
   );
 }

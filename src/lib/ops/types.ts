@@ -1,21 +1,8 @@
-export const ACTORS = ["Bernie", "Jared", "Max"] as const;
-export type Actor = (typeof ACTORS)[number];
+export const PEOPLE = ["Bernie", "Jared", "Max"] as const;
+export type Person = (typeof PEOPLE)[number];
 
-export const CREATOR_STAGES = [
-  "wishlist",
-  "outreach",
-  "negotiation",
-  "active",
-  "done",
-  "passed",
-] as const;
-export type CreatorStage = (typeof CREATOR_STAGES)[number];
-
-export const PLATFORMS = ["TikTok", "IG", "YouTube", "Other"] as const;
-export type Platform = (typeof PLATFORMS)[number];
-
-export const PAYMENTS = ["unpaid", "half", "paid", "n/a"] as const;
-export type Payment = (typeof PAYMENTS)[number];
+export const TEAM_ACTOR = "Team" as const;
+export type Actor = typeof TEAM_ACTOR | Person;
 
 export const TASK_STATUSES = [
   "not_started",
@@ -36,19 +23,13 @@ export type EntityType = (typeof ENTITY_TYPES)[number];
 export type Creator = {
   id: string;
   name: string;
-  handle: string;
-  platform: Platform;
-  targetRate: number;
-  quotedRate: number;
-  dealTotal: number;
-  postsExpected: number;
-  postsDelivered: number;
-  payment: Payment;
-  owner: Actor;
-  lastContact: string | null;
-  nextFollowUp: string | null;
-  notes: string;
-  stage: CreatorStage;
+  link: string;
+  reachedOut: boolean;
+  active: boolean;
+  dealAmount: number;
+  videos: number;
+  posted: number;
+  paid: boolean;
   updatedAt: string;
   updatedBy: Actor;
 };
@@ -57,7 +38,7 @@ export type Task = {
   id: string;
   title: string;
   status: TaskStatus;
-  assignee: Actor;
+  assignee: Person;
   dueAt: string | null;
   updatedAt: string;
   updatedBy: Actor;
@@ -83,19 +64,4 @@ export type Activity = {
   entityId: string;
   summary: string;
   createdAt: string;
-};
-
-export type OverviewMetric = {
-  id: string;
-  label: string;
-  value: number;
-  formatted: string;
-  spark: number[];
-};
-
-export type RevenueOverview = {
-  fetchedAt: string | null;
-  available: boolean;
-  message?: string;
-  metrics: OverviewMetric[];
 };

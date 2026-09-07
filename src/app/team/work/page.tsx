@@ -2,12 +2,34 @@
 
 import { Suspense, useCallback, useEffect, useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useActor } from "@/components/ops/OpsChrome";
 import { Sheet } from "@/components/ops/Sheet";
-import { Field, PrimaryButton, inputClass } from "@/components/ops/fields";
+import {
+  Chip,
+  Field,
+  ListSkeleton,
+  PageHeader,
+  Pill,
+  PrimaryButton,
+  Surface,
+  inputClass,
+} from "@/components/ops/fields";
 import { opsFetch } from "@/components/ops/api";
-import { ACTORS, TASK_STATUSES, type Actor, type Task, type TaskStatus } from "@/lib/ops/types";
-import { statusLabel } from "@/lib/ops/format";
+import {
+  PEOPLE,
+  TASK_STATUSES,
+  type Person,
+  type Task,
+  type TaskStatus,
+} from "@/lib/ops/types";
+import {
+  NEXT_STATUS,
+  dateLabel,
+  isOverdue,
+  statusLabel,
+  statusPill,
+} from "@/lib/ops/format";
+
+const ASSIGN_KEY = "ziggy-ops-assignee";
 
 export default function WorkRoute() {
   return (
@@ -18,21 +40,26 @@ export default function WorkRoute() {
 }
 
 function WorkPage() {
-  const { actor } = useActor();
   const router = useRouter();
   const params = useSearchParams();
   const [tasks, setTasks] = useState<Task[]>([]);
-  const [who, setWho] = useState<"me" | "all">("me");
-  const [status, setStatus] = useState<TaskStatus | "open">("open");
+  const [ready, setReady] = useState(false);
+  const [who, setWho] = useState<"all" | Person>("all");
+  const [status, setStatus] = useState<"open" | "working" | "completed">("open");
   const [open, setOpen] = useState<Partial<Task> | null>(null);
+  const [baseline, setBaseline] = useState("");
   const [title, setTitle] = useState("");
+  const [assignee, setAssignee] = useState<Person>("Bernie");
 
   const load = useCallback(async () => {
-    const data = await opsFetch<{ tasks: Task[] }>("/api/ops/tasks", actor);
+    const data = await opsFetch<{ tasks: Task[] }>("/api/ops/tasks");
     setTasks(data.tasks);
-  }, [actor]);
+    setReady(true);
+  }, []);
 
   useEffect(() => {
+    const saved = localStorage.getItem(ASSIGN_KEY) as Person | null;
+    if (saved && PEOPLE.includes(saved)) setAssignee(saved);
     void load();
   }, [load]);
 
@@ -40,52 +67,67 @@ function WorkPage() {
     const id = params.get("id");
     if (!id) return;
     const hit = tasks.find((t) => t.id === id);
-    if (hit) setOpen(hit);
+    if (hit) {
+      setOpen(hit);
+      setBaseline(JSON.stringify(hit));
+    }
   }, [params, tasks]);
 
   const filtered = useMemo(() => {
     return tasks.filter((t) => {
-      if (who === "me" && t.assignee !== actor) return false;
+      if (who !== "all" && t.assignee !== who) return false;
       if (status === "open") return t.status !== "completed";
       return t.status === status;
     });
-  }, [tasks, who, status, actor]);
+  }, [tasks, who, status]);
 
   async function add() {
     const text = title.trim();
     if (!text) return;
-    await opsFetch("/api/ops/tasks", actor, {
+    localStorage.setItem(ASSIGN_KEY, assignee);
+    await opsFetch("/api/ops/tasks", {
       method: "POST",
-      body: JSON.stringify({ title: text, assignee: actor }),
+      body: JSON.stringify({ title: text, assignee }),
     });
     setTitle("");
     await load();
   }
 
+  async function cycle(t: Task) {
+    const next = NEXT_STATUS[t.status];
+    await opsFetch(`/api/ops/tasks/${t.id}`, {
+      method: "PATCH",
+      body: JSON.stringify({ status: next }),
+    });
+    await load();
+  }
+
   async function save() {
     if (!open?.id) return;
-    await opsFetch(`/api/ops/tasks/${open.id}`, actor, {
+    await opsFetch(`/api/ops/tasks/${open.id}`, {
       method: "PATCH",
       body: JSON.stringify(open),
     });
+    if (open.assignee) localStorage.setItem(ASSIGN_KEY, open.assignee);
+    await load();
+    setOpen(null);
+    setBaseline("");
+    router.replace("/team/work");
+  }
+
+  async function remove(id: string) {
+    if (!confirm("Delete this?")) return;
+    await opsFetch(`/api/ops/tasks/${id}`, { method: "DELETE" });
     await load();
     setOpen(null);
     router.replace("/team/work");
   }
 
-  async function remove(id: string) {
-    if (!confirm("Delete this task?")) return;
-    await opsFetch(`/api/ops/tasks/${id}`, actor, { method: "DELETE" });
-    await load();
-    setOpen(null);
-  }
+  const dirty = !!open && JSON.stringify(open) !== baseline;
 
   return (
     <div>
-      <header className="mb-5">
-        <h1 className="text-2xl font-semibold tracking-tight">Work</h1>
-        <p className="mt-1 text-sm text-secondary">One list. Assign it. Move the status.</p>
-      </header>
+      <PageHeader title="Work" subtitle="Who’s doing what." />
 
       <form
         className="mb-4 flex gap-2"
@@ -103,53 +145,85 @@ function WorkPage() {
         <PrimaryButton type="submit">Add</PrimaryButton>
       </form>
 
-      <div className="mb-3 flex flex-wrap gap-1">
-        <Chip
-          on={who === "me" && status === "open"}
-          onClick={() => {
-            setWho("me");
-            setStatus("open");
-          }}
-        >
-          My open
+      <div className="-mx-1 mb-4 flex gap-1 overflow-x-auto px-1 pb-1">
+        <Chip on={status === "open"} onClick={() => setStatus("open")}>
+          Open
+        </Chip>
+        <Chip on={status === "working"} onClick={() => setStatus("working")}>
+          Doing
+        </Chip>
+        <Chip on={status === "completed"} onClick={() => setStatus("completed")}>
+          Done
         </Chip>
         <Chip on={who === "all"} onClick={() => setWho("all")}>
           Everyone
         </Chip>
-        {TASK_STATUSES.map((s) => (
-          <Chip key={s} on={status === s} onClick={() => setStatus(s)}>
-            {statusLabel[s]}
+        {PEOPLE.map((p) => (
+          <Chip key={p} on={who === p} onClick={() => setWho(p)}>
+            {p}
           </Chip>
         ))}
-        <Chip on={status === "open"} onClick={() => setStatus("open")}>
-          Open
-        </Chip>
       </div>
 
-      <ul className="divide-y divide-divider overflow-hidden rounded-2xl border border-divider bg-white">
-        {filtered.length === 0 && (
-          <li className="px-4 py-10 text-sm text-secondary">Nothing here.</li>
-        )}
-        {filtered.map((t) => (
-          <li key={t.id}>
-            <button
-              type="button"
-              onClick={() => setOpen(t)}
-              className="flex w-full min-h-14 items-center justify-between gap-3 px-4 py-3 text-left"
-            >
-              <span className="font-medium">{t.title}</span>
-              <span className="shrink-0 text-sm text-secondary">
-                {t.assignee} · {statusLabel[t.status]}
-              </span>
-            </button>
-          </li>
-        ))}
-      </ul>
+      {!ready ? (
+        <ListSkeleton />
+      ) : (
+        <Surface>
+          {filtered.length === 0 ? (
+            <p className="px-5 py-12 text-center text-[15px] text-secondary">
+              No open work.
+            </p>
+          ) : (
+            <ul>
+              {filtered.map((t) => (
+                <li
+                  key={t.id}
+                  className="flex items-center gap-2 border-b border-divider/70 last:border-0"
+                >
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setOpen(t);
+                      setBaseline(JSON.stringify(t));
+                    }}
+                    className="flex min-h-[4rem] min-w-0 flex-1 items-center px-4 py-3 text-left hover:bg-canvas/70"
+                  >
+                    <span className="min-w-0">
+                      <span className="block font-medium">{t.title}</span>
+                      <span
+                        className={`mt-0.5 block text-[12px] ${
+                          isOverdue(t.dueAt)
+                            ? "font-semibold text-pastel-peach-icon"
+                            : "text-secondary"
+                        }`}
+                      >
+                        {t.assignee}
+                        {t.dueAt ? ` · ${dateLabel(t.dueAt)}` : ""}
+                      </span>
+                    </span>
+                  </button>
+                  <button
+                    type="button"
+                    className="shrink-0 pr-4"
+                    onClick={() => void cycle(t)}
+                  >
+                    <Pill className={statusPill[t.status]}>
+                      {statusLabel[t.status]}
+                    </Pill>
+                  </button>
+                </li>
+              ))}
+            </ul>
+          )}
+        </Surface>
+      )}
 
       <Sheet
         open={!!open}
+        dirty={dirty}
         onClose={() => {
           setOpen(null);
+          setBaseline("");
           router.replace("/team/work");
         }}
         title="Task"
@@ -183,10 +257,10 @@ function WorkPage() {
                 className={inputClass}
                 value={open.assignee}
                 onChange={(e) =>
-                  setOpen({ ...open, assignee: e.target.value as Actor })
+                  setOpen({ ...open, assignee: e.target.value as Person })
                 }
               >
-                {ACTORS.map((a) => (
+                {PEOPLE.map((a) => (
                   <option key={a}>{a}</option>
                 ))}
               </select>
@@ -201,43 +275,23 @@ function WorkPage() {
                 }
               />
             </Field>
-            <PrimaryButton className="mt-2 w-full" onClick={() => void save()}>
-              Save
-            </PrimaryButton>
-            {open.id && (
-              <button
-                type="button"
-                className="mt-2 min-h-11 w-full text-sm text-secondary"
-                onClick={() => void remove(open.id!)}
-              >
-                Delete
-              </button>
-            )}
+            <div className="sticky bottom-0 bg-white pt-2 pb-[env(safe-area-inset-bottom)]">
+              <PrimaryButton className="w-full" onClick={() => void save()}>
+                Save
+              </PrimaryButton>
+              {open.id && (
+                <button
+                  type="button"
+                  className="mt-2 min-h-11 w-full text-sm text-secondary"
+                  onClick={() => void remove(open.id!)}
+                >
+                  Delete
+                </button>
+              )}
+            </div>
           </div>
         )}
       </Sheet>
     </div>
-  );
-}
-
-function Chip({
-  on,
-  onClick,
-  children,
-}: {
-  on: boolean;
-  onClick: () => void;
-  children: React.ReactNode;
-}) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      className={`min-h-11 rounded-full px-3 text-sm font-semibold ${
-        on ? "bg-soft text-brand" : "text-secondary"
-      }`}
-    >
-      {children}
-    </button>
   );
 }

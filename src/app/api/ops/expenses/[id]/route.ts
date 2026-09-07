@@ -16,9 +16,9 @@ export async function PATCH(req: Request, ctx: Ctx) {
   for (const key of ["name", "amount", "cadence", "category", "note", "active"] as const) {
     if (key in body) (patch as Record<string, unknown>)[key] = body[key];
   }
-  let summary = `${actor} edited ${existing.name}`;
+  let summary = `Edited ${existing.name}`;
   if (patch.amount !== undefined && patch.amount !== existing.amount) {
-    summary = `${actor} changed ${existing.name} ${usd(existing.amount)} → ${usd(Number(patch.amount))}`;
+    summary = `${existing.name} ${usd(existing.amount)} → ${usd(Number(patch.amount))}`;
   }
   const expense = await upsertExpense(actor, patch, summary);
   return NextResponse.json({ expense });
@@ -28,6 +28,6 @@ export async function DELETE(req: Request, ctx: Ctx) {
   const { id } = await ctx.params;
   const actor = parseActor(req.headers.get("x-ops-actor"));
   const existing = (await listExpenses()).find((e) => e.id === id);
-  await deleteExpense(actor, id, `${actor} deleted ${existing?.name ?? "an expense"}`);
+  await deleteExpense(actor, id, `Deleted ${existing?.name ?? "an expense"}`);
   return NextResponse.json({ ok: true });
 }
