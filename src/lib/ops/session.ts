@@ -9,8 +9,19 @@ function sessionSecret(): string {
   );
 }
 
+function normalizeSecret(value: string): string {
+  let v = value.replace(/^\uFEFF/, "").trim();
+  if (
+    (v.startsWith('"') && v.endsWith('"')) ||
+    (v.startsWith("'") && v.endsWith("'"))
+  ) {
+    v = v.slice(1, -1).trim();
+  }
+  return v;
+}
+
 function teamPassword(): string {
-  return process.env.OPS_TEAM_PASSWORD || "ZIGGYTEAM";
+  return normalizeSecret(process.env.OPS_TEAM_PASSWORD || "ZIGGYTEAM");
 }
 
 async function hmacHex(secret: string, payload: string): Promise<string> {
@@ -57,10 +68,11 @@ export async function isValidSessionToken(
 
 export function passwordsMatch(input: string): boolean {
   const expected = teamPassword();
-  if (input.length !== expected.length) return false;
+  const got = normalizeSecret(input);
+  if (got.length !== expected.length) return false;
   let diff = 0;
   for (let i = 0; i < expected.length; i++) {
-    diff |= input.charCodeAt(i) ^ expected.charCodeAt(i);
+    diff |= got.charCodeAt(i) ^ expected.charCodeAt(i);
   }
   return diff === 0;
 }
