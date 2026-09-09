@@ -30,6 +30,7 @@ export type Creator = {
   videos: number;
   posted: number;
   paid: boolean;
+  note: string;
   updatedAt: string;
   updatedBy: Actor;
 };

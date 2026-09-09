@@ -37,6 +37,7 @@ export async function POST(req: Request) {
       videos: Number(body.videos ?? 0),
       posted: Number(body.posted ?? 0),
       paid: body.paid === true,
+      note: String(body.note ?? ""),
     },
     `${name || "Creator"} added`,
   );

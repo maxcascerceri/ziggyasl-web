@@ -26,6 +26,7 @@ const empty: Partial<Creator> = {
   videos: 0,
   posted: 0,
   paid: false,
+  note: "",
 };
 
 export default function CreatorsRoute() {
@@ -213,8 +214,8 @@ function CreatorsPage() {
                       <div className="min-w-0 flex-1">
                         <p className="truncate font-semibold">{c.name || "Untitled"}</p>
                         <p className="truncate text-[13px] text-secondary">
-                          {c.active
-                            ? `${usd(c.dealAmount)} · ${c.posted}/${c.videos} posted`
+                          {c.videos > 0 || c.dealAmount > 0
+                            ? `${c.videos} for ${usd(c.dealAmount)}`
                             : linkLabel(c.link) || "No link"}
                         </p>
                       </div>
@@ -298,33 +299,33 @@ function CreatorsPage() {
               />
               Active deal
             </label>
+            <div className="grid grid-cols-2 gap-3">
+              <Field label="Pay">
+                <input
+                  type="number"
+                  className={inputClass}
+                  value={open.dealAmount ?? 0}
+                  onChange={(e) =>
+                    setOpen({
+                      ...open,
+                      dealAmount: Number(e.target.value),
+                    })
+                  }
+                />
+              </Field>
+              <Field label="Videos">
+                <input
+                  type="number"
+                  className={inputClass}
+                  value={open.videos ?? 0}
+                  onChange={(e) =>
+                    setOpen({ ...open, videos: Number(e.target.value) })
+                  }
+                />
+              </Field>
+            </div>
             {open.active && (
               <>
-                <div className="grid grid-cols-2 gap-3">
-                  <Field label="Pay">
-                    <input
-                      type="number"
-                      className={inputClass}
-                      value={open.dealAmount ?? 0}
-                      onChange={(e) =>
-                        setOpen({
-                          ...open,
-                          dealAmount: Number(e.target.value),
-                        })
-                      }
-                    />
-                  </Field>
-                  <Field label="Videos">
-                    <input
-                      type="number"
-                      className={inputClass}
-                      value={open.videos ?? 0}
-                      onChange={(e) =>
-                        setOpen({ ...open, videos: Number(e.target.value) })
-                      }
-                    />
-                  </Field>
-                </div>
                 <Field label="Posted so far">
                   <input
                     type="number"
@@ -347,6 +348,13 @@ function CreatorsPage() {
                 </label>
               </>
             )}
+            <Field label="Note">
+              <textarea
+                className={`${inputClass} min-h-20 py-2`}
+                value={open.note ?? ""}
+                onChange={(e) => setOpen({ ...open, note: e.target.value })}
+              />
+            </Field>
             <div className="sticky bottom-0 mt-2 flex flex-col gap-2 bg-white pt-2 pb-[env(safe-area-inset-bottom)]">
               <PrimaryButton disabled={busy} onClick={() => void save()}>
                 {busy ? "Saving…" : "Save"}

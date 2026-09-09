@@ -62,7 +62,9 @@ export default function HomePage() {
     key: `r-${c.id}`,
     href: `/team/creators?id=${c.id}`,
     title: c.name || "Untitled",
-    meta: "Not reached yet",
+    meta: c.videos > 0 || c.dealAmount > 0
+      ? `${c.videos} for ${usd(c.dealAmount)}`
+      : "Not reached yet",
     pill: <Pill className="bg-canvas text-secondary">To reach</Pill>,
   }));
   const unpaidRows: Row[] = unpaid.map((c) => ({

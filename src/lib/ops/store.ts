@@ -143,6 +143,7 @@ export function normalizeCreator(
     videos: Number(raw.videos ?? raw.postsExpected ?? 0) || 0,
     posted: Number(raw.posted ?? raw.postsDelivered ?? 0) || 0,
     paid: Boolean(raw.paid ?? payment === "paid"),
+    note: String(raw.note ?? raw.notes ?? ""),
     updatedAt: String(raw.updatedAt ?? ""),
     updatedBy: (raw.updatedBy as Creator["updatedBy"]) ?? "Team",
   };
@@ -198,6 +199,7 @@ export async function upsertCreator(
     videos: num(input.videos, existing?.videos, 0),
     posted: num(input.posted, existing?.posted, 0),
     paid: input.paid ?? existing?.paid ?? false,
+    note: input.note ?? existing?.note ?? "",
     updatedAt: nowIso(),
     updatedBy: actor,
   };

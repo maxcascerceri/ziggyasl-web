@@ -56,6 +56,7 @@ export async function PATCH(req: Request, ctx: Ctx) {
     "videos",
     "posted",
     "paid",
+    "note",
   ] as const) {
     if (key in body) (patch as Record<string, unknown>)[key] = body[key];
   }
