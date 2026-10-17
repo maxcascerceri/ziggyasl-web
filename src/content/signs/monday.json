@@ -1,0 +1,17 @@
+{
+  "summary": "Monday circles an M handshape in front of you, palm facing the listener. Most weekdays are the first letter, circled.",
+  "hands": "one",
+  "handshape": "M hand",
+  "location": "In front of shoulder",
+  "movement": "Small circle",
+  "steps": [
+    "Make an M (three fingers over the thumb).",
+    "Hold it with the palm facing out.",
+    "Circle it in a small motion two or three times."
+  ],
+  "mistakes": [
+    "Making the circle big. Keep it small and in place."
+  ],
+  "faq": [],
+  "reviewed": true
+}

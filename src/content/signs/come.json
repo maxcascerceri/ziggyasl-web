@@ -1,0 +1,17 @@
+{
+  "summary": "Come points one or both index fingers and swings them in toward your body, the reverse of GO.",
+  "hands": "two",
+  "handshape": "Index fingers (1 hands)",
+  "location": "In front of body",
+  "movement": "Fingers swing in toward you",
+  "steps": [
+    "Point your index fingers away from you.",
+    "Swing them in toward your chest.",
+    "With a beckoning face it's 'come here.'"
+  ],
+  "mistakes": [
+    "Swinging away. That's GO."
+  ],
+  "faq": [],
+  "reviewed": true
+}

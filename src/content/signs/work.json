@@ -1,0 +1,17 @@
+{
+  "summary": "Work taps a fist on the back of the other fist at the wrist, twice. Add the PERSON marker for 'worker.'",
+  "hands": "two",
+  "handshape": "S fists",
+  "location": "In front of body",
+  "movement": "Dominant fist taps the back of the other",
+  "steps": [
+    "Make two fists, palms down.",
+    "Tap the dominant fist on the back of the other fist near the wrist, twice.",
+    "Keep the taps crisp."
+  ],
+  "mistakes": [
+    "Tapping palm to palm. It's the back of the hand."
+  ],
+  "faq": [],
+  "reviewed": true
+}

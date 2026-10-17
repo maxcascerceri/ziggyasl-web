@@ -1,0 +1,17 @@
+{
+  "summary": "Want pulls two claw hands toward the body, palms up, as if drawing something to you.",
+  "hands": "two",
+  "handshape": "Claw hands, palms up",
+  "location": "In front of body",
+  "movement": "Pull in toward the chest",
+  "steps": [
+    "Hold both hands out, palms up, fingers bent into loose claws.",
+    "Pull them toward your chest.",
+    "To say 'don't want,' do the same and then flip the hands over and push away with a head shake."
+  ],
+  "mistakes": [
+    "Pushing away from the body. That's the negative, DON'T-WANT."
+  ],
+  "faq": [],
+  "reviewed": true
+}

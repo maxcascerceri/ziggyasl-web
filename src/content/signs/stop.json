@@ -1,0 +1,17 @@
+{
+  "summary": "Stop chops the edge of a flat hand down onto the other palm, once, sharply.",
+  "hands": "two",
+  "handshape": "Flat B hands",
+  "location": "In front of body",
+  "movement": "One sharp chop",
+  "steps": [
+    "Hold your non-dominant hand flat, palm up.",
+    "Chop the edge of your dominant hand down onto it, once.",
+    "Make it sharp. A soft chop doesn't read as STOP."
+  ],
+  "mistakes": [
+    "Chopping twice or softly."
+  ],
+  "faq": [],
+  "reviewed": true
+}

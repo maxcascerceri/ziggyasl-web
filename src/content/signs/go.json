@@ -1,0 +1,17 @@
+{
+  "summary": "Go points both index fingers and swings them forward and away from you, in the direction of the going.",
+  "hands": "two",
+  "handshape": "Index fingers (1 hands)",
+  "location": "In front of body",
+  "movement": "Both fingers swing forward",
+  "steps": [
+    "Point both index fingers up.",
+    "Swing them forward and down so they point away from you.",
+    "Aim them where you're going; GO toward the left means going left."
+  ],
+  "mistakes": [
+    "Swinging toward yourself. That's COME."
+  ],
+  "faq": [],
+  "reviewed": true
+}

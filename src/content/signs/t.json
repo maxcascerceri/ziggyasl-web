@@ -1,0 +1,16 @@
+{
+  "summary": "The letter T tucks the thumb between the index and middle fingers of a fist. The same handshape, shaken, is BATHROOM.",
+  "hands": "one",
+  "handshape": "T hand",
+  "location": "Shoulder height, palm out",
+  "steps": [
+    "Make a fist.",
+    "Slide the thumb up between the index and middle fingers so the tip pokes out.",
+    "Palm faces out."
+  ],
+  "mistakes": [
+    "Poking the thumb out between the middle and ring fingers. That's N, not T."
+  ],
+  "faq": [],
+  "reviewed": true
+}

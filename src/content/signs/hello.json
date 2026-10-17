@@ -1,0 +1,24 @@
+{
+  "summary": "Hello is the ASL greeting you'll use most. It's a small salute from the forehead that opens outward, or simply a friendly wave. Either one works in any setting.",
+  "hands": "one",
+  "handshape": "Flat B hand",
+  "location": "Forehead, moving outward",
+  "movement": "Short arc away from the head",
+  "steps": [
+    "Put a flat hand, fingers together, at the side of your forehead like a relaxed salute.",
+    "Move it forward and slightly out, away from your head, in one short arc.",
+    "Smile. A greeting with a blank face reads as cold, so let your face say hello too."
+  ],
+  "note": "Before you sign HELLO, make sure the person can see you. Wave in their line of sight or tap their shoulder lightly. In ASL, getting someone's eyes is the first half of saying hello.",
+  "mistakes": [
+    "Starting the sign too far from the head. The hand begins at the forehead; starting in the air in front of you looks like a wave at a stranger.",
+    "Making the arc big and slow. HELLO is quick and light."
+  ],
+  "faq": [
+    {
+      "q": "Is waving the same as signing hello?",
+      "a": "Yes. A simple wave is a completely acceptable hello in ASL, and most people use it casually. The salute-style HELLO is a little more deliberate and works well when you're introducing yourself."
+    }
+  ],
+  "reviewed": true
+}

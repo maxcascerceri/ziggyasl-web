@@ -1,0 +1,23 @@
+{
+  "summary": "Help rests a fist (thumb up) on top of a flat palm and lifts both together. Move it toward someone to help them, toward yourself to ask for help.",
+  "hands": "two",
+  "handshape": "A/10 hand (fist, thumb up) on a flat B hand",
+  "location": "In front of body",
+  "movement": "Both hands lift together",
+  "steps": [
+    "Hold your non-dominant hand flat, palm up.",
+    "Place a fist with the thumb up on top of it.",
+    "Lift both hands together a few inches. To say 'help me,' move the unit toward your chest; to say 'help you,' move it toward the person."
+  ],
+  "note": "HELP is a directional verb. The direction of movement replaces the pronoun, so HELP-YOU and HELP-ME are the same sign going opposite ways.",
+  "mistakes": [
+    "Lifting only the top hand. Both hands rise together as one unit."
+  ],
+  "faq": [
+    {
+      "q": "How do I sign 'I need help'?",
+      "a": "Sign NEED (a bent index finger pushing down) and then HELP moving toward yourself. There's a dedicated I-NEED-HELP phrase page too."
+    }
+  ],
+  "reviewed": true
+}

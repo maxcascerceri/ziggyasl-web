@@ -1,0 +1,23 @@
+{
+  "summary": "Bye in ASL is a wave, often with the fingers folding down toward the palm. It's the same sign for goodbye and see you.",
+  "hands": "one",
+  "handshape": "Open hand",
+  "location": "Neutral space, shoulder height",
+  "movement": "Fingers fold down and open, or a side-to-side wave",
+  "steps": [
+    "Raise an open hand at shoulder height, palm facing the person.",
+    "Fold your fingers down toward the palm and open them again, once or twice.",
+    "Keep eye contact until you turn away. Breaking eye contact is how you actually end a signed conversation."
+  ],
+  "note": "Deaf goodbyes are famously long. Expect to sign BYE, get pulled into one more conversation, and sign it again ten minutes later. That's normal and it's a sign that people enjoy talking to you.",
+  "mistakes": [
+    "Looking away before you finish signing. In ASL, breaking eye contact is a stronger signal than the sign itself."
+  ],
+  "faq": [
+    {
+      "q": "How do I say 'see you later' instead of just bye?",
+      "a": "Use the phrase SEE-YOU-LATER: the SEE sign (a V handshape at the eyes) moving forward, then LATER. It's on its own page."
+    }
+  ],
+  "reviewed": true
+}

@@ -1,0 +1,17 @@
+{
+  "summary": "My (and mine) is a flat open hand placed on the chest. The flat hand is what makes it possessive; a pointing finger would be I.",
+  "hands": "one",
+  "handshape": "Flat B hand",
+  "location": "Center of chest",
+  "movement": "Touch",
+  "steps": [
+    "Place a flat hand, palm in, against your chest.",
+    "Hold it a moment. For emphasis ('mine!'), tap firmly.",
+    "Use it before the noun: MY NAME, MY SISTER, MY HOUSE."
+  ],
+  "mistakes": [
+    "Using an index finger. That's I/ME. Possessives use the flat hand."
+  ],
+  "faq": [],
+  "reviewed": true
+}

@@ -118,7 +118,7 @@ export function Stat({
 }) {
   return (
     <div className="rounded-[22px] bg-white px-5 py-4 shadow-card">
-      <p className="text-[13px] font-medium text-secondary">{label}</p>
+      <p className="text-[13px] font-medium leading-tight text-secondary">{label}</p>
       <p className="mt-1 text-[1.65rem] font-semibold tabular-nums tracking-tight">
         {value}
       </p>

@@ -1,0 +1,17 @@
+{
+  "summary": "Bad starts like GOOD, a flat hand at the chin, but flips over so the palm faces down as it moves away, with a displeased face.",
+  "hands": "one",
+  "handshape": "Flat B hand",
+  "location": "Chin, moving outward and flipping",
+  "movement": "Fingertips at the chin, hand turns palm-down as it drops",
+  "steps": [
+    "Touch the fingertips of a flat hand to your chin.",
+    "Move the hand down and away while flipping it so the palm ends facing down.",
+    "Let your face show it: a slight frown or wrinkled nose."
+  ],
+  "mistakes": [
+    "Keeping the palm up. That's GOOD. The flip is what makes it BAD."
+  ],
+  "faq": [],
+  "reviewed": true
+}

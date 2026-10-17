@@ -1,0 +1,17 @@
+{
+  "summary": "Black draws an index finger across the forehead, like tracing an eyebrow.",
+  "hands": "one",
+  "handshape": "Index finger (1 hand)",
+  "location": "Forehead",
+  "movement": "Slides across",
+  "steps": [
+    "Point your index finger sideways.",
+    "Draw it across your forehead from one side toward the other, once.",
+    "Keep it near the eyebrow line."
+  ],
+  "mistakes": [
+    "Tapping instead of sliding."
+  ],
+  "faq": [],
+  "reviewed": true
+}

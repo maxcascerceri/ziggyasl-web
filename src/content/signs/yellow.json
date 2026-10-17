@@ -1,0 +1,17 @@
+{
+  "summary": "Yellow shakes a Y handshape with a small twist of the wrist.",
+  "hands": "one",
+  "handshape": "Y hand",
+  "location": "In front of shoulder",
+  "movement": "Small shake",
+  "steps": [
+    "Make a Y (thumb and pinky out).",
+    "Shake it with a small twist.",
+    "Palm faces roughly toward the listener."
+  ],
+  "mistakes": [
+    "Extending the index too, which makes it the I-love-you handshape."
+  ],
+  "faq": [],
+  "reviewed": true
+}

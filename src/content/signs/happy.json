@@ -1,0 +1,24 @@
+{
+  "summary": "Happy brushes one or both flat hands upward on the chest in a circular motion, with a smile. The smile is not optional.",
+  "hands": "two",
+  "handshape": "Flat B hands",
+  "location": "Chest",
+  "movement": "Upward brushing circles",
+  "steps": [
+    "Place flat hands on your chest, palms facing in.",
+    "Brush them upward and outward in small circles, two or three times.",
+    "Smile. HAPPY with a flat face looks sarcastic or sad."
+  ],
+  "note": "To say 'very happy,' make the circles bigger and faster and the smile wider. ASL rarely adds a VERY sign; it changes the sign itself.",
+  "mistakes": [
+    "Brushing downward. Downward from the chest is SAD territory.",
+    "A blank face. The expression is half the sign."
+  ],
+  "faq": [
+    {
+      "q": "Can I sign HAPPY with one hand?",
+      "a": "Yes. One-handed HAPPY is common in casual signing. Two hands is a little more emphatic."
+    }
+  ],
+  "reviewed": true
+}

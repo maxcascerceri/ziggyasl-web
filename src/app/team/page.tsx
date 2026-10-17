@@ -14,6 +14,7 @@ import type { Creator, Task } from "@/lib/ops/types";
 import {
   dateLabel,
   isOverdue,
+  offerLabel,
   statusLabel,
   statusPill,
   todayIso,
@@ -62,10 +63,8 @@ export default function HomePage() {
     key: `r-${c.id}`,
     href: `/team/creators?id=${c.id}`,
     title: c.name || "Untitled",
-    meta: c.videos > 0 || c.dealAmount > 0
-      ? `${c.videos} for ${usd(c.dealAmount)}`
-      : "Not reached yet",
-    pill: <Pill className="bg-canvas text-secondary">To reach</Pill>,
+    meta: offerLabel(c.videos, c.dealAmount) || "Need to contact",
+    pill: <Pill className="bg-canvas text-secondary">Need to contact</Pill>,
   }));
   const unpaidRows: Row[] = unpaid.map((c) => ({
     key: `u-${c.id}`,
@@ -84,8 +83,8 @@ export default function HomePage() {
   }));
 
   const groups = [
-    { key: "reach", label: "To reach", href: "/team/creators", rows: reachRows },
-    { key: "unpaid", label: "Unpaid", href: "/team/creators", rows: unpaidRows },
+    { key: "reach", label: "Need to contact", href: "/team/creators", rows: reachRows },
+    { key: "unpaid", label: "Unpaid deals", href: "/team/creators", rows: unpaidRows },
     { key: "work", label: "Work", href: "/team/work", rows: workRows },
   ].filter((g) => g.rows.length > 0);
 
@@ -102,11 +101,11 @@ export default function HomePage() {
     <div>
       <PageHeader
         title="Up next"
-        subtitle="People to reach, unpaid deals, and work."
+        subtitle="Creators to contact, unpaid deals, and open work."
       />
 
       <div className="mb-6 grid grid-cols-3 gap-2.5">
-        <Stat label="To reach" value={String(toReach.length)} />
+        <Stat label="Need to contact" value={String(toReach.length)} />
         <Stat label="Unpaid" value={String(unpaid.length)} />
         <Stat label="Work due" value={String(workDue.length)} />
       </div>

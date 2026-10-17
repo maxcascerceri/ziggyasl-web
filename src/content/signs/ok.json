@@ -1,0 +1,17 @@
+{
+  "summary": "OK is simply fingerspelled O-K, quickly, usually with a nod.",
+  "hands": "one",
+  "handshape": "O then K",
+  "location": "Shoulder height",
+  "movement": "Two quick letters",
+  "steps": [
+    "Fingerspell O.",
+    "Flick into K.",
+    "Nod. In casual signing the two letters blur into one quick motion."
+  ],
+  "mistakes": [
+    "Spelling it slowly and carefully. OK is a fast, lexicalized spelling, almost one shape."
+  ],
+  "faq": [],
+  "reviewed": true
+}

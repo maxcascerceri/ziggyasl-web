@@ -1,0 +1,28 @@
+{
+  "summary": "I and ME are the same sign in ASL: an index finger pointing to or touching your chest. The English word changes; the sign does not.",
+  "hands": "one",
+  "handshape": "Index finger (1 hand)",
+  "location": "Center of chest",
+  "movement": "Point or touch",
+  "steps": [
+    "Point your index finger at the center of your chest, or touch it.",
+    "That's it. For emphasis, touch firmly.",
+    "Use it for both 'I' and 'me': I HUNGRY, HELP ME (HELP moving toward you)."
+  ],
+  "note": "Some signed-English systems teach an I handshape (pinky up) on the chest for 'I.' That's not ASL. In ASL, the index-finger point is I and ME both, and native signers rarely use the pinky version.",
+  "mistakes": [
+    "Using the pinky-up I handshape. That's borrowed from signed English, not ASL.",
+    "Looking for a separate ME sign. There isn't one."
+  ],
+  "faq": [
+    {
+      "q": "Why is 'me' the same as 'I' in ASL?",
+      "a": "Because ASL pronouns are pointing. Pointing at yourself means yourself, whether English would say I or me. The grammar role comes from word order and verb direction, not from a different pronoun."
+    },
+    {
+      "q": "How do I sign MY?",
+      "a": "MY uses a flat hand on the chest instead of a pointing finger. The rule: index finger for the pronoun, flat hand for the possessive."
+    }
+  ],
+  "reviewed": true
+}

@@ -1,0 +1,17 @@
+{
+  "summary": "Water taps a W handshape on the chin.",
+  "hands": "one",
+  "handshape": "W hand",
+  "location": "Chin",
+  "movement": "Taps once or twice",
+  "steps": [
+    "Make a W: index, middle, and ring fingers up and spread.",
+    "Tap the index-finger side against your chin.",
+    "Keep the W crisp so it doesn't blur into other chin signs."
+  ],
+  "mistakes": [
+    "Tapping the lips. It's the chin."
+  ],
+  "faq": [],
+  "reviewed": true
+}

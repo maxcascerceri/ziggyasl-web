@@ -1,0 +1,17 @@
+{
+  "summary": "Dog pats your thigh and snaps your fingers, like calling a dog. Many signers just do the snap.",
+  "hands": "one",
+  "handshape": "Flat hand then snapping fingers",
+  "location": "Thigh, then raised",
+  "movement": "Pat, then snap",
+  "steps": [
+    "Pat your thigh with a flat hand.",
+    "Raise the hand and snap your fingers.",
+    "In fast signing, just the snap, or just the pat, is enough."
+  ],
+  "mistakes": [
+    "Overthinking it. This is one of the most casual signs in the language."
+  ],
+  "faq": [],
+  "reviewed": true
+}

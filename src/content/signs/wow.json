@@ -1,0 +1,17 @@
+{
+  "summary": "Wow is an open hand shaking loosely at the wrist in front of you, with a wide-eyed face. The face does most of the work.",
+  "hands": "one",
+  "handshape": "Open hand, relaxed",
+  "location": "In front of the body",
+  "movement": "Loose shake at the wrist",
+  "steps": [
+    "Hold a relaxed open hand in front of you, palm facing in.",
+    "Shake it loosely at the wrist a few times.",
+    "Open your eyes wide and let your mouth form 'wow.'"
+  ],
+  "mistakes": [
+    "Stiff fingers. The hand is floppy, not a flat B."
+  ],
+  "faq": [],
+  "reviewed": true
+}

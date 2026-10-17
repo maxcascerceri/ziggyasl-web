@@ -1,0 +1,24 @@
+{
+  "summary": "Sorry is a fist (A handshape) circling on the chest, with an apologetic face. It covers 'I'm sorry' as an apology and as sympathy.",
+  "hands": "one",
+  "handshape": "A hand (fist, thumb to the side)",
+  "location": "Center of chest",
+  "movement": "Small circle",
+  "steps": [
+    "Make a fist with the thumb along the side (an A handshape).",
+    "Place it on your chest and circle it two or three times.",
+    "Look sorry. The face is at least half of this sign."
+  ],
+  "note": "The size of the circle matches the size of the apology. A tiny circle for bumping into someone, a slow deliberate circle with a serious face for something that matters.",
+  "mistakes": [
+    "Using a flat hand. That's PLEASE.",
+    "Signing it with a cheerful face, which reads as sarcasm."
+  ],
+  "faq": [
+    {
+      "q": "How do I say 'I'm sorry' to sympathize, like when someone's pet died?",
+      "a": "Same sign, slower, with a sympathetic expression. Context and face make the difference between an apology and sympathy."
+    }
+  ],
+  "reviewed": true
+}

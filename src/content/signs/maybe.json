@@ -1,0 +1,17 @@
+{
+  "summary": "Maybe alternates two flat hands up and down, palms up, like weighing two options. Tilt your head to match.",
+  "hands": "two",
+  "handshape": "Flat hands, palms up",
+  "location": "In front of body",
+  "movement": "Alternating up and down",
+  "steps": [
+    "Hold both hands flat, palms up.",
+    "Move them up and down in alternation, one rising as the other falls.",
+    "Tilt your head side to side and let your face look unsure."
+  ],
+  "mistakes": [
+    "Moving the hands together. They alternate."
+  ],
+  "faq": [],
+  "reviewed": true
+}

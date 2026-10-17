@@ -1,0 +1,21 @@
+{
+  "summary": "The letter M tucks three fingers over the thumb. Three fingers for M, two for N.",
+  "hands": "one",
+  "handshape": "M hand",
+  "location": "Shoulder height, palm out",
+  "steps": [
+    "Tuck your thumb into your palm.",
+    "Fold the index, middle, and ring fingers down over it.",
+    "Pinky stays folded against the palm."
+  ],
+  "mistakes": [
+    "Folding only two fingers. That's N. Count the humps: M has three."
+  ],
+  "faq": [
+    {
+      "q": "How do I tell M from N?",
+      "a": "M covers the thumb with three fingers; N with two. Think of the number of humps in the printed letter."
+    }
+  ],
+  "reviewed": true
+}

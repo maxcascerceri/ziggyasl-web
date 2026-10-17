@@ -15,6 +15,19 @@ export function usd(n: number): string {
   }).format(n);
 }
 
+export function offerLabel(videos: number, amount: number): string {
+  if (videos <= 0 && amount <= 0) return "";
+  if (videos <= 0) return usd(amount);
+  if (amount <= 0) return `${videos} videos`;
+  return `${usd(amount)} for ${videos} ${videos === 1 ? "video" : "videos"}`;
+}
+
+export const cadenceLabel: Record<string, string> = {
+  monthly: "Monthly",
+  yearly: "Yearly",
+  one_time: "One time",
+};
+
 export function addDaysIso(days: number): string {
   const d = new Date();
   d.setHours(0, 0, 0, 0);
@@ -93,6 +106,30 @@ export function hrefFor(link: string): string {
   if (!raw) return "";
   if (/^https?:\/\//i.test(raw)) return raw;
   return `https://${raw}`;
+}
+
+export function tiktokHref(link: string, name = ""): string {
+  const raw = link.trim();
+  if (raw) {
+    try {
+      const url = new URL(raw.includes("://") ? raw : `https://${raw}`);
+      const host = url.hostname.replace(/^www\./, "");
+      if (host === "tiktok.com" || host === "vm.tiktok.com") {
+        return hrefFor(raw);
+      }
+      const at = url.pathname.match(/@([^/]+)/);
+      if (host.includes("tiktok") && at) {
+        return `https://www.tiktok.com/@${at[1]}`;
+      }
+    } catch {
+      /* fall through */
+    }
+  }
+  const handle = name.trim().replace(/^@/, "");
+  if (handle && !/\s/.test(handle)) {
+    return `https://www.tiktok.com/@${handle}`;
+  }
+  return "";
 }
 
 export const statusLabel: Record<string, string> = {

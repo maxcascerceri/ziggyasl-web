@@ -1,0 +1,18 @@
+{
+  "summary": "Nice slides a flat dominant hand across the palm of the other hand, like smoothing a surface. It's also the first half of 'nice to meet you.'",
+  "hands": "two",
+  "handshape": "Flat B hands",
+  "location": "In front of body",
+  "movement": "Dominant palm slides across the non-dominant palm",
+  "steps": [
+    "Hold your non-dominant hand flat, palm up.",
+    "Place your dominant hand flat, palm down, on top near your wrist.",
+    "Slide it smoothly out toward the fingertips."
+  ],
+  "note": "NICE and CLEAN are the same sign. Context decides which one you mean.",
+  "mistakes": [
+    "Sliding back and forth. It's one smooth slide outward."
+  ],
+  "faq": [],
+  "reviewed": true
+}

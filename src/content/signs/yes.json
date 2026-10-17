@@ -1,0 +1,23 @@
+{
+  "summary": "Yes is a fist (S handshape) nodding at the wrist, like a head nodding. Nod your actual head along with it.",
+  "hands": "one",
+  "handshape": "S hand (fist)",
+  "location": "In front of shoulder",
+  "movement": "Bends at the wrist, like nodding",
+  "steps": [
+    "Make a fist with the thumb across the front of the fingers.",
+    "Hold it up and bend it forward at the wrist, once or twice, as if the fist is nodding.",
+    "Nod your head with it."
+  ],
+  "note": "For a casual 'yeah,' a single head nod with no hand sign is enough and very common.",
+  "mistakes": [
+    "Moving the whole arm. The motion is at the wrist only."
+  ],
+  "faq": [
+    {
+      "q": "Can I just nod instead of signing YES?",
+      "a": "Yes. A nod while repeating the key sign (HUNGRY with a nod means 'yes, I'm hungry') is normal ASL."
+    }
+  ],
+  "reviewed": true
+}

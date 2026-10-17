@@ -1,0 +1,17 @@
+{
+  "summary": "We (and us) is an index finger that touches one side of your chest and arcs across to touch the other side, including yourself and others.",
+  "hands": "one",
+  "handshape": "Index finger (1 hand)",
+  "location": "Chest",
+  "movement": "Arc from one side of the chest to the other",
+  "steps": [
+    "Touch your index finger to one side of your chest.",
+    "Arc it across in front of you to touch the other side.",
+    "That arc 'collects' you and the people you mean."
+  ],
+  "mistakes": [
+    "Pointing straight at the chest. That's I. WE arcs across."
+  ],
+  "faq": [],
+  "reviewed": true
+}

@@ -1,0 +1,18 @@
+{
+  "summary": "Blue shakes a B handshape in front of you with a small twist of the wrist.",
+  "hands": "one",
+  "handshape": "B hand",
+  "location": "In front of shoulder",
+  "movement": "Small shake at the wrist",
+  "steps": [
+    "Make a B (flat hand, thumb tucked).",
+    "Shake it with a small side-to-side twist.",
+    "Keep the B crisp so it doesn't blur into GREEN or YELLOW."
+  ],
+  "note": "Blue, green, yellow, and purple are all the first letter shaken. The handshape is the whole difference, so keep each one clean.",
+  "mistakes": [
+    "A loose hand. B, G, Y, and P look alike at speed if the fingers aren't exact."
+  ],
+  "faq": [],
+  "reviewed": true
+}

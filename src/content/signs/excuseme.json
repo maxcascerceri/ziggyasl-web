@@ -1,0 +1,22 @@
+{
+  "summary": "Excuse me brushes the fingertips of one hand across the palm of the other, twice. Use it to get past someone, to interrupt, or to apologize for something small.",
+  "hands": "two",
+  "handshape": "Flat hands",
+  "location": "In front of body",
+  "movement": "Dominant fingertips brush off the end of the other palm twice",
+  "steps": [
+    "Hold your non-dominant hand flat, palm up.",
+    "Brush the fingertips of your dominant hand across the palm and off the fingertips, twice.",
+    "A small lean forward or nod makes it polite."
+  ],
+  "mistakes": [
+    "Sliding the whole hand across. Only the fingertips brush."
+  ],
+  "faq": [
+    {
+      "q": "Is EXCUSE-ME the same as SORRY?",
+      "a": "No. SORRY is a fist circling on the chest, for real apologies. EXCUSE-ME is for getting past, interrupting, or small things."
+    }
+  ],
+  "reviewed": true
+}

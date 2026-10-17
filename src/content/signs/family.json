@@ -1,0 +1,18 @@
+{
+  "summary": "Family starts with two F handshapes touching at the thumbs and index fingers and circles them around to meet again on the pinky side.",
+  "hands": "two",
+  "handshape": "F hands",
+  "location": "In front of chest",
+  "movement": "Hands circle outward and around to meet",
+  "steps": [
+    "Make F handshapes with both hands (index finger and thumb touching, other fingers up).",
+    "Touch the hands together at the thumb side.",
+    "Circle them outward and around until the pinky sides meet."
+  ],
+  "note": "This circling shape is a pattern: with C hands it's CLASS, with G hands it's GROUP, with T hands it's TEAM. The handshape names the group.",
+  "mistakes": [
+    "Circling without meeting at the end. The hands start together and end together."
+  ],
+  "faq": [],
+  "reviewed": true
+}

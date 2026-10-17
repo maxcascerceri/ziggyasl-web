@@ -15,7 +15,7 @@ import {
 } from "@/components/ops/fields";
 import { opsFetch } from "@/components/ops/api";
 import type { Creator } from "@/lib/ops/types";
-import { hrefFor, linkLabel, usd } from "@/lib/ops/format";
+import { hrefFor, linkLabel, tiktokHref, usd } from "@/lib/ops/format";
 
 const empty: Partial<Creator> = {
   name: "",
@@ -90,21 +90,46 @@ function CreatorsPage() {
   }
 
   const dirty = !!open && JSON.stringify(open) !== baseline;
+  const sheetTiktok = open
+    ? tiktokHref(open.link ?? "", open.name ?? "")
+    : "";
+  const sheetTitle = !open
+    ? "New creator"
+    : !open.id
+      ? "New creator"
+      : sheetTiktok ? (
+          <a
+            href={sheetTiktok}
+            target="_blank"
+            rel="noreferrer"
+            className="text-brand"
+          >
+            {open.name || "Creator"}
+          </a>
+        ) : (
+          open.name || "Creator"
+        );
 
   async function save() {
     if (!open) return;
     setBusy(true);
     setError("");
     try {
+      const payload = {
+        ...open,
+        link:
+          (open.link ?? "").trim() ||
+          tiktokHref("", open.name ?? ""),
+      };
       if (open.id) {
         await opsFetch(`/api/ops/creators/${open.id}`, {
           method: "PATCH",
-          body: JSON.stringify(open),
+          body: JSON.stringify(payload),
         });
       } else {
         await opsFetch("/api/ops/creators", {
           method: "POST",
-          body: JSON.stringify(open),
+          body: JSON.stringify(payload),
         });
       }
       await load();
@@ -150,16 +175,16 @@ function CreatorsPage() {
       return <Pill className="bg-pastel-mint text-[#2d7a62]">Active</Pill>;
     }
     if (c.reachedOut) {
-      return <Pill className="bg-pastel-yellow text-[#8a6a12]">Reached out</Pill>;
+      return <Pill className="bg-pastel-yellow text-[#8a6a12]">Contacted</Pill>;
     }
-    return <Pill className="bg-canvas text-secondary">To reach</Pill>;
+    return <Pill className="bg-canvas text-secondary">Need to contact</Pill>;
   }
 
   return (
     <div>
       <PageHeader
         title="Creators"
-        subtitle="Name, link, outreach, deal."
+        subtitle="Who to contact, and what we’d offer."
         action={<PrimaryButton onClick={startNew}>Add</PrimaryButton>}
       />
 
@@ -175,7 +200,7 @@ function CreatorsPage() {
           All
         </Chip>
         <Chip on={filter === "to_reach"} onClick={() => setFilter("to_reach")}>
-          To reach
+          Need to contact
         </Chip>
         <Chip on={filter === "active"} onClick={() => setFilter("active")}>
           Active
@@ -195,6 +220,8 @@ function CreatorsPage() {
               {filtered.map((c) => {
                 const initial = (c.name || "?").slice(0, 1).toUpperCase();
                 const href = hrefFor(c.link);
+                const tiktok = tiktokHref(c.link, c.name);
+                const profile = tiktok || href;
                 return (
                   <li
                     key={c.id}
@@ -212,14 +239,43 @@ function CreatorsPage() {
                         {initial}
                       </span>
                       <div className="min-w-0 flex-1">
-                        <p className="truncate font-semibold">{c.name || "Untitled"}</p>
+                        {profile ? (
+                          <a
+                            href={profile}
+                            target="_blank"
+                            rel="noreferrer"
+                            onClick={(e) => e.stopPropagation()}
+                            className="block truncate font-semibold text-brand"
+                          >
+                            {c.name || "Untitled"}
+                          </a>
+                        ) : (
+                          <p className="truncate font-semibold">
+                            {c.name || "Untitled"}
+                          </p>
+                        )}
                         <p className="truncate text-[13px] text-secondary">
-                          {c.videos > 0 || c.dealAmount > 0
-                            ? `${c.videos} for ${usd(c.dealAmount)}`
-                            : linkLabel(c.link) || "No link"}
+                          {linkLabel(c.link) || "No link"}
                         </p>
+                        <span className="mt-1 sm:hidden">{pill(c)}</span>
                       </div>
-                      {pill(c)}
+                      <span className="w-[5.5rem] shrink-0 text-right">
+                        {c.dealAmount > 0 ? (
+                          <span className="block text-[1.05rem] font-semibold tabular-nums tracking-tight">
+                            {usd(c.dealAmount)}
+                          </span>
+                        ) : (
+                          <span className="block text-[13px] text-secondary">
+                            No quote
+                          </span>
+                        )}
+                        <span className="text-[12px] text-secondary">
+                          {c.videos > 0
+                            ? `${c.videos} ${c.videos === 1 ? "video" : "videos"}`
+                            : "Quote"}
+                        </span>
+                      </span>
+                      <span className="hidden sm:inline">{pill(c)}</span>
                     </button>
                     {href && (
                       <a
@@ -238,7 +294,7 @@ function CreatorsPage() {
                         className="shrink-0 pr-4 text-[13px] font-semibold text-brand"
                         onClick={() => void markReached(c.id)}
                       >
-                        Reached out
+                        Contacted
                       </button>
                     )}
                   </li>
@@ -253,7 +309,7 @@ function CreatorsPage() {
         open={!!open}
         dirty={dirty}
         onClose={close}
-        title={open?.id ? open.name || "Creator" : "New creator"}
+        title={sheetTitle}
       >
         {open && (
           <div>
@@ -283,7 +339,7 @@ function CreatorsPage() {
                   setOpen({ ...open, reachedOut: e.target.checked })
                 }
               />
-              Reached out
+              Contacted
             </label>
             <label className="mb-4 flex min-h-11 items-center gap-2 text-[15px]">
               <input
@@ -300,7 +356,7 @@ function CreatorsPage() {
               Active deal
             </label>
             <div className="grid grid-cols-2 gap-3">
-              <Field label="Pay">
+              <Field label="Estimated quote">
                 <input
                   type="number"
                   className={inputClass}
@@ -313,7 +369,7 @@ function CreatorsPage() {
                   }
                 />
               </Field>
-              <Field label="Videos">
+              <Field label="Videos we’d buy">
                 <input
                   type="number"
                   className={inputClass}

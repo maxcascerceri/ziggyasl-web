@@ -1,0 +1,17 @@
+{
+  "summary": "Really is an index finger moving forward from the lips. With raised eyebrows it asks 'really?'; with a nod it means 'really, truly.'",
+  "hands": "one",
+  "handshape": "Index finger (1 hand)",
+  "location": "Lips, moving forward",
+  "movement": "Straight forward",
+  "steps": [
+    "Index finger upright at the lips.",
+    "Move it straight forward.",
+    "Eyebrows up for the question, nod for the statement."
+  ],
+  "mistakes": [
+    "Confusing it with SURE and TRUE. They're the same sign; context decides."
+  ],
+  "faq": [],
+  "reviewed": true
+}

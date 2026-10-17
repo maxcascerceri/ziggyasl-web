@@ -29,7 +29,7 @@ export async function PATCH(req: Request, ctx: Ctx) {
     const creator = await upsertCreator(
       actor,
       { id, reachedOut: true },
-      `Reached out ${existing.name}`,
+      `Contacted ${existing.name}`,
     );
     return NextResponse.json({ creator });
   }
@@ -76,11 +76,11 @@ export async function DELETE(req: Request, ctx: Ctx) {
 
 function summaryFor(existing: Creator, patch: Partial<Creator>): string {
   const who = existing.name || "Creator";
-  if (patch.reachedOut && !existing.reachedOut) return `Reached out ${who}`;
+  if (patch.reachedOut && !existing.reachedOut) return `Contacted ${who}`;
   if (patch.active && !existing.active) return `${who} is active`;
   if (patch.paid && !existing.paid) return `Paid ${who}`;
   if (patch.dealAmount !== undefined && patch.dealAmount !== existing.dealAmount) {
-    return `${who} deal ${usd(Number(patch.dealAmount))}`;
+    return `${who} quote ${usd(Number(patch.dealAmount))}`;
   }
   if (patch.posted !== undefined && patch.posted !== existing.posted) {
     return `${who} posted ${patch.posted}/${patch.videos ?? existing.videos}`;

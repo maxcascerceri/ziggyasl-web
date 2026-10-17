@@ -1,0 +1,23 @@
+{
+  "summary": "He, she, him, her, and it are all one sign in ASL: a point to the side, toward the person or toward a spot you've set up for them.",
+  "hands": "one",
+  "handshape": "Index finger (1 hand)",
+  "location": "To the side",
+  "movement": "Point",
+  "steps": [
+    "Point to the side, toward the person you mean, or toward the spot in the air you've assigned them.",
+    "If gender matters, establish it first with MAN, WOMAN, or a fingerspelled name, then point.",
+    "Keep pointing to the same spot every time you mean that person."
+  ],
+  "note": "Assign each person you're talking about a spot in the space in front of you. Your sister on the right, your boss on the left. From then on, a point to the right means your sister. That's how ASL tracks 'he said, she said' with no confusion.",
+  "mistakes": [
+    "Looking for a different sign for 'she' or 'her.' There isn't one. Location and context carry it."
+  ],
+  "faq": [
+    {
+      "q": "How do I show that I mean 'she' instead of 'he'?",
+      "a": "Set it up first: sign WOMAN or fingerspell the name, then point to a spot. After that, pointing to that spot means her."
+    }
+  ],
+  "reviewed": true
+}

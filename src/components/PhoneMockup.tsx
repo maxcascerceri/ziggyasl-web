@@ -62,6 +62,10 @@ export function PhoneMockup({
               src={`/screenshots/${screenshot}`}
               alt={alt}
               loading={priority ? "eager" : "lazy"}
+              fetchPriority={priority ? "high" : "auto"}
+              decoding="async"
+              width={471}
+              height={1024}
               className="h-full w-full object-cover"
               onError={() => setMissing(true)}
             />

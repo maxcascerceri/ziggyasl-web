@@ -1,0 +1,18 @@
+{
+  "summary": "Today is NOW signed with a small double motion: two bent hands (or Y hands) dropping down in front of you, twice.",
+  "hands": "two",
+  "handshape": "Bent hands or Y hands, palms up",
+  "location": "In front of waist",
+  "movement": "Short drop, repeated",
+  "steps": [
+    "Hold both hands in front of you, palms up, slightly cupped.",
+    "Drop them down a few inches, twice.",
+    "Put it at the start of the sentence: TODAY I WORK."
+  ],
+  "note": "Time goes first in ASL. Set the day, then say what happens on it.",
+  "mistakes": [
+    "A single big drop with a firm stop, which reads as NOW, meaning 'right now.'"
+  ],
+  "faq": [],
+  "reviewed": true
+}

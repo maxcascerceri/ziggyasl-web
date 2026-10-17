@@ -1,0 +1,17 @@
+{
+  "summary": "Scared brings two fists up and springs them open at the chest, with wide eyes and a flinch.",
+  "hands": "two",
+  "handshape": "S fists opening to spread hands",
+  "location": "Chest",
+  "movement": "Fists move toward center and spring open",
+  "steps": [
+    "Hold two fists at your sides at chest height.",
+    "Bring them in toward your chest and spring the fingers open.",
+    "Widen your eyes, pull your head back slightly, and let your mouth open."
+  ],
+  "mistakes": [
+    "Opening the hands slowly. The spring is sudden, like a startle."
+  ],
+  "faq": [],
+  "reviewed": true
+}

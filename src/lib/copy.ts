@@ -11,7 +11,8 @@ export const copy = {
   hero: {
     headline: "Learn ASL the way it's actually signed",
     subline:
-      "Short video lessons, a clear path, and a friendly little guide who's happy you showed up. A few minutes a day is all it takes.",
+      "A free video dictionary of 700+ signs, beginner guides written by teachers, and an app with a friendly little guide who's happy you showed up.",
+    searchPlaceholder: "Search a sign, like “thank you”",
     appStoreCta: "App Store",
     playStoreCta: "Google Play",
     screenshot: "home.png",
@@ -38,6 +39,27 @@ export const copy = {
       screenshotAlt: "Ziggy Profile showing signs learned, stars, streak, and medals",
     },
   ],
+
+  home: {
+    dictionary: {
+      eyebrow: "Free ASL dictionary",
+      title: "Every sign on real video, free",
+      subtitle:
+        "Watch it, slow it down, read how it's made. Browse by topic or search anything.",
+      cta: "Open the dictionary",
+    },
+    learn: {
+      eyebrow: "Learn",
+      title: "Start with the guides a teacher would hand you",
+      subtitle: "Alphabet, numbers, greetings, and the first phrases, in the right order, with practice built in.",
+      cta: "All guides",
+    },
+    blog: {
+      eyebrow: "From the blog",
+      title: "Straight talk about learning ASL",
+      cta: "Read the blog",
+    },
+  },
 
   why: {
     title: "Why people stay with Ziggy",
@@ -71,7 +93,26 @@ export const copy = {
     privacy: "Privacy",
     terms: "Terms",
     contact: "Contact",
-    note: "Made for learning ASL every day.",
+    note: "A free ASL video dictionary and learning guides, plus the Ziggy app for daily practice.",
+  },
+
+  appCta: {
+    headline: "Keep going with Ziggy",
+    body: "Short video lessons, a path that knows what's next, and a friendly guide who's happy you showed up. Free to start.",
+    appStoreCta: "App Store",
+    playStoreCta: "Google Play",
+  },
+
+  dictionary: {
+    eyebrow: "ASL Dictionary",
+    title: "Every sign, on real video",
+    subtitle:
+      "Search 700+ American Sign Language signs and phrases, each filmed by a real signer and explained by a teacher. Free, no sign-up.",
+    searchPlaceholder: "Search a word, like “thank you” or “where”",
+    startHere: "Start here",
+    browseAll: "Browse by topic",
+    aToZ: "A to Z",
+    signOfTheDay: "Sign of the day",
   },
 
   note: {

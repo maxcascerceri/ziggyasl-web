@@ -1,0 +1,17 @@
+{
+  "summary": "Coffee grinds one fist on top of the other in a small circle, like an old-fashioned coffee mill.",
+  "hands": "two",
+  "handshape": "S fists",
+  "location": "In front of body",
+  "movement": "Top fist circles on the bottom fist",
+  "steps": [
+    "Make two fists.",
+    "Rest the dominant fist on top of the other.",
+    "Circle the top fist as if turning a crank."
+  ],
+  "mistakes": [
+    "Tapping instead of circling. The grind is a circle."
+  ],
+  "faq": [],
+  "reviewed": true
+}

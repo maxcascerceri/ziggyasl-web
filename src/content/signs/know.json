@@ -1,0 +1,17 @@
+{
+  "summary": "Know touches the fingertips of a bent flat hand to the side of the forehead. Flip it away and it becomes DON'T-KNOW.",
+  "hands": "one",
+  "handshape": "Bent B hand",
+  "location": "Side of forehead",
+  "movement": "Fingertips tap the forehead",
+  "steps": [
+    "Bend a flat hand slightly.",
+    "Tap the fingertips to the side of your forehead.",
+    "Leave it there; flipping it away negates it."
+  ],
+  "mistakes": [
+    "Tapping the center of the forehead with the thumb. That's FATHER."
+  ],
+  "faq": [],
+  "reviewed": true
+}

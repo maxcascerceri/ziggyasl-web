@@ -1,0 +1,14 @@
+{
+  "summary": "Sign language is SIGN (two index fingers circling alternately) followed by LANGUAGE (two L hands pulling apart).",
+  "hands": "two",
+  "steps": [
+    "Sign SIGN: hold both index fingers up and circle them alternately toward you.",
+    "Sign LANGUAGE: two L handshapes touching at the thumbs, pulling apart to the sides.",
+    "Flow the two together."
+  ],
+  "mistakes": [
+    "Circling the fingers in the same direction. They alternate."
+  ],
+  "faq": [],
+  "reviewed": true
+}

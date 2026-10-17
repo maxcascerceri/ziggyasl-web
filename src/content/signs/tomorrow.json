@@ -1,0 +1,17 @@
+{
+  "summary": "Tomorrow moves a thumbs-up (A hand) forward from the cheek, out into the future.",
+  "hands": "one",
+  "handshape": "A hand with thumb up",
+  "location": "Cheek, moving forward",
+  "movement": "Arcs forward from the cheek",
+  "steps": [
+    "Touch the thumb of a fist to your cheek near the jaw.",
+    "Arc it forward, away from your face.",
+    "The forward direction is the future; use it at the start of the sentence."
+  ],
+  "mistakes": [
+    "Moving backward. That's YESTERDAY."
+  ],
+  "faq": [],
+  "reviewed": true
+}

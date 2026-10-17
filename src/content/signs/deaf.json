@@ -1,0 +1,23 @@
+{
+  "summary": "Deaf touches an index finger to the ear and then to the mouth (or mouth then ear). Both orders are standard.",
+  "hands": "one",
+  "handshape": "Index finger (1 hand)",
+  "location": "Ear and mouth",
+  "movement": "Touch the ear, then touch near the corner of the mouth",
+  "steps": [
+    "Touch the tip of your index finger to your ear, just in front of it.",
+    "Move it to touch the side of your mouth or chin.",
+    "Either direction, ear-to-mouth or mouth-to-ear, is correct."
+  ],
+  "note": "Say 'Deaf,' not 'hearing impaired.' Most Deaf people dislike 'hearing impaired' because it defines them by what they lack. Deaf with a capital D refers to cultural identity and ASL use.",
+  "mistakes": [
+    "Touching the ear and stopping. Both points are part of the sign."
+  ],
+  "faq": [
+    {
+      "q": "Is it okay to sign DEAF to describe someone?",
+      "a": "Yes. It is the standard, respectful sign. The one to avoid is the old HEARING-IMPAIRED construction."
+    }
+  ],
+  "reviewed": true
+}

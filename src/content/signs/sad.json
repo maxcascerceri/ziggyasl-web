@@ -1,0 +1,18 @@
+{
+  "summary": "Sad draws both open hands downward in front of the face, with the face falling along with them.",
+  "hands": "two",
+  "handshape": "Open hands, fingers spread",
+  "location": "In front of the face",
+  "movement": "Slow downward drag",
+  "steps": [
+    "Hold both open hands in front of your face, palms toward you.",
+    "Draw them slowly downward past the chin.",
+    "Let your eyebrows, mouth, and eyes drop with your hands."
+  ],
+  "mistakes": [
+    "Moving fast. SAD is slow and heavy.",
+    "Keeping a neutral face, which makes it unreadable."
+  ],
+  "faq": [],
+  "reviewed": true
+}

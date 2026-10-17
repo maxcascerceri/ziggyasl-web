@@ -1,0 +1,17 @@
+{
+  "summary": "White starts with an open hand on the chest and pulls away as the fingers close together.",
+  "hands": "one",
+  "handshape": "Open 5 closing to a flattened O",
+  "location": "Chest, moving outward",
+  "movement": "Pulls away from the chest and closes",
+  "steps": [
+    "Place an open hand on the center of your chest.",
+    "Pull it straight out a few inches while bringing the fingertips together.",
+    "One smooth pull."
+  ],
+  "mistakes": [
+    "Closing the hand before it leaves the chest."
+  ],
+  "faq": [],
+  "reviewed": true
+}

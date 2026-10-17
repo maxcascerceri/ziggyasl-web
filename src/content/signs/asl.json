@@ -1,0 +1,17 @@
+{
+  "summary": "ASL is fingerspelled A-S-L, quickly and smoothly, almost as one motion.",
+  "hands": "one",
+  "handshape": "A, S, L",
+  "location": "Shoulder height",
+  "movement": "Three quick letters",
+  "steps": [
+    "Fingerspell A.",
+    "Shift to S.",
+    "Flick into L. Keep the hand still and let only the fingers move."
+  ],
+  "mistakes": [
+    "Spelling slowly. ASL is a lexicalized spelling that fluent signers produce as a single unit."
+  ],
+  "faq": [],
+  "reviewed": true
+}

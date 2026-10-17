@@ -1,0 +1,17 @@
+{
+  "summary": "Sleep draws an open hand down over the face as the fingers close, with the eyes closing too.",
+  "hands": "one",
+  "handshape": "Open hand closing to a flattened O",
+  "location": "Face",
+  "movement": "Hand moves down the face and closes",
+  "steps": [
+    "Hold an open hand in front of your face, palm toward you.",
+    "Draw it down toward your chin while closing the fingers to a flattened O.",
+    "Close your eyes and tilt your head slightly as the hand comes down."
+  ],
+  "mistakes": [
+    "Keeping the eyes open and the head up. The face sleeps with the hand."
+  ],
+  "faq": [],
+  "reviewed": true
+}

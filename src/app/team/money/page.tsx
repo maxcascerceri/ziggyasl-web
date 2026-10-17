@@ -20,7 +20,7 @@ import {
   type Expense,
   type ExpenseCategory,
 } from "@/lib/ops/types";
-import { remainingCreatorCash, usd } from "@/lib/ops/format";
+import { cadenceLabel, remainingCreatorCash, usd } from "@/lib/ops/format";
 import type { Creator } from "@/lib/ops/types";
 
 const categoryPill: Record<string, string> = {
@@ -118,12 +118,12 @@ function MoneyPage() {
     <div>
       <PageHeader
         title="Money"
-        subtitle="What we pay."
-        action={<PrimaryButton onClick={startNew}>Add</PrimaryButton>}
+        subtitle="Tools, ads, and other costs. Creator quotes live on Creators."
+        action={<PrimaryButton onClick={startNew}>Add cost</PrimaryButton>}
       />
       {remaining > 0 && (
         <p className="mb-4 text-[14px] text-secondary">
-          Unpaid deals {usd(remaining)}
+          Still owed on active creator deals: {usd(remaining)}
         </p>
       )}
 
@@ -153,8 +153,8 @@ function MoneyPage() {
                     <div className="min-w-0 flex-1">
                       <p className="font-semibold">{e.name}</p>
                       <p className="mt-0.5 text-[13px] text-secondary">
-                        {e.cadence.replace("_", " ")}
-                        {!e.active ? " · off" : ""}
+                        {cadenceLabel[e.cadence] ?? e.cadence}
+                        {!e.active ? " · turned off" : ""}
                       </p>
                     </div>
                     <Pill
@@ -181,7 +181,7 @@ function MoneyPage() {
           setBaseline("");
           router.replace("/team/money");
         }}
-        title={open?.id ? "Edit line" : "New line"}
+        title={open?.id ? "Edit cost" : "New cost"}
       >
         {open && (
           <div>
@@ -212,7 +212,7 @@ function MoneyPage() {
               >
                 {CADENCES.map((c) => (
                   <option key={c} value={c}>
-                    {c.replace("_", " ")}
+                    {cadenceLabel[c] ?? c}
                   </option>
                 ))}
               </select>

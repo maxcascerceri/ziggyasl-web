@@ -1,0 +1,17 @@
+{
+  "summary": "Understand flicks the index finger up from a fist held at the side of the forehead, like a lightbulb turning on.",
+  "hands": "one",
+  "handshape": "S fist flicking to a 1",
+  "location": "Side of forehead",
+  "movement": "Index finger flicks up",
+  "steps": [
+    "Hold a fist at the side of your forehead.",
+    "Flick the index finger straight up.",
+    "Nod for 'I understand'; shake your head for 'I don't understand.'"
+  ],
+  "mistakes": [
+    "Flicking the finger out forward. It goes up."
+  ],
+  "faq": [],
+  "reviewed": true
+}

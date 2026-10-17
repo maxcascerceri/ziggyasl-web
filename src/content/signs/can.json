@@ -1,0 +1,17 @@
+{
+  "summary": "Can (able to) drops two fists downward at the same time, once, firmly.",
+  "hands": "two",
+  "handshape": "S fists or A hands",
+  "location": "In front of body",
+  "movement": "Both fists drop",
+  "steps": [
+    "Hold two fists in front of you.",
+    "Drop them down together a few inches, firmly.",
+    "With a head shake it means CAN'T; CANNOT also has its own sign."
+  ],
+  "mistakes": [
+    "Alternating the fists. They move together."
+  ],
+  "faq": [],
+  "reviewed": true
+}

@@ -1,0 +1,17 @@
+{
+  "summary": "The letter Z draws a Z in the air with the index finger. One of only two moving letters.",
+  "hands": "one",
+  "handshape": "Index finger (1 hand)",
+  "location": "Shoulder height",
+  "movement": "Traces a Z",
+  "steps": [
+    "Point your index finger up.",
+    "Draw a Z: across, down diagonally, across.",
+    "For a double Z, some signers use a V handshape instead of tracing twice."
+  ],
+  "mistakes": [
+    "Drawing it mirrored. Draw it so the reader sees a Z, not an S."
+  ],
+  "faq": [],
+  "reviewed": true
+}

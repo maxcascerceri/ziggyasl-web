@@ -114,6 +114,183 @@ body {
   }
 }
 
+/* Category / card tints — one of four pastel chips, rotated per category. */
+.tint-blue {
+  --tint: var(--pastel-blue);
+  --tint-icon: var(--pastel-blue-icon);
+}
+.tint-mint {
+  --tint: var(--pastel-mint);
+  --tint-icon: var(--pastel-mint-icon);
+}
+.tint-yellow {
+  --tint: var(--pastel-yellow);
+  --tint-icon: var(--pastel-yellow-icon);
+}
+.tint-peach {
+  --tint: var(--pastel-peach);
+  --tint-icon: var(--pastel-peach-icon);
+}
+
+/* Raised card — rests flat, lifts on hover (transform + opacity only). */
+.card-lift {
+  position: relative;
+  isolation: isolate;
+  box-shadow: var(--shadow-card);
+  transition: transform 200ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+.card-lift::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  box-shadow: var(--shadow-clay-hover);
+  opacity: 0;
+  transition: opacity 200ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+@media (hover: hover) and (pointer: fine) {
+  .card-lift:hover {
+    transform: translateY(-3px);
+  }
+  .card-lift:hover::after {
+    opacity: 1;
+  }
+}
+.card-lift:active {
+  transform: translateY(0) scale(0.985);
+}
+@media (prefers-reduced-motion: reduce) {
+  .card-lift,
+  .card-lift::after {
+    transition: none;
+  }
+  .card-lift:hover {
+    transform: none;
+  }
+}
+
+/* Long-form reading — guides, blog, sign explanations. */
+.prose-ziggy {
+  color: var(--ink);
+  font-size: 1.0625rem;
+  line-height: 1.75;
+}
+.prose-ziggy > * + * {
+  margin-top: 1.1em;
+}
+.prose-ziggy h2 {
+  margin-top: 2.4em;
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  scroll-margin-top: 7rem;
+}
+.prose-ziggy h3 {
+  margin-top: 1.8em;
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1.3;
+  scroll-margin-top: 7rem;
+}
+.prose-ziggy p {
+  text-wrap: pretty;
+}
+.prose-ziggy a {
+  color: var(--brand);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: var(--soft);
+  text-underline-offset: 3px;
+  transition: text-decoration-color 160ms;
+}
+.prose-ziggy a:hover {
+  text-decoration-color: var(--brand);
+}
+.prose-ziggy ul,
+.prose-ziggy ol {
+  padding-left: 1.4em;
+}
+.prose-ziggy ul {
+  list-style: disc;
+}
+.prose-ziggy ol {
+  list-style: decimal;
+}
+.prose-ziggy li + li {
+  margin-top: 0.4em;
+}
+.prose-ziggy li::marker {
+  color: var(--brand);
+  font-weight: 600;
+}
+.prose-ziggy strong {
+  font-weight: 700;
+}
+.prose-ziggy blockquote {
+  border-left: 4px solid var(--soft);
+  padding: 0.25em 0 0.25em 1.1em;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+.prose-ziggy hr {
+  border: 0;
+  border-top: 1px solid var(--divider);
+  margin: 2.5em 0;
+}
+.prose-ziggy code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.9em;
+  background: var(--cream);
+  border: 1px solid var(--divider);
+  border-radius: 6px;
+  padding: 0.1em 0.4em;
+}
+.prose-ziggy table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95em;
+}
+.prose-ziggy th,
+.prose-ziggy td {
+  border-bottom: 1px solid var(--divider);
+  padding: 0.6em 0.5em;
+  text-align: left;
+  vertical-align: top;
+}
+.prose-ziggy th {
+  font-weight: 700;
+}
+
+/* ASL gloss convention: small caps in running text. */
+.gloss {
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.04em;
+  font-weight: 600;
+}
+
+/* A-Z index links on /dictionary. One short class keeps 727 links light in HTML + RSC. */
+.az-link {
+  display: inline-flex;
+  min-height: 1.75rem;
+  align-items: center;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: color 150ms;
+}
+.az-link:hover {
+  color: var(--ink);
+}
+
+/* Thin scrollbars for horizontal rails. */
+.rail {
+  scrollbar-width: thin;
+  scrollbar-color: var(--divider) transparent;
+  -webkit-overflow-scrolling: touch;
+}
+
 ::selection {
   background: var(--soft);
   color: var(--ink);

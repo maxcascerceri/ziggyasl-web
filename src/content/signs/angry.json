@@ -1,0 +1,17 @@
+{
+  "summary": "Angry claws a hand in front of the face and pulls it slightly toward you, with a tight, angry expression.",
+  "hands": "one",
+  "handshape": "Claw hand (bent fingers spread)",
+  "location": "In front of the face",
+  "movement": "Pulls back toward the face or up",
+  "steps": [
+    "Make a claw with your fingers bent and spread.",
+    "Hold it in front of your face and pull it in toward you, or drag it upward.",
+    "Tighten your jaw and narrow your eyes. Two hands makes it furious."
+  ],
+  "mistakes": [
+    "Smiling. The face must match or it reads as a joke."
+  ],
+  "faq": [],
+  "reviewed": true
+}

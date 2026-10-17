@@ -1,0 +1,17 @@
+{
+  "summary": "Finish (done, already) flips two open hands from palms-in to palms-out, once. It also marks the past tense in ASL.",
+  "hands": "two",
+  "handshape": "Open 5 hands",
+  "location": "In front of chest",
+  "movement": "Flip outward",
+  "steps": [
+    "Hold both open hands up, palms facing you.",
+    "Flip them outward so the palms face away.",
+    "One quick flip. Doubled and small, it can mean 'that's enough.'"
+  ],
+  "mistakes": [
+    "Flipping slowly. It's a quick, decisive flip."
+  ],
+  "faq": [],
+  "reviewed": true
+}

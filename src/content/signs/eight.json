@@ -1,0 +1,16 @@
+{
+  "summary": "Eight touches the thumb to the middle finger with the other fingers up.",
+  "hands": "one",
+  "handshape": "8 hand",
+  "location": "Shoulder height, palm out",
+  "steps": [
+    "Touch the tip of your thumb to the tip of your middle finger.",
+    "Index, ring, and pinky stay up.",
+    "Palm out."
+  ],
+  "mistakes": [
+    "Touching the ring finger. That's seven."
+  ],
+  "faq": [],
+  "reviewed": true
+}

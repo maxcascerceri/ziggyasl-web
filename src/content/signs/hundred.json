@@ -1,0 +1,16 @@
+{
+  "summary": "Hundred is the number one followed by a C handshape, from the Roman numeral C for 100.",
+  "hands": "one",
+  "handshape": "1 then C",
+  "location": "Shoulder height, palm out",
+  "steps": [
+    "Sign ONE.",
+    "Change to a C handshape in the same spot.",
+    "For two hundred, sign TWO then C, and so on."
+  ],
+  "mistakes": [
+    "Skipping the number. Just C can read as the letter C."
+  ],
+  "faq": [],
+  "reviewed": true
+}

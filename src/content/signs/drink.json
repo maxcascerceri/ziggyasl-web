@@ -1,0 +1,17 @@
+{
+  "summary": "Drink tips a C handshape toward the mouth, like raising a cup.",
+  "hands": "one",
+  "handshape": "C hand",
+  "location": "Mouth",
+  "movement": "Tips toward the lips",
+  "steps": [
+    "Make a C with your hand.",
+    "Bring it to your mouth and tip it as if drinking.",
+    "A small tip is 'drink'; a big repeated tip can mean 'drinking a lot.'"
+  ],
+  "mistakes": [
+    "Using a fist. The C is the cup."
+  ],
+  "faq": [],
+  "reviewed": true
+}

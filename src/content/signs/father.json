@@ -1,0 +1,22 @@
+{
+  "summary": "Father is an open hand with the thumb tapping the forehead. The forehead is the male location in ASL family signs.",
+  "hands": "one",
+  "handshape": "Open hand, fingers spread (5 hand)",
+  "location": "Forehead",
+  "movement": "Thumb taps the forehead twice",
+  "steps": [
+    "Spread your fingers in an open hand.",
+    "Tap the thumb against the center of your forehead twice.",
+    "For GRANDFATHER, do the same and bounce the hand forward in two small arcs."
+  ],
+  "mistakes": [
+    "Tapping the chin. That's MOTHER."
+  ],
+  "faq": [
+    {
+      "q": "Why is father at the forehead?",
+      "a": "Historically, the forehead is where a man's hat brim sat, and the chin is where a woman's bonnet tied. The signs kept the locations long after the hats went away."
+    }
+  ],
+  "reviewed": true
+}

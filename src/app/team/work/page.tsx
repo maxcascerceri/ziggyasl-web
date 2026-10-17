@@ -1,14 +1,11 @@
 "use client";
 
-import { Suspense, useCallback, useEffect, useMemo, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
-import { Sheet } from "@/components/ops/Sheet";
+import { Suspense, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import {
   Chip,
-  Field,
   ListSkeleton,
   PageHeader,
-  Pill,
   PrimaryButton,
   Surface,
   inputClass,
@@ -21,15 +18,12 @@ import {
   type Task,
   type TaskStatus,
 } from "@/lib/ops/types";
-import {
-  NEXT_STATUS,
-  dateLabel,
-  isOverdue,
-  statusLabel,
-  statusPill,
-} from "@/lib/ops/format";
+import { isOverdue, statusLabel } from "@/lib/ops/format";
 
 const ASSIGN_KEY = "ziggy-ops-assignee";
+
+const compactSelect =
+  "min-h-9 max-w-full rounded-lg border border-divider bg-canvas px-2 text-[13px] font-medium text-ink outline-none focus:border-brand";
 
 export default function WorkRoute() {
   return (
@@ -40,16 +34,14 @@ export default function WorkRoute() {
 }
 
 function WorkPage() {
-  const router = useRouter();
   const params = useSearchParams();
   const [tasks, setTasks] = useState<Task[]>([]);
   const [ready, setReady] = useState(false);
   const [who, setWho] = useState<"all" | Person>("all");
   const [status, setStatus] = useState<"open" | "working" | "completed">("open");
-  const [open, setOpen] = useState<Partial<Task> | null>(null);
-  const [baseline, setBaseline] = useState("");
   const [title, setTitle] = useState("");
   const [assignee, setAssignee] = useState<Person>("Bernie");
+  const focusId = params.get("id");
 
   const load = useCallback(async () => {
     const data = await opsFetch<{ tasks: Task[] }>("/api/ops/tasks");
@@ -62,16 +54,6 @@ function WorkPage() {
     if (saved && PEOPLE.includes(saved)) setAssignee(saved);
     void load();
   }, [load]);
-
-  useEffect(() => {
-    const id = params.get("id");
-    if (!id) return;
-    const hit = tasks.find((t) => t.id === id);
-    if (hit) {
-      setOpen(hit);
-      setBaseline(JSON.stringify(hit));
-    }
-  }, [params, tasks]);
 
   const filtered = useMemo(() => {
     return tasks.filter((t) => {
@@ -93,44 +75,32 @@ function WorkPage() {
     await load();
   }
 
-  async function cycle(t: Task) {
-    const next = NEXT_STATUS[t.status];
-    await opsFetch(`/api/ops/tasks/${t.id}`, {
+  async function patch(id: string, body: Partial<Task>) {
+    setTasks((prev) =>
+      prev.map((t) => (t.id === id ? { ...t, ...body } : t)),
+    );
+    await opsFetch(`/api/ops/tasks/${id}`, {
       method: "PATCH",
-      body: JSON.stringify({ status: next }),
+      body: JSON.stringify(body),
     });
     await load();
-  }
-
-  async function save() {
-    if (!open?.id) return;
-    await opsFetch(`/api/ops/tasks/${open.id}`, {
-      method: "PATCH",
-      body: JSON.stringify(open),
-    });
-    if (open.assignee) localStorage.setItem(ASSIGN_KEY, open.assignee);
-    await load();
-    setOpen(null);
-    setBaseline("");
-    router.replace("/team/work");
   }
 
   async function remove(id: string) {
-    if (!confirm("Delete this?")) return;
+    if (!confirm("Delete this task?")) return;
     await opsFetch(`/api/ops/tasks/${id}`, { method: "DELETE" });
     await load();
-    setOpen(null);
-    router.replace("/team/work");
   }
-
-  const dirty = !!open && JSON.stringify(open) !== baseline;
 
   return (
     <div>
-      <PageHeader title="Work" subtitle="Who’s doing what." />
+      <PageHeader
+        title="Work"
+        subtitle="Change the title, owner, or status right on the list."
+      />
 
       <form
-        className="mb-4 flex gap-2"
+        className="mb-4 flex flex-col gap-2 sm:flex-row"
         onSubmit={(e) => {
           e.preventDefault();
           void add();
@@ -138,10 +108,20 @@ function WorkPage() {
       >
         <input
           className={inputClass}
-          placeholder="New task"
+          placeholder="Add a task"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
+        <select
+          className={`${inputClass} sm:w-36`}
+          value={assignee}
+          onChange={(e) => setAssignee(e.target.value as Person)}
+          aria-label="Assign to"
+        >
+          {PEOPLE.map((p) => (
+            <option key={p}>{p}</option>
+          ))}
+        </select>
         <PrimaryButton type="submit">Add</PrimaryButton>
       </form>
 
@@ -176,122 +156,110 @@ function WorkPage() {
           ) : (
             <ul>
               {filtered.map((t) => (
-                <li
+                <TaskRow
                   key={t.id}
-                  className="flex items-center gap-2 border-b border-divider/70 last:border-0"
-                >
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setOpen(t);
-                      setBaseline(JSON.stringify(t));
-                    }}
-                    className="flex min-h-[4rem] min-w-0 flex-1 items-center px-4 py-3 text-left hover:bg-canvas/70"
-                  >
-                    <span className="min-w-0">
-                      <span className="block font-medium">{t.title}</span>
-                      <span
-                        className={`mt-0.5 block text-[12px] ${
-                          isOverdue(t.dueAt)
-                            ? "font-semibold text-pastel-peach-icon"
-                            : "text-secondary"
-                        }`}
-                      >
-                        {t.assignee}
-                        {t.dueAt ? ` · ${dateLabel(t.dueAt)}` : ""}
-                      </span>
-                    </span>
-                  </button>
-                  <button
-                    type="button"
-                    className="shrink-0 pr-4"
-                    onClick={() => void cycle(t)}
-                  >
-                    <Pill className={statusPill[t.status]}>
-                      {statusLabel[t.status]}
-                    </Pill>
-                  </button>
-                </li>
+                  task={t}
+                  focused={focusId === t.id}
+                  onPatch={(body) => void patch(t.id, body)}
+                  onRemove={() => void remove(t.id)}
+                />
               ))}
             </ul>
           )}
         </Surface>
       )}
-
-      <Sheet
-        open={!!open}
-        dirty={dirty}
-        onClose={() => {
-          setOpen(null);
-          setBaseline("");
-          router.replace("/team/work");
-        }}
-        title="Task"
-      >
-        {open && (
-          <div>
-            <Field label="Title">
-              <input
-                className={inputClass}
-                value={open.title ?? ""}
-                onChange={(e) => setOpen({ ...open, title: e.target.value })}
-              />
-            </Field>
-            <Field label="Status">
-              <select
-                className={inputClass}
-                value={open.status}
-                onChange={(e) =>
-                  setOpen({ ...open, status: e.target.value as TaskStatus })
-                }
-              >
-                {TASK_STATUSES.map((s) => (
-                  <option key={s} value={s}>
-                    {statusLabel[s]}
-                  </option>
-                ))}
-              </select>
-            </Field>
-            <Field label="Assignee">
-              <select
-                className={inputClass}
-                value={open.assignee}
-                onChange={(e) =>
-                  setOpen({ ...open, assignee: e.target.value as Person })
-                }
-              >
-                {PEOPLE.map((a) => (
-                  <option key={a}>{a}</option>
-                ))}
-              </select>
-            </Field>
-            <Field label="Due">
-              <input
-                type="date"
-                className={inputClass}
-                value={open.dueAt ?? ""}
-                onChange={(e) =>
-                  setOpen({ ...open, dueAt: e.target.value || null })
-                }
-              />
-            </Field>
-            <div className="sticky bottom-0 bg-white pt-2 pb-[env(safe-area-inset-bottom)]">
-              <PrimaryButton className="w-full" onClick={() => void save()}>
-                Save
-              </PrimaryButton>
-              {open.id && (
-                <button
-                  type="button"
-                  className="mt-2 min-h-11 w-full text-sm text-secondary"
-                  onClick={() => void remove(open.id!)}
-                >
-                  Delete
-                </button>
-              )}
-            </div>
-          </div>
-        )}
-      </Sheet>
     </div>
+  );
+}
+
+function TaskRow({
+  task,
+  focused,
+  onPatch,
+  onRemove,
+}: {
+  task: Task;
+  focused: boolean;
+  onPatch: (body: Partial<Task>) => void;
+  onRemove: () => void;
+}) {
+  const [title, setTitle] = useState(task.title);
+  const rowRef = useRef<HTMLLIElement>(null);
+
+  useEffect(() => {
+    setTitle(task.title);
+  }, [task.title]);
+
+  useEffect(() => {
+    if (focused) rowRef.current?.scrollIntoView({ block: "center" });
+  }, [focused]);
+
+  function commitTitle() {
+    const next = title.trim();
+    if (!next) {
+      setTitle(task.title);
+      return;
+    }
+    if (next !== task.title) onPatch({ title: next });
+  }
+
+  return (
+    <li
+      ref={rowRef}
+      className={`border-b border-divider/70 px-3 py-3 last:border-0 sm:px-4 ${
+        focused ? "bg-soft" : ""
+      }`}
+    >
+      <input
+        className="min-h-11 w-full rounded-lg border border-transparent bg-transparent px-1 text-[15px] font-medium outline-none hover:bg-canvas focus:border-brand focus:bg-white"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+        onBlur={commitTitle}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") (e.target as HTMLInputElement).blur();
+        }}
+        aria-label="Task title"
+      />
+      <div className="mt-1 flex flex-wrap items-center gap-2 px-1">
+        <select
+          className={compactSelect}
+          value={task.assignee}
+          onChange={(e) => onPatch({ assignee: e.target.value as Person })}
+          aria-label="Owner"
+        >
+          {PEOPLE.map((p) => (
+            <option key={p}>{p}</option>
+          ))}
+        </select>
+        <select
+          className={compactSelect}
+          value={task.status}
+          onChange={(e) => onPatch({ status: e.target.value as TaskStatus })}
+          aria-label="Status"
+        >
+          {TASK_STATUSES.map((s) => (
+            <option key={s} value={s}>
+              {statusLabel[s]}
+            </option>
+          ))}
+        </select>
+        <input
+          type="date"
+          className={`${compactSelect} ${
+            isOverdue(task.dueAt) ? "font-semibold text-pastel-peach-icon" : ""
+          }`}
+          value={task.dueAt ?? ""}
+          onChange={(e) => onPatch({ dueAt: e.target.value || null })}
+          aria-label="Due date"
+        />
+        <button
+          type="button"
+          className="min-h-9 px-1 text-[13px] font-medium text-secondary"
+          onClick={onRemove}
+        >
+          Delete
+        </button>
+      </div>
+    </li>
   );
 }

@@ -1,0 +1,17 @@
+{
+  "summary": "The letter J is the I handshape (pinky up) drawing a hook in the air, like writing a J.",
+  "hands": "one",
+  "handshape": "I hand with movement",
+  "location": "Shoulder height",
+  "movement": "Pinky traces a J",
+  "steps": [
+    "Start with the pinky extended (I).",
+    "Trace a J shape: down and curving back toward you.",
+    "It's one of only two letters with movement; the other is Z."
+  ],
+  "mistakes": [
+    "Tracing a mirror-image J. The hook curves toward your body."
+  ],
+  "faq": [],
+  "reviewed": true
+}

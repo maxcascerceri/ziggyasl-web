@@ -1,0 +1,17 @@
+{
+  "summary": "Cat pinches an F handshape at the corner of the mouth and pulls it out, like stroking whiskers.",
+  "hands": "one",
+  "handshape": "F hand",
+  "location": "Corner of the mouth",
+  "movement": "Pulls outward",
+  "steps": [
+    "Make an F (thumb and index touching).",
+    "Place it at the corner of your mouth.",
+    "Pull it outward to the side, once or twice, tracing a whisker."
+  ],
+  "mistakes": [
+    "Using both hands dramatically. One hand is standard."
+  ],
+  "faq": [],
+  "reviewed": true
+}

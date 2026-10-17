@@ -1,0 +1,23 @@
+{
+  "summary": "Name is two H (or U) handshapes, one tapping on top of the other twice. It's used in 'my name is' and 'what is your name.'",
+  "hands": "two",
+  "handshape": "H hands (index and middle fingers extended)",
+  "location": "In front of the chest",
+  "movement": "Dominant hand taps on top of the non-dominant hand twice",
+  "steps": [
+    "Make an H handshape with both hands: index and middle fingers extended together.",
+    "Rest the dominant hand's fingers across the top of the other hand's fingers, forming an X.",
+    "Tap twice."
+  ],
+  "note": "After NAME, you fingerspell. MY NAME then spell it. Most new learners don't have a name sign yet, and that's completely normal; your fingerspelled name is your name until a Deaf friend gives you one.",
+  "mistakes": [
+    "Tapping once. Two small taps is the noun NAME; a single firm contact can read as the verb 'to name.'"
+  ],
+  "faq": [
+    {
+      "q": "How do I sign 'my name is'?",
+      "a": "MY (flat hand on chest) then NAME, then fingerspell your name. There's no sign for 'is.' See the MY-NAME-IS phrase page."
+    }
+  ],
+  "reviewed": true
+}

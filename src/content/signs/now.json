@@ -1,0 +1,17 @@
+{
+  "summary": "Now drops two bent hands (or Y hands) down in front of you, once, firmly.",
+  "hands": "two",
+  "handshape": "Bent hands or Y hands, palms up",
+  "location": "In front of waist",
+  "movement": "One firm drop",
+  "steps": [
+    "Hold both hands in front of you, palms up.",
+    "Drop them down a few inches, once, with a small stop.",
+    "Doubled, it becomes TODAY."
+  ],
+  "mistakes": [
+    "Bouncing it twice, which reads as TODAY."
+  ],
+  "faq": [],
+  "reviewed": true
+}

@@ -1,0 +1,17 @@
+{
+  "summary": "Wait wiggles the fingers of both open hands, palms up, held slightly to one side. It's used for 'hold on' and 'wait a second.'",
+  "hands": "two",
+  "handshape": "Open hands, palms up",
+  "location": "Off to one side at waist height",
+  "movement": "Fingers wiggle",
+  "steps": [
+    "Hold both hands out to one side, palms up, one a little ahead of the other.",
+    "Wiggle all the fingers.",
+    "For 'wait a second,' make it small and quick with a slight head tilt."
+  ],
+  "mistakes": [
+    "Holding the hands still. The wiggle is the sign."
+  ],
+  "faq": [],
+  "reviewed": true
+}

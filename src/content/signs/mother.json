@@ -1,0 +1,24 @@
+{
+  "summary": "Mother is an open hand with the thumb tapping the chin. The chin is the female location in ASL family signs.",
+  "hands": "one",
+  "handshape": "Open hand, fingers spread (5 hand)",
+  "location": "Chin",
+  "movement": "Thumb taps the chin twice",
+  "steps": [
+    "Spread your fingers in an open hand.",
+    "Tap the thumb against your chin twice.",
+    "For GRANDMOTHER, do the same and then bounce the hand forward in two small arcs."
+  ],
+  "note": "Female family signs sit at the chin; male ones sit at the forehead. MOTHER and FATHER are identical except for location. Learn them as a pair.",
+  "mistakes": [
+    "Tapping the forehead. That's FATHER.",
+    "Using a closed hand. The fingers are spread."
+  ],
+  "faq": [
+    {
+      "q": "How do I sign 'mom' casually?",
+      "a": "Same sign. MOTHER and MOM are not distinguished in ASL. Some signers tap once for a quick casual version."
+    }
+  ],
+  "reviewed": true
+}

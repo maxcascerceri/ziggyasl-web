@@ -1,0 +1,17 @@
+{
+  "summary": "Our (and ours) is a bent flat hand that touches one side of your chest and arcs across to the other, the possessive version of WE.",
+  "hands": "one",
+  "handshape": "Bent B hand",
+  "location": "Chest",
+  "movement": "Arc from one side to the other",
+  "steps": [
+    "Cup a flat hand slightly and touch the thumb side to one side of your chest.",
+    "Arc it across to land the pinky side on the other side of your chest.",
+    "Think of it as WE with a flat hand."
+  ],
+  "mistakes": [
+    "Using an index finger. That's WE."
+  ],
+  "faq": [],
+  "reviewed": true
+}

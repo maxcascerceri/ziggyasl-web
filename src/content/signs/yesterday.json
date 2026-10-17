@@ -1,0 +1,17 @@
+{
+  "summary": "Yesterday moves a thumbs-up (A hand) back from the cheek toward the shoulder, into the past.",
+  "hands": "one",
+  "handshape": "A hand with thumb up (or Y)",
+  "location": "Cheek, moving back",
+  "movement": "Arcs back toward the ear",
+  "steps": [
+    "Touch the thumb to your cheek near the chin.",
+    "Arc it back toward your ear or shoulder.",
+    "Backward is the past. Use it at the start: YESTERDAY I GO."
+  ],
+  "mistakes": [
+    "Moving forward. That's TOMORROW."
+  ],
+  "faq": [],
+  "reviewed": true
+}

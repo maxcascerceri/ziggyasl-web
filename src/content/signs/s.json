@@ -1,0 +1,16 @@
+{
+  "summary": "The letter S is a fist with the thumb wrapped across the front of the fingers. It's also the handshape for YES and many other signs.",
+  "hands": "one",
+  "handshape": "S hand",
+  "location": "Shoulder height, palm out",
+  "steps": [
+    "Make a fist.",
+    "Wrap the thumb across the front of the index and middle fingers.",
+    "Palm faces out."
+  ],
+  "mistakes": [
+    "Resting the thumb along the side. That's A."
+  ],
+  "faq": [],
+  "reviewed": true
+}

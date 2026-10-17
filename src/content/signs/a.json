@@ -1,0 +1,21 @@
+{
+  "summary": "The letter A is a fist with the thumb resting along the side of the index finger. It's the first letter of the manual alphabet and the base of many other signs.",
+  "hands": "one",
+  "handshape": "A hand",
+  "location": "Shoulder height, palm out",
+  "steps": [
+    "Close your fingers into a fist.",
+    "Rest the thumb straight along the side of the index finger, not across the front.",
+    "Palm faces the person you're spelling to."
+  ],
+  "mistakes": [
+    "Wrapping the thumb across the fingers. That's S."
+  ],
+  "faq": [
+    {
+      "q": "What's the difference between A and S?",
+      "a": "A keeps the thumb along the side of the fist. S wraps it across the front of the fingers."
+    }
+  ],
+  "reviewed": true
+}

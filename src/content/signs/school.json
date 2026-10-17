@@ -1,0 +1,17 @@
+{
+  "summary": "School claps a flat dominant hand down onto the other palm, twice, like a teacher getting attention.",
+  "hands": "two",
+  "handshape": "Flat B hands",
+  "location": "In front of body",
+  "movement": "Top hand claps down twice",
+  "steps": [
+    "Hold your non-dominant hand flat, palm up.",
+    "Clap your dominant hand down onto it, palm to palm, twice.",
+    "Keep the claps light."
+  ],
+  "mistakes": [
+    "One clap. Two for SCHOOL."
+  ],
+  "faq": [],
+  "reviewed": true
+}

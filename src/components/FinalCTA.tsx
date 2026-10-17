@@ -1,4 +1,5 @@
 import { copy } from "@/lib/copy";
+import Image from "next/image";
 import { FadeIn } from "./Motion";
 import { StoreButtons } from "./StoreButtons";
 
@@ -11,12 +12,14 @@ export function FinalCTA() {
           style={{ boxShadow: "var(--shadow-card)" }}
         >
           {/* Celebrating Ziggy — the emotional payoff before the ask */}
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src="/brand/ziggy-celebrate.png"
             alt=""
             aria-hidden
-            className="mx-auto mb-3 w-64 sm:w-80"
+            width={320}
+            height={320}
+            sizes="(max-width: 640px) 256px, 320px"
+            className="mx-auto mb-3 h-auto w-64 sm:w-80"
           />
           <h2 className="text-balance text-3xl font-bold tracking-tight text-ink sm:text-4xl">
             {copy.finalCta.headline}

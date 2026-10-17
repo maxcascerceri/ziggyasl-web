@@ -1,0 +1,17 @@
+{
+  "summary": "Green shakes a G handshape with a small twist of the wrist.",
+  "hands": "one",
+  "handshape": "G hand",
+  "location": "In front of shoulder",
+  "movement": "Small shake",
+  "steps": [
+    "Make a G (index finger and thumb extended sideways, like a pinch).",
+    "Shake it with a small twist.",
+    "Keep the other fingers folded."
+  ],
+  "mistakes": [
+    "Leaving the middle finger up, which makes it an H."
+  ],
+  "faq": [],
+  "reviewed": true
+}

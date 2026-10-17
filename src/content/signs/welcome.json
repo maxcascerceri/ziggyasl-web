@@ -1,0 +1,22 @@
+{
+  "summary": "Welcome sweeps an open hand in toward your body, as if inviting someone in. It's used for greeting arrivals and in the phrase 'you're welcome.'",
+  "hands": "one",
+  "handshape": "Flat open hand, palm up",
+  "location": "In front of the body",
+  "movement": "Sweeps inward toward the waist",
+  "steps": [
+    "Hold an open hand out in front of you, palm up, a little to the side.",
+    "Sweep it inward toward your body, ending near your waist.",
+    "Pair it with a welcoming face and a slight nod."
+  ],
+  "mistakes": [
+    "Sweeping outward instead of inward. The motion brings the person toward you."
+  ],
+  "faq": [
+    {
+      "q": "Is this the same as 'you're welcome'?",
+      "a": "Many signers use WELCOME for 'you're welcome' too. There's a dedicated clip for YOU'RE-WELCOME; both are understood."
+    }
+  ],
+  "reviewed": true
+}

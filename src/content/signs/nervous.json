@@ -1,0 +1,17 @@
+{
+  "summary": "Nervous shakes two claw hands in front of the body, with an uneasy face.",
+  "hands": "two",
+  "handshape": "Claw hands",
+  "location": "In front of the body",
+  "movement": "Trembling shake",
+  "steps": [
+    "Make two loose claws.",
+    "Hold them in front of you and shake them with a fine tremble.",
+    "Tense your face a little and glance around."
+  ],
+  "mistakes": [
+    "Shaking too big. It's a tremble, not a wave."
+  ],
+  "faq": [],
+  "reviewed": true
+}

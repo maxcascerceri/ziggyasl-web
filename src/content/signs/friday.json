@@ -1,0 +1,17 @@
+{
+  "summary": "Friday circles an F handshape in front of you, palm out.",
+  "hands": "one",
+  "handshape": "F hand",
+  "location": "In front of shoulder",
+  "movement": "Small circle",
+  "steps": [
+    "Make an F (thumb and index touching, other fingers up).",
+    "Palm faces out.",
+    "Circle it in a small motion."
+  ],
+  "mistakes": [
+    "Letting the F collapse into a 9. They're the same shape; just keep it clean."
+  ],
+  "faq": [],
+  "reviewed": true
+}

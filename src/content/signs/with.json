@@ -1,0 +1,17 @@
+{
+  "summary": "With brings two A-hand fists together, knuckles touching, and holds them.",
+  "hands": "two",
+  "handshape": "A hands",
+  "location": "In front of chest",
+  "movement": "Fists come together",
+  "steps": [
+    "Make two fists with the thumbs along the side (A hands).",
+    "Bring them together so the knuckles touch.",
+    "Hold a beat."
+  ],
+  "mistakes": [
+    "Pulling them apart after. That's WITHOUT."
+  ],
+  "faq": [],
+  "reviewed": true
+}

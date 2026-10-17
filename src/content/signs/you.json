@@ -1,0 +1,22 @@
+{
+  "summary": "You is a point at the person you're talking to. For a group, sweep the point across them in an arc.",
+  "hands": "one",
+  "handshape": "Index finger (1 hand)",
+  "location": "Toward the listener",
+  "movement": "Point",
+  "steps": [
+    "Point your index finger at the person.",
+    "For 'you all,' sweep the point across the group.",
+    "Keep eye contact. In ASL pointing at someone is normal grammar, not rude."
+  ],
+  "mistakes": [
+    "Pointing vaguely into the air. Point at the person, or at the spot you've set up for them."
+  ],
+  "faq": [
+    {
+      "q": "Is pointing at someone rude in ASL?",
+      "a": "No. Pointing is how ASL does pronouns. It's expected and polite."
+    }
+  ],
+  "reviewed": true
+}

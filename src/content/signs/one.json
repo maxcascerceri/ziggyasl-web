@@ -1,0 +1,21 @@
+{
+  "summary": "One is an index finger held up, palm facing you when counting, palm out when giving an age or a count to someone.",
+  "hands": "one",
+  "handshape": "1 hand",
+  "location": "Shoulder height",
+  "steps": [
+    "Extend your index finger up.",
+    "Palm toward you to count, palm out to show someone.",
+    "Keep it small and in front of your chest."
+  ],
+  "mistakes": [
+    "Pushing the number out toward the listener. It stays near your body."
+  ],
+  "faq": [
+    {
+      "q": "Why does the palm face me?",
+      "a": "Numbers one through five face you when you're counting or listing. They face out when the number is an age, a time, or a quantity you're telling someone."
+    }
+  ],
+  "reviewed": true
+}

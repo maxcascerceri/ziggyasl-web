@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { StoreButtons } from "@/components/StoreButtons";
 import { copy } from "@/lib/copy";
 import { links } from "@/lib/links";
@@ -169,10 +170,12 @@ function AvailableState({
 function UnavailableState() {
   return (
     <div className="flex flex-1 flex-col items-center text-center">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
+      <Image
         src="/brand/ziggy-teach.png"
         alt=""
+        width={144}
+        height={144}
+        sizes="144px"
         className="mt-6 h-36 w-auto"
       />
       <h1 className="mt-6 text-pretty text-[1.85rem] font-bold leading-tight tracking-tight text-ink">

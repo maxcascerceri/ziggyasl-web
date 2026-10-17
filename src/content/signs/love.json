@@ -1,0 +1,17 @@
+{
+  "summary": "Love crosses both fists over the heart, as if hugging something to your chest.",
+  "hands": "two",
+  "handshape": "S fists",
+  "location": "Chest",
+  "movement": "Arms cross over the heart and press",
+  "steps": [
+    "Make two fists.",
+    "Cross your arms over your chest, fists near the opposite shoulders.",
+    "Press in slightly and let your face be warm."
+  ],
+  "mistakes": [
+    "Crossing with open hands. Fists for LOVE."
+  ],
+  "faq": [],
+  "reviewed": true
+}

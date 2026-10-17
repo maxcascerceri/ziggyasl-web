@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import Image from "next/image";
 import {
   motion,
   useMotionValue,
@@ -11,6 +12,7 @@ import { copy } from "@/lib/copy";
 import { easeOut } from "@/lib/motion";
 import { PhoneMockup } from "./PhoneMockup";
 import { RiseIn } from "./Motion";
+import { SearchButton } from "./SearchCommand";
 import { StoreButtons } from "./StoreButtons";
 
 export function Hero() {
@@ -63,7 +65,12 @@ export function Hero() {
             </p>
           </RiseIn>
           <RiseIn delay={0.16}>
-            <div className="mt-9">
+            <div className="mx-auto mt-8 max-w-md lg:mx-0">
+              <SearchButton variant="field" placeholder={copy.hero.searchPlaceholder} />
+            </div>
+          </RiseIn>
+          <RiseIn delay={0.22}>
+            <div className="mt-6">
               <StoreButtons
                 appStoreLabel={copy.hero.appStoreCta}
                 playStoreLabel={copy.hero.playStoreCta}
@@ -98,12 +105,14 @@ export function Hero() {
               />
             </motion.div>
             {/* Ziggy peeking in beside the phone — decorative, captioned by the headline */}
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src="/brand/ziggy-sign.png"
               alt=""
               aria-hidden
-              className="pointer-events-none absolute -bottom-12 -left-2 w-52 drop-shadow-[0_10px_20px_rgba(41,46,56,0.18)] sm:-left-32 sm:w-80"
+              width={320}
+              height={320}
+              sizes="(max-width: 640px) 208px, 320px"
+              className="pointer-events-none absolute -bottom-12 -left-2 h-auto w-52 drop-shadow-[0_10px_20px_rgba(41,46,56,0.18)] sm:-left-32 sm:w-80"
             />
           </div>
         </motion.div>

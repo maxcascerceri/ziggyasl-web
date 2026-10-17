@@ -1,0 +1,24 @@
+{
+  "summary": "What is the most common question sign in ASL. One version shakes two open hands, palms up; another slides an index finger across the other palm. Eyebrows down make it a question.",
+  "hands": "two",
+  "handshape": "Open hands, palms up",
+  "location": "In front of body",
+  "movement": "Small side-to-side shake",
+  "steps": [
+    "Hold both hands open, palms up, in front of you.",
+    "Shake them slightly side to side with a questioning shrug.",
+    "Lower your eyebrows and lean in a little. Hold the face until you get an answer."
+  ],
+  "note": "WHAT usually goes at the end of the sentence. YOUR NAME WHAT, not WHAT YOUR NAME. The eyebrows stay down on WHAT.",
+  "mistakes": [
+    "Raised eyebrows. WH-questions use lowered brows; raised brows are for yes/no questions.",
+    "Putting WHAT first, English-style."
+  ],
+  "faq": [
+    {
+      "q": "Why are there two signs for WHAT?",
+      "a": "Both are standard. The open-hands shrug is more casual and more common in conversation; the finger-across-palm version is a bit more formal. Either is understood everywhere."
+    }
+  ],
+  "reviewed": true
+}

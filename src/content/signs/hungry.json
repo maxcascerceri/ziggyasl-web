@@ -1,0 +1,17 @@
+{
+  "summary": "Hungry draws a C handshape down the center of the chest, like an empty stomach, with a slightly pained face.",
+  "hands": "one",
+  "handshape": "C hand",
+  "location": "Upper chest moving down",
+  "movement": "Single downward drag",
+  "steps": [
+    "Make a C with the palm facing your chest.",
+    "Place it at the top of your chest and drag it down a few inches.",
+    "Let your face show it. Repeated, it can mean 'crave' or 'wish.'"
+  ],
+  "mistakes": [
+    "Dragging upward. That's closer to HAPPY. HUNGRY goes down."
+  ],
+  "faq": [],
+  "reviewed": true
+}

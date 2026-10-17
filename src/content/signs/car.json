@@ -1,0 +1,17 @@
+{
+  "summary": "Car steers an invisible wheel with two fists.",
+  "hands": "two",
+  "handshape": "S fists",
+  "location": "In front of body",
+  "movement": "Alternating up and down like steering",
+  "steps": [
+    "Make two fists as if holding a steering wheel.",
+    "Move them in alternation, one up as the other goes down.",
+    "Same sign as DRIVE; context decides."
+  ],
+  "mistakes": [
+    "Holding the wheel still. The steering motion is the sign."
+  ],
+  "faq": [],
+  "reviewed": true
+}

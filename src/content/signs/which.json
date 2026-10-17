@@ -1,0 +1,17 @@
+{
+  "summary": "Which alternates two thumbs-up hands up and down in front of you, like weighing two options, with lowered eyebrows.",
+  "hands": "two",
+  "handshape": "A hands with thumbs up",
+  "location": "In front of chest",
+  "movement": "Alternate up and down",
+  "steps": [
+    "Make two fists with the thumbs up.",
+    "Move them up and down in alternation.",
+    "Eyebrows down, head tilting slightly as if choosing."
+  ],
+  "mistakes": [
+    "Moving both hands together. They alternate, one up while the other is down."
+  ],
+  "faq": [],
+  "reviewed": true
+}

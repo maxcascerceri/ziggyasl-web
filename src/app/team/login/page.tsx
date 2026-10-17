@@ -18,7 +18,10 @@ function LoginForm() {
         className="w-full max-w-sm rounded-[28px] bg-white p-8 shadow-card"
         autoComplete="on"
       >
-        <h1 className="text-2xl font-semibold tracking-tight">Team</h1>
+        <h1 className="text-2xl font-semibold tracking-tight">Ziggy team</h1>
+        <p className="mt-1 text-[14px] text-secondary">
+          Shared board for Bernie, Jared, and Max.
+        </p>
 
         <input type="hidden" name="username" autoComplete="username" defaultValue="Team" />
         <input type="hidden" name="next" value={next} />
