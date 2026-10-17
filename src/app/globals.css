@@ -132,6 +132,23 @@ body {
   --tint-icon: var(--pastel-peach-icon);
 }
 
+/*
+ * Rounded video frame. Safari re-rasterizes the rounded overflow clip against
+ * the video every frame, which shows up as shimmering left/right edges.
+ * Promoting the frame to its own compositor layer makes the clip stable.
+ */
+.video-frame {
+  isolation: isolate;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  contain: paint;
+}
+.video-frame > video,
+.video-frame > img {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
 /* Raised card — rests flat, lifts on hover (transform + opacity only). */
 .card-lift {
   position: relative;

@@ -133,7 +133,7 @@ export function PracticeWidget({ clips, title = "Try it" }: { clips: ClipData[];
         </div>
       ) : (
         <div className="mt-4 grid gap-5 sm:grid-cols-[1.1fr_1fr] sm:items-center">
-          <div className="relative aspect-video overflow-hidden rounded-[22px] bg-ink shadow-card">
+          <div className="video-frame relative aspect-video overflow-hidden rounded-[22px] bg-ink shadow-card">
             <video
               ref={videoRef}
               key={current.id}

@@ -58,7 +58,7 @@ export function SignClip({
 
   return (
     <figure className="m-0">
-      <div className={`relative aspect-video overflow-hidden ${radius} bg-ink shadow-card outline outline-1 -outline-offset-1 outline-black/10`}>
+      <div className={`video-frame relative aspect-video overflow-hidden ${radius} bg-ink shadow-card outline outline-1 -outline-offset-1 outline-black/10`}>
         <video
           ref={ref}
           src={visible ? clip.video : undefined}

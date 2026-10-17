@@ -49,7 +49,7 @@ export function SignCard({
       onBlur={stop}
       className="card-lift group block overflow-hidden rounded-[22px] bg-white outline outline-1 -outline-offset-1 outline-black/5"
     >
-      <div className="relative aspect-[16/10] overflow-hidden bg-cream">
+      <div className="video-frame relative aspect-[16/10] overflow-hidden bg-cream">
         {/* Plain img: thumbs are pre-sized 360px JPEGs, so the optimizer only adds srcSet bytes. */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img

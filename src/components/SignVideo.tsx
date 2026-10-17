@@ -76,7 +76,7 @@ export function SignVideo({
 
   return (
     <div className={`flex flex-col items-center gap-3 ${className}`}>
-      <div className="relative w-full overflow-hidden rounded-[28px] bg-ink shadow-phone outline outline-1 -outline-offset-1 outline-black/15 aspect-video">
+      <div className="video-frame relative w-full overflow-hidden rounded-[28px] bg-ink shadow-phone outline outline-1 -outline-offset-1 outline-black/15 aspect-video">
         <video
           ref={videoRef}
           src={src}
