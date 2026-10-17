@@ -1502,8 +1502,8 @@
     "video": "asl-videos/bye/web_540.mp4",
     "poster": "asl-videos/bye/poster_960.jpg",
     "thumb": "asl-videos/bye/poster_thumb_360.jpg",
-    "durationSec": 1.53,
-    "isoDuration": "PT2S",
+    "durationSec": 6.07,
+    "isoDuration": "PT6S",
     "width": 960,
     "height": 540
    },
@@ -2244,8 +2244,8 @@
     "video": "asl-videos/yourewelcome/web_540.mp4",
     "poster": "asl-videos/yourewelcome/poster_960.jpg",
     "thumb": "asl-videos/yourewelcome/poster_thumb_360.jpg",
-    "durationSec": 1.03,
-    "isoDuration": "PT1S",
+    "durationSec": 5.27,
+    "isoDuration": "PT5S",
     "width": 960,
     "height": 540
    },

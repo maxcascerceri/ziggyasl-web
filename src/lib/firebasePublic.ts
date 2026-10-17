@@ -12,14 +12,25 @@ export const firebasePublic = {
 
 export const STORAGE_HOST = "firebasestorage.googleapis.com";
 
-export function storageMediaURL(path: string): string {
+export function storageMediaURL(path: string, revision?: number): string {
   const encoded = encodeURIComponent(path);
-  return `https://${STORAGE_HOST}/v0/b/${firebasePublic.storageBucket}/o/${encoded}?alt=media`;
+  const v = revision ? `&v=${revision}` : "";
+  return `https://${STORAGE_HOST}/v0/b/${firebasePublic.storageBucket}/o/${encoded}?alt=media${v}`;
 }
+
+/**
+ * Web media is served with a one-year immutable cache header. When a sign is
+ * re-filmed and its files are overwritten in place, bump its revision here so
+ * browsers that cached the old clip fetch the new one.
+ */
+const MEDIA_REVISIONS: Record<string, number> = {
+  bye: 2, // re-filmed 2026-10-17
+  yourewelcome: 2, // re-filmed 2026-10-17
+};
 
 /** Web-optimized 540p H.264 clip uploaded by ASL/scripts/upload_web_videos.py. */
 export function signVideoURL(wordId: string): string {
-  return storageMediaURL(`asl-videos/${wordId}/web_540.mp4`);
+  return storageMediaURL(`asl-videos/${wordId}/web_540.mp4`, MEDIA_REVISIONS[wordId]);
 }
 
 /**
@@ -27,10 +38,10 @@ export function signVideoURL(wordId: string): string {
  * (poster_001.jpg is the app's 4K first frame at ~350 KB; never ship that to the web.)
  */
 export function signPosterURL(wordId: string): string {
-  return storageMediaURL(`asl-videos/${wordId}/poster_960.jpg`);
+  return storageMediaURL(`asl-videos/${wordId}/poster_960.jpg`, MEDIA_REVISIONS[wordId]);
 }
 
 /** 360px grid thumbnail (30–50 KB). */
 export function signThumbURL(wordId: string): string {
-  return storageMediaURL(`asl-videos/${wordId}/poster_thumb_360.jpg`);
+  return storageMediaURL(`asl-videos/${wordId}/poster_thumb_360.jpg`, MEDIA_REVISIONS[wordId]);
 }
