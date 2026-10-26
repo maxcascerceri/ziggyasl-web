@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { DM_Sans } from "next/font/google";
+import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { SearchProvider } from "@/components/SearchCommand";
 import { JsonLd } from "@/components/ui";
 import { links } from "@/lib/links";
@@ -90,6 +91,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${dmSans.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
+        <GoogleAnalytics />
         <JsonLd data={[organizationLd, websiteLd, appLd]} />
         <SearchProvider>{children}</SearchProvider>
       </body>

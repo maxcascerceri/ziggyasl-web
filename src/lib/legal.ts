@@ -2,7 +2,7 @@
 
 export const privacy = {
   title: "Privacy Policy",
-  updated: "Last updated: September 2026",
+  updated: "Last updated: October 2026",
   intro:
     "Ziggy ASL (“Ziggy,” “we,” “our,” or “the app”) is an American Sign Language learning app. This Privacy Policy explains what information Ziggy handles, why we handle it, and the choices available to you.",
   sections: [
@@ -19,6 +19,7 @@ export const privacy = {
       body: [
         "Ziggy uses Google Firebase to deliver app content and operate supporting services. Firebase may process app and installation identifiers, device and network information, and service request data.",
         "On iOS, Ziggy uses Google Analytics for Firebase to understand which screens and learning features people use, such as lessons, practice, and onboarding. These events use an anonymous app-install identifier. We do not send your name, your lesson or practice videos, payment details, or Apple’s advertising identifier for this, and we do not use this data for advertising or ads personalization.",
+        "The Ziggy website at ziggyasl.com uses Google Analytics 4 to understand which pages and signs people visit. Google Analytics may process a cookie or similar identifier, the pages viewed, approximate location derived from an IP address, and device and browser information. We use this to see which content is useful. We do not use it for advertising or ads personalization.",
         "Some Android builds may use Firebase Crashlytics to understand crashes and reliability problems. Crashlytics may process crash logs, diagnostics, app state, device information, and installation identifiers. We use diagnostics to maintain and improve Ziggy, not for advertising.",
       ],
     },
@@ -40,7 +41,7 @@ export const privacy = {
     {
       heading: "5. Providers, security, retention, and your choices",
       body: [
-        "Our service providers include Google Firebase, Google Analytics for Firebase, Google Cloud, RevenueCat, Apple, and Google Play. They process information on our behalf or as the applicable storefront under their own terms and privacy practices. We do not sell your personal information or share it with advertisers or data brokers.",
+        "Our service providers include Google Firebase, Google Analytics (including Google Analytics for Firebase and Google Analytics on the website), Google Cloud, RevenueCat, Apple, and Google Play. They process information on our behalf or as the applicable storefront under their own terms and privacy practices. We do not sell your personal information or share it with advertisers or data brokers.",
         "Information sent between Ziggy and our service providers is transmitted using encrypted connections. No storage or transmission method is completely secure.",
         "We retain service and diagnostic information only for as long as reasonably necessary to operate, secure, support, and improve Ziggy or meet legal obligations. Provider retention periods may also apply.",
         "You can remove data stored only on your device by using available in-app controls or uninstalling Ziggy. Device backups may remain until removed through your Apple or Google account settings. Where an in-app deletion control is available, you may use it; you may also contact support@ziggyasl.com to ask about deletion of information associated with Ziggy.",
