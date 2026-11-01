@@ -12,7 +12,7 @@ import { absoluteUrl, AUTHOR, SITE_URL } from "@/lib/site";
 export const metadata: Metadata = {
   title: "About Ziggy ASL: Who Makes the Dictionary and How",
   description:
-    "Ziggy is an ASL learning app and free video dictionary. Meet the signers behind the clips, read our editorial standards, and learn how we review every sign.",
+    "Ziggy is an ASL learning app and free video dictionary. Meet the signers behind the clips, read our editorial standards, and learn how we check our signs.",
   alternates: { canonical: "/about" },
   openGraph: {
     title: "About Ziggy ASL",
@@ -72,7 +72,8 @@ export default function AboutPage() {
             <h2 id="signers">Who signs the clips</h2>
             <p>
               Every clip was filmed with a signer in front of a camera, one sign at a time, and
-              re-filmed when a take was unclear. The dictionary is signed by our four signers:
+              re-filmed when a take was unclear. The dictionary is signed by our four signers, some of
+              whom are certified ASL interpreters:
             </p>
             <ul>
               {signers.map((name) => (
@@ -91,10 +92,10 @@ export default function AboutPage() {
             <h2>Who writes the words</h2>
             <p>
               Guides, blog posts, sign explanations, and category intros are written and reviewed by
-              the {AUTHOR.name}. We write the way a good teacher talks in a first-semester class:
+              the {AUTHOR.name}. Our team includes certified ASL interpreters, who sign our videos, check
+              our signs, and help write and review our guides. We write the way a good teacher talks in a first-semester class:
               plainly, with the reason behind each rule, and without pretending ASL is English on the
-              hands. We do not make claims about individual credentials, and we do not use medical
-              or legal framing around deafness.
+              hands. We do not use medical or legal framing around deafness.
             </p>
           </FadeIn>
 

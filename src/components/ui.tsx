@@ -195,7 +195,7 @@ export function JsonLd({ data }: { data: object | object[] }) {
   );
 }
 
-/** Teacher callout with Ziggy beside it. */
+/** Ziggy callout: a note with the mascot beside it. */
 export function MascotNote({
   title,
   children,

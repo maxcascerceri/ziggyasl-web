@@ -3,9 +3,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AppCTA } from "@/components/AppCTA";
+import { FAQ, faqPageLd } from "@/components/FAQ";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { ArrowRight } from "@/components/Icons";
+import { QuickAnswer } from "@/components/QuickAnswer";
 import { SignGrid } from "@/components/SignCard";
 import { TableOfContents } from "@/components/TableOfContents";
 import { Breadcrumbs, Container, Eyebrow, JsonLd, SectionHeading } from "@/components/ui";
@@ -89,7 +91,7 @@ export default async function BlogPost({ params }: Params) {
   return (
     <>
       <Header solid />
-      <JsonLd data={[ld, breadcrumbLd]} />
+      <JsonLd data={post.faq?.length ? [ld, breadcrumbLd, faqPageLd(post.faq)] : [ld, breadcrumbLd]} />
       <main id="main" className="flex-1 pt-28 sm:pt-32">
         <Container narrow>
           <Breadcrumbs items={[{ label: "Blog", href: "/blog" }, { label: post.title }]} />
@@ -115,7 +117,15 @@ export default async function BlogPost({ params }: Params) {
                 <TableOfContents headings={compiled.headings} />
               </div>
             </aside>
-            <article className="prose-ziggy mx-auto w-full max-w-3xl">{compiled.content}</article>
+            <div className="mx-auto w-full max-w-3xl">
+              {post.quickAnswer ? <QuickAnswer>{post.quickAnswer}</QuickAnswer> : null}
+              <article className={`prose-ziggy ${post.quickAnswer ? "mt-8" : ""}`}>{compiled.content}</article>
+              {post.faq?.length ? (
+                <div className="mt-14">
+                  <FAQ items={post.faq} title="Frequently asked questions" />
+                </div>
+              ) : null}
+            </div>
             <div className="hidden lg:block" />
           </div>
         </Container>

@@ -2,6 +2,18 @@ import { ChevronDown } from "./Icons";
 
 export type FAQItem = { q: string; a: string };
 
+export function faqPageLd(items: FAQItem[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  };
+}
+
 /**
  * Native <details> so every answer is in the HTML (required for FAQ rich
  * results) and it works without JavaScript. The first item starts open.

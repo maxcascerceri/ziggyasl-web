@@ -28,12 +28,12 @@ import { absoluteUrl, SITE_NAME, SITE_URL } from "@/lib/site";
 export const metadata: Metadata = {
   title: "ASL Dictionary: 700+ Sign Language Signs on Video",
   description:
-    "Free American Sign Language dictionary. Search 700+ ASL signs and phrases, each filmed by a real signer and explained by a teacher. Browse by topic or A to Z.",
+    "Free American Sign Language dictionary. Search 700+ ASL signs and phrases, each filmed by a real signer and reviewed with certified ASL interpreters. Browse by topic or A to Z.",
   alternates: { canonical: "/dictionary" },
   openGraph: {
     title: "ASL Dictionary: 700+ Sign Language Signs on Video | Ziggy",
     description:
-      "Search 700+ ASL signs and phrases on real video, organized by topic and explained by teachers.",
+      "Search 700+ ASL signs and phrases on real video, organized by topic, with notes on how each sign is made.",
     url: absoluteUrl("/dictionary"),
   },
 };

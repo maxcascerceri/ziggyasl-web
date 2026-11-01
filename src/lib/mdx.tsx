@@ -1,12 +1,13 @@
 // MDX rendering for guides and blog posts. Content files live under
 // src/content/{learn,blog}/{slug}.mdx. Custom components let authors drop a
-// sign clip, a clip grid, a practice drill, or a teacher note into prose.
+// sign clip, a clip grid, a practice drill, or a Ziggy note into prose.
 
 import fs from "node:fs";
 import path from "node:path";
 import Link from "next/link";
 import matter from "gray-matter";
 import { compileMDX } from "next-mdx-remote/rsc";
+import remarkGfm from "remark-gfm";
 import type { ReactNode } from "react";
 import { SignClip, SignSequence, type ClipData } from "@/components/learn/SignClip";
 import { PracticeWidget } from "@/components/learn/PracticeWidget";
@@ -52,7 +53,7 @@ function Practice({ ids, title }: { ids: string; title?: string }) {
 }
 
 function Note({ title, children }: { title?: string; children: ReactNode }) {
-  return <MascotNote title={title ?? "Teacher's note"}>{children}</MascotNote>;
+  return <MascotNote title={title ?? "Ziggy's note"}>{children}</MascotNote>;
 }
 
 /** Inline link to a sign page by id: <S id="hello" /> renders "Hello". */
@@ -79,6 +80,11 @@ export const mdxComponents = {
   Gloss,
   a: ({ href = "", children }: { href?: string; children?: ReactNode }) =>
     href.startsWith("/") ? <Link href={href}>{children}</Link> : <a href={href}>{children}</a>,
+  table: ({ children }: { children?: ReactNode }) => (
+    <div className="table-scroll">
+      <table>{children}</table>
+    </div>
+  ),
 };
 
 export type Compiled = {
@@ -126,7 +132,7 @@ export async function renderMdx(dir: "learn" | "blog", slug: string): Promise<Co
         return <h3 id={slugifyHeading(text)}>{children}</h3>;
       },
     },
-    options: { parseFrontmatter: false },
+    options: { parseFrontmatter: false, mdxOptions: { remarkPlugins: [remarkGfm] } },
   });
   return { content, frontmatter: data, headings };
 }

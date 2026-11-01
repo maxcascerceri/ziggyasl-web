@@ -1,4 +1,4 @@
-// Teacher-written intros for each dictionary category. Keyed by category id
+// Hand-written intros for each dictionary category. Keyed by category id
 // from catalog.json. `seoTitle` is the H1 / <title> target phrase; `intro`
 // is the paragraph under it; `tip` is the one-line coaching note.
 

@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { statSync } from "node:fs";
 import { join } from "node:path";
+import { CHECKED_AT, COMPARISONS } from "@/content/compare/apps";
 import { allCategories, allSigns } from "@/lib/catalog";
 import { LEARN_GUIDES } from "@/lib/learnGuides";
 import { BLOG_POSTS } from "@/lib/blog";
@@ -14,6 +15,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: absoluteUrl("/dictionary"), lastModified: LAST_MODIFIED, changeFrequency: "weekly", priority: 0.9 },
     { url: absoluteUrl("/learn"), lastModified: LAST_MODIFIED, changeFrequency: "weekly", priority: 0.8 },
     { url: absoluteUrl("/learn/how-to-sign-your-name"), lastModified: new Date("2026-11-01"), changeFrequency: "monthly", priority: 0.8 },
+    { url: absoluteUrl("/best-asl-apps"), lastModified: new Date(CHECKED_AT), changeFrequency: "monthly", priority: 0.8 },
+    ...COMPARISONS.map((c) => ({
+      url: absoluteUrl(`/compare/${c.slug}`),
+      lastModified: new Date(CHECKED_AT),
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    })),
     { url: absoluteUrl("/blog"), lastModified: LAST_MODIFIED, changeFrequency: "weekly", priority: 0.7 },
     { url: absoluteUrl("/about"), lastModified: LAST_MODIFIED, changeFrequency: "monthly", priority: 0.4 },
     { url: absoluteUrl("/privacy"), lastModified: LAST_MODIFIED, changeFrequency: "yearly", priority: 0.1 },

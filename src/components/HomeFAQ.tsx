@@ -5,7 +5,7 @@ import { Container, JsonLd } from "./ui";
 const ITEMS: FAQItem[] = [
   {
     q: "What's the fastest way to learn ASL?",
-    a: "Short daily practice beats long occasional sessions. Five minutes a day with real video, reviewing signs you actually use, is what sticks. Ziggy's lessons are built around exactly that.",
+    a: "Short daily practice beats long occasional sessions. A few minutes a day with real video, reviewing signs you actually use, is what sticks. Ziggy's lessons are built around exactly that.",
   },
   {
     q: "Can I learn ASL on my own?",
@@ -29,11 +29,15 @@ const ITEMS: FAQItem[] = [
   },
   {
     q: "Does Duolingo have ASL?",
-    a: "No. Duolingo does not offer American Sign Language. Ziggy is a free app built only for ASL, with real video of every sign instead of illustrations.",
+    a: "No. Duolingo does not offer American Sign Language. Ziggy is built only for ASL, with Duolingo-style daily lessons and real video of every sign instead of illustrations.",
+  },
+  {
+    q: "What's the best app to learn sign language?",
+    a: "Our pick for beginners learning ASL is Ziggy (we make it, so we're biased): short daily video lessons with real signers, a learning path, and spaced review. Lingvano suits a longer structured course, The ASL App is a one-time purchase, and SignSchool is free. Our full comparison covers all of them.",
   },
   {
     q: "Is Ziggy free?",
-    a: "The dictionary and the beginner guides are free, and the app is free to start. Some longer lesson paths are part of Ziggy Plus.",
+    a: "The dictionary, beginner guides, and sign-your-name tool on this site are free, with no sign-up. The Ziggy app is a subscription, and you can start with a free trial.",
   },
 ];
 
@@ -53,7 +57,11 @@ export function HomeFAQ() {
         <JsonLd data={ld} />
         <FAQ items={ITEMS} title="Questions about learning American Sign Language" />
         <p className="mt-6 text-secondary">
-          More answers in the{" "}
+          Comparing apps? See{" "}
+          <Link href="/best-asl-apps" className="font-extrabold text-brand-text underline-offset-4 hover:underline">
+            the best apps to learn sign language
+          </Link>
+          . More answers in the{" "}
           <Link href="/learn" className="font-extrabold text-brand-text underline-offset-4 hover:underline">
             beginner guides
           </Link>{" "}

@@ -5,7 +5,9 @@ import { AppCTA } from "@/components/AppCTA";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { ArrowRight } from "@/components/Icons";
+import { FAQ, faqPageLd } from "@/components/FAQ";
 import { PracticeWidget } from "@/components/learn/PracticeWidget";
+import { QuickAnswer } from "@/components/QuickAnswer";
 import { TableOfContents } from "@/components/TableOfContents";
 import { Breadcrumbs, Container, Eyebrow, JsonLd } from "@/components/ui";
 import { getCategory } from "@/lib/catalog";
@@ -83,7 +85,7 @@ export default async function GuidePage({ params }: Params) {
   return (
     <>
       <Header solid />
-      <JsonLd data={[articleLd, breadcrumbLd]} />
+      <JsonLd data={guide.faq?.length ? [articleLd, breadcrumbLd, faqPageLd(guide.faq)] : [articleLd, breadcrumbLd]} />
       <main id="main" className="flex-1 pt-28 sm:pt-32">
         <Container>
           <Breadcrumbs items={[{ label: "Learn", href: "/learn" }, { label: guide.shortTitle }]} />
@@ -110,7 +112,15 @@ export default async function GuidePage({ params }: Params) {
                 <TableOfContents headings={compiled.headings} />
               </div>
             </aside>
-            <article className="prose-ziggy max-w-3xl">{compiled.content}</article>
+            <div className="max-w-3xl">
+              {guide.quickAnswer ? <QuickAnswer>{guide.quickAnswer}</QuickAnswer> : null}
+              <article className={`prose-ziggy ${guide.quickAnswer ? "mt-8" : ""}`}>{compiled.content}</article>
+              {guide.faq?.length ? (
+                <div className="mt-14">
+                  <FAQ items={guide.faq} title="Frequently asked questions" />
+                </div>
+              ) : null}
+            </div>
           </div>
         </Container>
 

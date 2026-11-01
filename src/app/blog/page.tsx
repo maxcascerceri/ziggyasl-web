@@ -12,11 +12,11 @@ import { absoluteUrl, AUTHOR, SITE_URL } from "@/lib/site";
 export const metadata: Metadata = {
   title: "ASL Blog: Learning Tips, Grammar, and Deaf Culture",
   description:
-    "Honest, teacher-written articles about learning American Sign Language: how long it takes, the first signs to learn, ASL grammar, Deaf culture etiquette, fingerspelling, and more.",
+    "Honest, plain-language articles about learning American Sign Language: how long it takes, the first signs to learn, ASL grammar, Deaf culture etiquette, fingerspelling, and more.",
   alternates: { canonical: "/blog" },
   openGraph: {
     title: "ASL Blog: Learning Tips, Grammar, and Deaf Culture | Ziggy",
-    description: "Teacher-written articles on learning ASL, with real video for every sign mentioned.",
+    description: "Plain-language articles on learning ASL, with real video for every sign mentioned.",
     url: absoluteUrl("/blog"),
   },
 };
@@ -56,7 +56,7 @@ export default function BlogIndex() {
             </RiseIn>
             <RiseIn delay={0.12}>
               <p className="mt-5 text-pretty text-lg leading-relaxed text-secondary">
-                Written by teachers, checked against how Deaf people actually sign. Every sign we
+                Written by the Ziggy Team, which includes certified ASL interpreters. Every sign we
                 mention links to a real video.
               </p>
             </RiseIn>

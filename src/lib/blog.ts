@@ -1,6 +1,7 @@
 // Blog registry. Bodies live in src/content/blog/{slug}.mdx. Metadata lives
 // here so sign pages, the hub, and the sitemap can link without parsing MDX.
 
+import type { FAQItem } from "@/components/FAQ";
 import type { Sign } from "./catalog";
 
 export type BlogPost = {
@@ -10,6 +11,10 @@ export type BlogPost = {
   keyword: string;
   publishedAt: string;
   updatedAt: string;
+  /** One-paragraph answer shown above the article and quoted by search and AI answers. */
+  quickAnswer?: string;
+  /** Visible FAQ after the article, also emitted as FAQPage structured data. */
+  faq?: FAQItem[];
   minutes: number;
   tint: "blue" | "mint" | "yellow" | "peach";
   /** Category ids this post is most relevant to (drives sign-page links). */
@@ -26,7 +31,7 @@ export const BLOG_POSTS: BlogPost[] = [
       "What you can realistically sign after one week, one month, six months, and two years of ASL, and the daily habits that move you between those stages faster.",
     keyword: "how long does it take to learn ASL",
     publishedAt: "2026-10-17",
-    updatedAt: "2026-10-17",
+    updatedAt: "2026-11-01",
     minutes: 8,
     tint: "blue",
     categoryIds: ["greetings", "responses", "deaf-world"],
@@ -36,7 +41,7 @@ export const BLOG_POSTS: BlogPost[] = [
     slug: "first-50-asl-signs",
     title: "The First 50 ASL Signs to Learn (and Why These 50)",
     description:
-      "A teacher-picked starter vocabulary: greetings, replies, pronouns, question words, and feelings that let you hold a real first conversation. Every sign on video.",
+      "A starter vocabulary picked for real first conversations: greetings, replies, pronouns, question words, and feelings that let you hold a real first conversation. Every sign on video.",
     keyword: "first ASL signs to learn",
     publishedAt: "2026-10-17",
     updatedAt: "2026-10-17",
@@ -82,7 +87,7 @@ export const BLOG_POSTS: BlogPost[] = [
       "Adults learn ASL differently than kids. Here is how to use that to your advantage: video-first practice, short daily sessions, receptive drills, and finding real signers.",
     keyword: "learn sign language as an adult",
     publishedAt: "2026-10-17",
-    updatedAt: "2026-10-17",
+    updatedAt: "2026-11-01",
     minutes: 8,
     tint: "blue",
     categoryIds: ["greetings", "deaf-world", "school"],
@@ -178,6 +183,39 @@ export const BLOG_POSTS: BlogPost[] = [
     tint: "peach",
     categoryIds: ["deaf-world", "countries"],
     signIds: ["signlanguage", "asl", "america", "canada", "mexico", "france", "deaf", "language"],
+  },
+  {
+    slug: "does-duolingo-have-sign-language",
+    title: "Does Duolingo Have Sign Language? No. Here's the Closest Thing",
+    description:
+      "Duolingo doesn't offer ASL or any sign language. Here's why, whether that might change, and the closest Duolingo-style way to learn ASL.",
+    keyword: "does duolingo have sign language",
+    publishedAt: "2026-11-01",
+    updatedAt: "2026-11-01",
+    minutes: 4,
+    tint: "blue",
+    categoryIds: ["greetings", "deaf-world"],
+    signIds: ["hello", "thankyou", "please", "learn", "practice", "signlanguage", "asl", "deaf"],
+    quickAnswer:
+      "No. As of November 2026, Duolingo does not offer American Sign Language (ASL), British Sign Language (BSL), or any other sign language. If you want Duolingo-style learning for ASL, with short daily lessons, a path, and streaks, Ziggy is built for exactly that, with real signers on video for every sign. It's a subscription with a free trial.",
+    faq: [
+      {
+        q: "Does Duolingo have ASL?",
+        a: "No. Duolingo has no American Sign Language course, and no sign language courses at all.",
+      },
+      {
+        q: "Is there a Duolingo for sign language?",
+        a: "Not from Duolingo itself. Ziggy is the closest match: short daily lessons, a path, and streaks, built only for ASL with real signers.",
+      },
+      {
+        q: "Does Duolingo have BSL?",
+        a: "No. Duolingo doesn't teach British Sign Language either.",
+      },
+      {
+        q: "Can I learn sign language for free?",
+        a: "You can learn the basics free with Ziggy's online dictionary and guides, or with SignSchool. For a structured daily course, Ziggy offers a free trial.",
+      },
+    ],
   },
 ];
 

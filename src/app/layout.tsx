@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { SearchProvider } from "@/components/SearchCommand";
 import { JsonLd } from "@/components/ui";
+import { APP_STORE_ID, getAppStoreRating, type AppRating } from "@/lib/appStoreRating";
 import { links } from "@/lib/links";
 import { SITE_URL, SITE_NAME } from "@/lib/site";
 import "./globals.css";
@@ -28,7 +29,7 @@ export const metadata: Metadata = {
     template: "%s | Ziggy ASL",
   },
   description:
-    "Learn American Sign Language with a free video dictionary of 700+ signs, beginner guides written by ASL teachers, and the Ziggy app for daily practice.",
+    "Learn American Sign Language with a free video dictionary of 700+ signs, beginner guides reviewed with certified ASL interpreters, and the Ziggy app for daily practice.",
   openGraph: {
     siteName: SITE_NAME,
     type: "website",
@@ -38,7 +39,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
   },
   itunes: {
-    appId: "6781227577",
+    appId: APP_STORE_ID,
   },
   robots: {
     index: true,
@@ -72,23 +73,19 @@ const organizationLd = {
   },
 };
 
-const appLd = {
-  "@context": "https://schema.org",
-  "@type": "MobileApplication",
-  name: "Ziggy: Learn ASL Sign Language",
-  operatingSystem: "iOS, Android",
-  applicationCategory: "EducationalApplication",
-  url: SITE_URL,
-  downloadUrl: links.appStore,
-  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-  // Pulled from the public App Store lookup at build time; omitted if it fails.
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "4.8",
-    ratingCount: "6944",
-  },
-  publisher: { "@id": `${SITE_URL}/#organization` },
-};
+function appLd(rating: AppRating | null) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "MobileApplication",
+    name: "Ziggy: Learn ASL Sign Language",
+    operatingSystem: "iOS, Android",
+    applicationCategory: "EducationalApplication",
+    url: SITE_URL,
+    downloadUrl: links.appStore,
+    ...(rating ? { aggregateRating: { "@type": "AggregateRating", ...rating } } : {}),
+    publisher: { "@id": `${SITE_URL}/#organization` },
+  };
+}
 
 const websiteLd = {
   "@context": "https://schema.org",
@@ -100,11 +97,12 @@ const websiteLd = {
   inLanguage: "en-US",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const rating = await getAppStoreRating();
   return (
     <html lang="en" className={`${nunito.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
@@ -112,7 +110,7 @@ export default function RootLayout({
           Skip to content
         </a>
         <GoogleAnalytics />
-        <JsonLd data={[organizationLd, websiteLd, appLd]} />
+        <JsonLd data={[organizationLd, websiteLd, appLd(rating)]} />
         <SearchProvider>{children}</SearchProvider>
       </body>
     </html>
