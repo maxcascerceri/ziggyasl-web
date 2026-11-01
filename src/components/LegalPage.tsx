@@ -15,7 +15,7 @@ export function LegalPage({
   sections: Section[];
 }) {
   return (
-    <main className="flex-1 px-5 pb-20 pt-36 sm:px-8 sm:pt-40">
+    <main id="main" className="flex-1 px-5 pb-20 pt-36 sm:px-8 sm:pt-40">
       <article className="mx-auto max-w-2xl">
         <Link
           href={links.home}

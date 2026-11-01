@@ -90,7 +90,7 @@ export default async function SignNotePage({ params }: PageProps) {
   return (
     <div className="flex min-h-full flex-1 flex-col bg-canvas">
       <SignNoteHeader />
-      <main className="mx-auto flex w-full max-w-md flex-1 flex-col px-5 pb-12 pt-8 sm:px-6">
+      <main id="main" className="mx-auto flex w-full max-w-md flex-1 flex-col px-5 pb-12 pt-8 sm:px-6">
         {!note || note.isExpired ? (
           <UnavailableState />
         ) : (

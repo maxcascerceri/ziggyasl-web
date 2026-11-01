@@ -43,7 +43,7 @@ export default function BlogIndex() {
     <>
       <Header solid />
       <JsonLd data={ld} />
-      <main className="flex-1 pt-32 sm:pt-36">
+      <main id="main" className="flex-1 pt-32 sm:pt-36">
         <Container>
           <div className="mx-auto max-w-2xl text-center">
             <RiseIn>

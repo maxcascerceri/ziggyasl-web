@@ -25,7 +25,7 @@ export function AppCTA({
     >
       <div className="flex flex-col items-start gap-5 sm:flex-row sm:items-center">
         <Image
-          src="/brand/ziggy-celebrate.png"
+          src="/brand/ziggy-celebrate-sm.webp"
           alt=""
           aria-hidden
           width={160}

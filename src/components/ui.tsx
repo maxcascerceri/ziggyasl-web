@@ -33,14 +33,10 @@ export function Chip({
   return <span className={cls}>{children}</span>;
 }
 
-/** Small uppercase label. Use tone="ink" on pastel tints, where brand blue dips under AA contrast. */
+/** Small sentence-case label. Uppercase tracked labels read as template chrome. */
 export function Eyebrow({ children, tone = "brand" }: { children: ReactNode; tone?: "brand" | "ink" }) {
   return (
-    <p
-      className={`text-sm font-semibold uppercase tracking-[0.12em] ${
-        tone === "ink" ? "text-ink/80" : "text-brand-shadow"
-      }`}
-    >
+    <p className={`text-sm font-extrabold ${tone === "ink" ? "text-ink/80" : "text-brand-text"}`}>
       {children}
     </p>
   );
@@ -69,10 +65,10 @@ export function SectionHeading({
       <div className={centered ? "max-w-2xl" : "max-w-2xl"}>
         {eyebrow ? <Eyebrow>{eyebrow}</Eyebrow> : null}
         <Tag
-          className={`mt-2 text-balance font-bold tracking-tight text-ink ${
+          className={`mt-1 text-balance font-extrabold tracking-tight text-ink ${
             Tag === "h1"
               ? "text-4xl leading-[1.08] sm:text-5xl"
-              : "text-2xl sm:text-3xl"
+              : "text-3xl sm:text-4xl"
           }`}
         >
           {title}
@@ -86,7 +82,7 @@ export function SectionHeading({
       {action ? (
         <Link
           href={action.href}
-          className="group inline-flex min-h-11 items-center gap-1 text-sm font-semibold text-brand"
+          className="group inline-flex min-h-11 items-center gap-1 text-sm font-extrabold text-brand-text"
         >
           {action.label}
           <ChevronRight
@@ -199,34 +195,34 @@ export function JsonLd({ data }: { data: object | object[] }) {
   );
 }
 
-/** Teacher callout with Ziggy peeking in. */
+/** Teacher callout with Ziggy beside it. */
 export function MascotNote({
   title,
   children,
-  mascot = "/brand/ziggy-teach.png",
+  mascot = "/brand/ziggy-teach-sm.webp",
 }: {
   title?: string;
   children: ReactNode;
   mascot?: string;
 }) {
   return (
-    <aside className="relative mt-10 rounded-[28px] bg-gradient-to-br from-soft/60 to-cream px-6 py-6 pl-6 sm:pl-36">
+    <aside className="relative mt-10 flex items-start gap-4 rounded-[28px] bg-gradient-to-br from-soft/60 to-cream px-6 py-6">
       <Image
         src={mascot}
         alt=""
         aria-hidden
-        width={112}
-        height={112}
-        sizes="112px"
-        className="pointer-events-none absolute -top-8 left-4 hidden h-auto w-28 drop-shadow-[0_8px_16px_rgba(41,46,56,0.18)] sm:block"
+        width={96}
+        height={96}
+        sizes="96px"
+        className="hidden h-auto w-24 shrink-0 drop-shadow-[0_8px_16px_rgba(41,46,56,0.18)] sm:block"
       />
-      {title ? (
-        <p className="text-sm font-bold uppercase tracking-[0.1em] text-brand-shadow">
-          {title}
-        </p>
-      ) : null}
-      <div className="mt-1 text-[1.02rem] leading-relaxed text-ink">
-        {children}
+      <div>
+        {title ? (
+          <p className="text-sm font-extrabold text-brand-text">{title}</p>
+        ) : null}
+        <div className="mt-1 text-[1.02rem] leading-relaxed text-ink">
+          {children}
+        </div>
       </div>
     </aside>
   );

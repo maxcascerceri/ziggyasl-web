@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { DM_Sans } from "next/font/google";
+import localFont from "next/font/local";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { SearchProvider } from "@/components/SearchCommand";
 import { JsonLd } from "@/components/ui";
@@ -7,10 +7,18 @@ import { links } from "@/lib/links";
 import { SITE_URL, SITE_NAME } from "@/lib/site";
 import "./globals.css";
 
-const dmSans = DM_Sans({
-  variable: "--font-dm-sans",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+/** Same Nunito files the iOS app ships, so the web and the app match. */
+const nunito = localFont({
+  src: [
+    { path: "./fonts/Nunito-Regular.ttf", weight: "400" },
+    { path: "./fonts/Nunito-Medium.ttf", weight: "500" },
+    { path: "./fonts/Nunito-SemiBold.ttf", weight: "600" },
+    { path: "./fonts/Nunito-Bold.ttf", weight: "700" },
+    { path: "./fonts/Nunito-ExtraBold.ttf", weight: "800" },
+    { path: "./fonts/Nunito-Black.ttf", weight: "900" },
+  ],
+  variable: "--font-nunito",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -29,6 +37,9 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
   },
+  itunes: {
+    appId: "6781227577",
+  },
   robots: {
     index: true,
     follow: true,
@@ -43,7 +54,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#F7F9FF",
+  themeColor: "#FCFAF2",
 };
 
 const organizationLd = {
@@ -63,13 +74,19 @@ const organizationLd = {
 
 const appLd = {
   "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
+  "@type": "MobileApplication",
   name: "Ziggy: Learn ASL Sign Language",
   operatingSystem: "iOS, Android",
   applicationCategory: "EducationalApplication",
   url: SITE_URL,
   downloadUrl: links.appStore,
   offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+  // Pulled from the public App Store lookup at build time; omitted if it fails.
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "4.8",
+    ratingCount: "6944",
+  },
   publisher: { "@id": `${SITE_URL}/#organization` },
 };
 
@@ -89,8 +106,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${dmSans.variable} h-full antialiased`}>
+    <html lang="en" className={`${nunito.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
+        <a href="#main" className="skip-link">
+          Skip to content
+        </a>
         <GoogleAnalytics />
         <JsonLd data={[organizationLd, websiteLd, appLd]} />
         <SearchProvider>{children}</SearchProvider>

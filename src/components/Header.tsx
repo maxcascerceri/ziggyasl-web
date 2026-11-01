@@ -74,7 +74,6 @@ export function Header({ solid = false }: { solid?: boolean }) {
             width={44}
             height={44}
             sizes="44px"
-            priority
             className="h-11 w-11 rounded-[12px] outline outline-1 -outline-offset-1 outline-black/10"
           />
           <span className="text-[1.5rem] font-bold leading-none tracking-tight text-ink">

@@ -2,8 +2,8 @@ import Link from "next/link";
 import type { Category } from "@/lib/catalog";
 import { getSigns } from "@/lib/catalog";
 import { signThumbURL } from "@/lib/firebasePublic";
-import { ArrowRight } from "./Icons";
-import { CategoryIcon } from "./CategoryIcon";
+import { Sticker } from "./Sticker";
+import { CATEGORY_STICKERS } from "@/content/stickers";
 
 /** Pastel category tile with a 3-poster peek and sign count. */
 export function CategoryCard({ category }: { category: Category }) {
@@ -15,7 +15,7 @@ export function CategoryCard({ category }: { category: Category }) {
     >
       <div className="flex items-start justify-between gap-3">
         <div className="flex min-w-0 items-center gap-3">
-          <CategoryIcon categoryId={category.id} />
+          <Sticker name={CATEGORY_STICKERS[category.id] ?? "sign"} size={56} />
           <div className="min-w-0">
             <p className="text-lg font-bold leading-tight text-ink">{category.title}</p>
             <p className="mt-1 text-sm font-medium text-ink/70">
@@ -23,15 +23,12 @@ export function CategoryCard({ category }: { category: Category }) {
             </p>
           </div>
         </div>
-        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/70 text-[var(--tint-icon)] transition-transform group-hover:translate-x-0.5">
-          <ArrowRight size={18} />
-        </span>
       </div>
       <div className="mt-5 flex -space-x-3">
         {peek.map((sign, i) => (
           <span
             key={sign.id}
-            className="relative overflow-hidden rounded-xl bg-white shadow-card outline outline-2 outline-[var(--tint)]"
+            className="relative overflow-hidden rounded-xl bg-white shadow-card outline outline-1 outline-black/10"
             style={{ zIndex: 3 - i, width: 72, height: 48 }}
           >
             {/* Plain img: the 360px thumb is already small, and next/image's srcSet

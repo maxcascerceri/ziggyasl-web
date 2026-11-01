@@ -97,7 +97,7 @@ export function PracticeWidget({ clips, title = "Try it" }: { clips: ClipData[];
       {done ? (
         <div className="mt-4 text-center">
           <Image
-            src="/brand/ziggy-celebrate.png"
+            src="/brand/ziggy-celebrate-sm.webp"
             alt=""
             aria-hidden
             width={160}

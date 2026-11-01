@@ -22,8 +22,10 @@ export function FadeIn({
   return (
     <motion.div
       className={className}
-      initial={{ opacity: 0, y: reduceMotion ? 0 : 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      // Never start at opacity 0: that hides server-rendered content until JS
+      // hydrates, which slows the largest paint and blanks the page without JS.
+      initial={false}
+      whileInView={reduceMotion ? undefined : { y: [18, 0] }}
       viewport={{ once: true, amount: 0.3 }}
       transition={{ duration: durations.reveal, delay, ease: easeOut }}
     >
@@ -47,8 +49,8 @@ export function RiseIn({
   return (
     <motion.div
       className={className}
-      initial={{ opacity: 0, y: reduceMotion ? 0 : 16 }}
-      animate={{ opacity: 1, y: 0 }}
+      initial={false}
+      animate={reduceMotion ? undefined : { y: [14, 0] }}
       transition={{ duration: durations.reveal, delay, ease: easeOut }}
     >
       {children}

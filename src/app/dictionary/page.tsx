@@ -8,6 +8,7 @@ import { FadeIn, RiseIn } from "@/components/Motion";
 import { SearchButton } from "@/components/SearchCommand";
 import { SignCard } from "@/components/SignCard";
 import { SignVideo } from "@/components/SignVideo";
+import { StickerDrift } from "@/components/StickerDrift";
 import { Container, Eyebrow, JsonLd, SectionHeading } from "@/components/ui";
 import {
   allCategories,
@@ -82,15 +83,15 @@ export default function DictionaryPage() {
     <>
       <Header solid />
       <JsonLd data={[setLd, collectionLd]} />
-      <main className="flex-1 pt-32 sm:pt-36">
-        <section className="relative overflow-hidden">
-          <div
-            aria-hidden
-            className="absolute left-1/2 top-0 -z-10 h-[520px] w-[900px] -translate-x-1/2 -translate-y-1/3 rounded-full opacity-70"
-            style={{
-              background:
-                "radial-gradient(circle, var(--soft) 0%, rgba(204,227,252,0.35) 45%, transparent 70%)",
-            }}
+      <main id="main" className="flex-1 pt-32 sm:pt-36">
+        <section className="relative">
+          <StickerDrift
+            items={[
+              { name: "greetings", top: "-4%", side: "left", inset: "calc(50% - 31rem)", size: 84, rotate: -10, depth: 0.5, from: "lg" },
+              { name: "unit-sticker-alphabet", top: "58%", side: "left", inset: "calc(50% - 27rem)", size: 64, rotate: 8, depth: 0.8, from: "lg" },
+              { name: "questions", top: "2%", side: "right", inset: "calc(50% - 31rem)", size: 76, rotate: 9, depth: 0.6, from: "lg" },
+              { name: "unit-sticker-feelings", top: "62%", side: "right", inset: "calc(50% - 27rem)", size: 64, rotate: -7, depth: 0.9, from: "lg" },
+            ]}
           />
           <Container>
             <div className="mx-auto max-w-2xl text-center">
