@@ -11,7 +11,7 @@ export const copy = {
   hero: {
     headline: "Learn American Sign Language, one friendly sign at a time",
     subline:
-      "Ziggy is the free way to learn ASL. Look up 700+ signs on real video, start with the alphabet, and practice sign language for five minutes a day in the app.",
+      "Look up 700+ signs on real video for free, start with the alphabet, and practice sign language a few minutes a day in the Ziggy app.",
     searchPlaceholder: "How do you sign… “thank you”?",
     appStoreCta: "App Store",
     playStoreCta: "Google Play",
@@ -85,7 +85,7 @@ export const copy = {
 
   finalCta: {
     headline: "Learn your first ASL sign in two minutes",
-    subline: "Download Ziggy free and start signing today. Ziggy will be thrilled you showed up.",
+    subline: "Start your free trial and sign your first word today. Ziggy will be thrilled you showed up.",
     appStoreCta: "App Store",
     playStoreCta: "Google Play",
   },
@@ -99,7 +99,7 @@ export const copy = {
 
   appCta: {
     headline: "Keep going with Ziggy",
-    body: "Short video lessons, a path that knows what's next, and a friendly guide who's happy you showed up. Free to start.",
+    body: "Short video lessons, a path that knows what's next, and a friendly guide who's happy you showed up. Try it free.",
     appStoreCta: "App Store",
     playStoreCta: "Google Play",
   },
@@ -108,7 +108,7 @@ export const copy = {
     eyebrow: "ASL Dictionary",
     title: "Every sign, on real video",
     subtitle:
-      "Search 700+ American Sign Language signs and phrases, each filmed by a real signer and explained by a teacher. Free, no sign-up.",
+      "Search 700+ American Sign Language signs and phrases, each filmed by a real signer, with notes on how it's made. Signed and reviewed with certified ASL interpreters. Free, no sign-up.",
     searchPlaceholder: "Search a word, like “thank you” or “where”",
     startHere: "Start here",
     browseAll: "Browse by topic",

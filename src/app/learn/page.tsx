@@ -16,7 +16,7 @@ import { absoluteUrl, SITE_URL } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Learn ASL: Free Beginner Guides with Video",
   description:
-    "Free American Sign Language guides for beginners: the alphabet, numbers, basic phrases, greetings, question words, and more. Every sign on real video, written by ASL teachers.",
+    "Free American Sign Language guides for beginners: the alphabet, numbers, basic phrases, greetings, question words, and more. Every sign on real video, reviewed with certified ASL interpreters.",
   alternates: { canonical: "/learn" },
   openGraph: {
     title: "Learn ASL: Free Beginner Guides with Video | Ziggy",
@@ -138,6 +138,20 @@ export default function LearnPage() {
             })}
           </ol>
           <SignYourNameBanner className="mt-5" />
+          <Link
+            href="/best-asl-apps"
+            className="card-lift group mt-4 flex items-center gap-4 rounded-[24px] bg-white p-4 outline outline-1 -outline-offset-1 outline-black/5 sm:gap-5 sm:p-5"
+          >
+            <span className="min-w-0 flex-1">
+              <span className="block text-lg font-extrabold leading-tight text-ink">
+                The best apps to learn sign language
+              </span>
+              <span className="mt-1 block text-sm text-secondary">
+                Ziggy, Lingvano, The ASL App, SignSchool, and Hands On ASL, compared side by side.
+              </span>
+            </span>
+            <ArrowRight size={20} className="shrink-0 text-brand-text transition-transform group-hover:translate-x-0.5" />
+          </Link>
         </Container>
 
         <Container className="mt-24">

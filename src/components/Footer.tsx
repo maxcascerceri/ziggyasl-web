@@ -83,6 +83,7 @@ export function Footer() {
           items={[
             ...LEARN_GUIDES.slice(0, 6).map((g) => ({ label: g.shortTitle, href: `/learn/${g.slug}` })),
             { label: "Sign your name", href: "/learn/how-to-sign-your-name" },
+            { label: "Best ASL apps", href: "/best-asl-apps" },
             { label: "All guides", href: "/learn" },
           ]}
         />

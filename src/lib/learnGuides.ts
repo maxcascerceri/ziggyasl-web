@@ -2,6 +2,8 @@
 // src/content/learn/{slug}.mdx; this file holds metadata, the ordered clip
 // sequence, and the practice set so the footer, hub, and sitemap stay in sync.
 
+import type { FAQItem } from "@/components/FAQ";
+
 export type LearnGuide = {
   slug: string;
   title: string;
@@ -18,6 +20,10 @@ export type LearnGuide = {
   tint: "blue" | "mint" | "yellow" | "peach";
   publishedAt: string;
   updatedAt: string;
+  /** One-paragraph answer shown above the article and quoted by search and AI answers. */
+  quickAnswer?: string;
+  /** Visible FAQ after the article, also emitted as FAQPage structured data. */
+  faq?: FAQItem[];
 };
 
 export const LEARN_GUIDES: LearnGuide[] = [

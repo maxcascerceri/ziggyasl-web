@@ -322,7 +322,7 @@ export default async function SignPage({ params }: Params) {
           </section>
 
           {content.note || tip ? (
-            <MascotNote title="Teacher's note">
+            <MascotNote title="Ziggy's note">
               {content.note ? (
                 <p>{content.note}</p>
               ) : tip ? (

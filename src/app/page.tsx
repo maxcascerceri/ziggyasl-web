@@ -11,9 +11,9 @@ import { HomeFAQ } from "@/components/HomeFAQ";
 import { SceneDrift } from "@/components/SceneDrift";
 
 export const metadata: Metadata = {
-  title: "Learn American Sign Language (ASL) Free | Ziggy Sign Language App",
+  title: "Learn American Sign Language (ASL) | Free Video Dictionary & Ziggy App",
   description:
-    "Learn ASL with real video: a free dictionary of 700+ signs, the ASL alphabet, beginner lessons, and the Ziggy app for 5-minute daily sign language practice.",
+    "Learn ASL with real video: a free dictionary of 700+ signs, the ASL alphabet, beginner lessons, and the Ziggy app for a few minutes of sign language practice a day.",
   alternates: { canonical: "/" },
 };
 

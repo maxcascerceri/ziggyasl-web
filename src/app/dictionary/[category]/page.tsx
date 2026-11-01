@@ -142,7 +142,7 @@ export default async function CategoryPage({ params }: Params) {
 
         {cc.tip ? (
           <Container narrow>
-            <MascotNote title="Teacher's tip">
+            <MascotNote title="Ziggy's tip">
               <p>{cc.tip}</p>
             </MascotNote>
           </Container>

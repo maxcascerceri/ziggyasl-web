@@ -310,6 +310,13 @@ body {
 .prose-ziggy th {
   font-weight: 700;
 }
+.table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.table-scroll table {
+  min-width: 34rem;
+}
 
 /* ASL gloss convention: small caps in running text. */
 .gloss {

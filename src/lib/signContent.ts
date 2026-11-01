@@ -1,7 +1,7 @@
 // Editorial layer for sign pages. Hand-written files live in
 // src/content/signs/{id}.json and are merged over a data-driven baseline so
 // every one of the 700+ pages has steps, a mistake, an example, and FAQ even
-// before a teacher has written it up in full.
+// before someone on the team has written it up in full.
 
 import fs from "node:fs";
 import path from "node:path";
@@ -24,13 +24,13 @@ export type SignContent = {
   movement?: string;
   /** Ordered production steps. */
   steps: string[];
-  /** Teacher's note: a memory hook or cultural note. */
+  /** Ziggy's note: a memory hook or cultural note. */
   note?: string;
   mistakes: string[];
   /** Extra example sentences in English gloss order (optional). */
   examples?: string[];
   faq: FAQItem[];
-  /** True when a teacher wrote this file (vs. generated baseline). */
+  /** True when a person wrote this file (vs. generated baseline). */
   authored: boolean;
   reviewed?: boolean;
 };
