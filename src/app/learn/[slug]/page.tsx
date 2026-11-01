@@ -99,7 +99,7 @@ export default async function GuidePage({ params }: Params) {
               </h1>
               <p className="mt-5 text-pretty text-lg leading-relaxed text-ink/80">{guide.description}</p>
               <p className="mt-5 text-sm font-medium text-ink/60">
-                By {AUTHOR.name} · Updated {new Date(guide.updatedAt).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}
+                By {AUTHOR.name} · Updated {new Date(guide.updatedAt).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric", timeZone: "UTC" })}
               </p>
             </div>
           </header>
@@ -125,11 +125,11 @@ export default async function GuidePage({ params }: Params) {
         </Container>
 
         <Container narrow className="mt-8">
-          <PracticeWidget clips={clips} title={`Practice: ${guide.shortTitle}`} />
+          <PracticeWidget clips={clips} title={guide.howTo ? "Practice: your first signs" : `Practice: ${guide.shortTitle}`} />
         </Container>
 
         <Container narrow className="mt-12">
-          <AppCTA context={guide.shortTitle} />
+          <AppCTA context={guide.howTo ? undefined : guide.shortTitle} />
         </Container>
 
         <Container narrow className="mb-24 mt-16">

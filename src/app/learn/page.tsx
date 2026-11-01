@@ -5,6 +5,7 @@ import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { ArrowRight } from "@/components/Icons";
 import { FadeIn, RiseIn } from "@/components/Motion";
+import { LinkBanner } from "@/components/LinkBanner";
 import { SignYourNameBanner } from "@/components/SignYourNameBanner";
 import { Container, Eyebrow, JsonLd, SectionHeading } from "@/components/ui";
 import { getSigns } from "@/lib/catalog";
@@ -40,6 +41,8 @@ const PATH_ORDER = [
   "deaf-culture-basics",
 ];
 
+const WAYS_TO_LEARN = LEARN_GUIDES.filter((g) => g.howTo);
+
 export default function LearnPage() {
   const guides = PATH_ORDER.map((s) => LEARN_GUIDES.find((g) => g.slug === s)!).filter(Boolean);
 
@@ -50,7 +53,7 @@ export default function LearnPage() {
     name: "Learn ASL",
     url: absoluteUrl("/learn"),
     isPartOf: { "@id": `${SITE_URL}/#website` },
-    hasPart: guides.map((g) => ({
+    hasPart: [...guides, ...WAYS_TO_LEARN].map((g) => ({
       "@type": "Article",
       headline: g.title,
       url: absoluteUrl(`/learn/${g.slug}`),
@@ -82,6 +85,12 @@ export default function LearnPage() {
         </Container>
 
         <Container className="mt-16">
+          <LinkBanner
+            href="/learn/how-to-learn-sign-language"
+            title="New to sign language? Start here"
+            body="How to learn sign language, step by step, with a 30-day starter plan."
+            className="mb-5"
+          />
           <ol className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {guides.map((g, i) => {
               const peek = getSigns(g.signIds.slice(0, 4));
@@ -138,20 +147,32 @@ export default function LearnPage() {
             })}
           </ol>
           <SignYourNameBanner className="mt-5" />
-          <Link
+          <LinkBanner
             href="/best-asl-apps"
-            className="card-lift group mt-4 flex items-center gap-4 rounded-[24px] bg-white p-4 outline outline-1 -outline-offset-1 outline-black/5 sm:gap-5 sm:p-5"
-          >
-            <span className="min-w-0 flex-1">
-              <span className="block text-lg font-extrabold leading-tight text-ink">
-                The best apps to learn sign language
-              </span>
-              <span className="mt-1 block text-sm text-secondary">
-                Ziggy, Lingvano, The ASL App, SignSchool, and Hands On ASL, compared side by side.
-              </span>
-            </span>
-            <ArrowRight size={20} className="shrink-0 text-brand-text transition-transform group-hover:translate-x-0.5" />
-          </Link>
+            title="The best apps to learn sign language"
+            body="Ziggy, Lingvano, The ASL App, SignSchool, and Hands On ASL, compared side by side."
+            className="mt-4"
+          />
+        </Container>
+
+        <Container className="mt-24">
+          <FadeIn>
+            <SectionHeading eyebrow="Ways to learn" title="Apps, classes, and free resources" />
+          </FadeIn>
+          <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {WAYS_TO_LEARN.map((g) => (
+              <li key={g.slug}>
+                <Link
+                  href={`/learn/${g.slug}`}
+                  className="card-lift block h-full rounded-[24px] bg-white p-5 outline outline-1 -outline-offset-1 outline-black/5"
+                >
+                  <p className="text-xs font-bold uppercase tracking-[0.1em] text-brand-shadow">{g.minutes} min read</p>
+                  <p className="mt-2 text-lg font-bold leading-tight text-ink">{g.shortTitle}</p>
+                  <p className="mt-2 line-clamp-2 text-sm text-secondary">{g.description}</p>
+                </Link>
+              </li>
+            ))}
+          </ul>
         </Container>
 
         <Container className="mt-24">

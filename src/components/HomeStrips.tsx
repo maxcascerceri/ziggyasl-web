@@ -2,6 +2,7 @@ import Link from "next/link";
 import { CategoryCard } from "./CategoryCard";
 import { ArrowRight } from "./Icons";
 import { Sticker } from "./Sticker";
+import { LinkBanner } from "./LinkBanner";
 import { SignYourNameBanner } from "./SignYourNameBanner";
 import { GUIDE_STICKERS, BLOG_STICKERS } from "@/content/stickers";
 import { FadeIn } from "./Motion";
@@ -133,6 +134,14 @@ export function LearnStrip() {
         </ol>
         <FadeIn>
           <SignYourNameBanner className="mt-4" />
+        </FadeIn>
+        <FadeIn>
+          <LinkBanner
+            href="/learn/how-to-learn-sign-language"
+            title="How to learn sign language"
+            body="The step-by-step path from your first letter to your first conversation, with a 30-day plan."
+            className="mt-4"
+          />
         </FadeIn>
       </Container>
     </section>
