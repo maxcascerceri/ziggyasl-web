@@ -84,7 +84,7 @@ export default async function GuidePage({ params }: Params) {
     <>
       <Header solid />
       <JsonLd data={[articleLd, breadcrumbLd]} />
-      <main className="flex-1 pt-28 sm:pt-32">
+      <main id="main" className="flex-1 pt-28 sm:pt-32">
         <Container>
           <Breadcrumbs items={[{ label: "Learn", href: "/learn" }, { label: guide.shortTitle }]} />
           <header className={`tint-${guide.tint} mt-6 rounded-[32px] bg-[var(--tint)] px-6 py-8 sm:px-10 sm:py-12`}>

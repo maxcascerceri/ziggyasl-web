@@ -85,7 +85,7 @@ export function SignVideo({
           loop
           playsInline
           autoPlay={!reduceMotion}
-          preload={priority ? "auto" : "metadata"}
+          preload="metadata"
           controls={false}
           onLoadedData={() => setReady(true)}
           onPlay={() => setPlaying(true)}

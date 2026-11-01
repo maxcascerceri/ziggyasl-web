@@ -5,6 +5,7 @@ import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { ArrowRight } from "@/components/Icons";
 import { FadeIn, RiseIn } from "@/components/Motion";
+import { SignYourNameBanner } from "@/components/SignYourNameBanner";
 import { Container, Eyebrow, JsonLd, SectionHeading } from "@/components/ui";
 import { getSigns } from "@/lib/catalog";
 import { signThumbURL } from "@/lib/firebasePublic";
@@ -60,7 +61,7 @@ export default function LearnPage() {
     <>
       <Header solid />
       <JsonLd data={ld} />
-      <main className="flex-1 pt-32 sm:pt-36">
+      <main id="main" className="flex-1 pt-32 sm:pt-36">
         <Container>
           <div className="mx-auto max-w-2xl text-center">
             <RiseIn>
@@ -136,6 +137,7 @@ export default function LearnPage() {
               );
             })}
           </ol>
+          <SignYourNameBanner className="mt-5" />
         </Container>
 
         <Container className="mt-24">

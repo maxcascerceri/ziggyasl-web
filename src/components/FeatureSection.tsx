@@ -69,7 +69,7 @@ export function FeatureSection({
               src={mascot}
               alt=""
               aria-hidden
-              className={`pointer-events-none absolute -bottom-10 w-52 drop-shadow-[0_10px_20px_rgba(41,46,56,0.18)] sm:w-72 ${
+              className={`pointer-events-none absolute -bottom-10 hidden w-52 drop-shadow-[0_10px_20px_rgba(41,46,56,0.18)] sm:block sm:w-64 ${
                 reversed ? "-left-14 sm:-left-24" : "-right-14 sm:-right-24"
               }`}
             />

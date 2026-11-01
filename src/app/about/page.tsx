@@ -39,7 +39,7 @@ export default function AboutPage() {
     <>
       <Header solid />
       <JsonLd data={ld} />
-      <main className="flex-1 pt-32 sm:pt-36">
+      <main id="main" className="flex-1 pt-32 sm:pt-36">
         <Container narrow>
           <RiseIn>
             <Eyebrow>About</Eyebrow>

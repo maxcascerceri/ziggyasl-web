@@ -4,7 +4,7 @@ import { cookieValue } from "@/lib/ops/guard";
 
 const CASE_NORMALIZED_PREFIXES = ["/sign/", "/dictionary/", "/learn/", "/blog/"];
 
-export async function middleware(req: NextRequest) {
+export async function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
   // Canonicalize public content URLs to lowercase so /sign/Hello never competes with /sign/hello.

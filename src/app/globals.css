@@ -1,31 +1,48 @@
 @import "tailwindcss";
 
-/* Ziggy brand tokens — mirrored from the iOS app's ASLBrand.swift */
+/* Ziggy brand tokens — mirrored from the iOS app's ASLBrand.swift.
+   2026 refresh: cream page, AA-safe text colors, one type/radius/spacing scale. */
 :root {
-  --canvas: #f7f9ff;
+  --page: #fcfaf2;
+  --surface: #ffffff;
+  --canvas: var(--page);
   --brand: #3b8cff;
-  --brand-shadow: #1f6ae0;
+  --brand-strong: #1f6ae0;
+  --brand-shadow: var(--brand-strong);
+  --brand-text: var(--brand-strong);
   --soft: #cce3fc;
-  --cream: #fcfbf2;
+  --cream: #fcfaf2;
   --ink: #292e38;
-  --text-secondary: #576678;
+  --text-secondary: #57667a;
   --divider: #ccdbf0;
 
   /* Pastel chips (dictionary card palette) */
   --pastel-blue: #d1e8fa;
-  --pastel-blue-icon: #6ba8e0;
+  --pastel-blue-icon: #2e6fb8;
   --pastel-mint: #d6f5e8;
-  --pastel-mint-icon: #52ad94;
+  --pastel-mint-icon: #2b8466;
   --pastel-yellow: #faf0c7;
-  --pastel-yellow-icon: #e0ad24;
+  --pastel-yellow-icon: #9a6c0a;
   --pastel-peach: #fce6cc;
-  --pastel-peach-icon: #f08538;
+  --pastel-peach-icon: #b9581a;
+
+  --success: #15803d;
+  --danger: #c8323a;
+
+  --gutter: 1.25rem;
+  --header-h: 5.5rem;
 }
 
 @theme inline {
   --color-canvas: var(--canvas);
   --color-brand: var(--brand);
   --color-brand-shadow: var(--brand-shadow);
+  --color-brand-strong: var(--brand-strong);
+  --color-brand-text: var(--brand-text);
+  --color-page: var(--page);
+  --color-surface: var(--surface);
+  --color-success: var(--success);
+  --color-danger: var(--danger);
   --color-soft: var(--soft);
   --color-cream: var(--cream);
   --color-ink: var(--ink);
@@ -39,13 +56,15 @@
   --color-pastel-yellow-icon: var(--pastel-yellow-icon);
   --color-pastel-peach: var(--pastel-peach);
   --color-pastel-peach-icon: var(--pastel-peach-icon);
-  --font-sans: var(--font-dm-sans);
+  --font-sans: var(--font-nunito), ui-rounded, system-ui, sans-serif;
 
-  /* Clay elevation — tight contact shadow + soft brand-tinted lift */
-  --shadow-clay: 0 2px 3px rgba(41, 46, 56, 0.08),
-    0 10px 28px rgba(59, 140, 255, 0.18);
-  --shadow-clay-hover: 0 3px 5px rgba(41, 46, 56, 0.1),
-    0 14px 34px rgba(59, 140, 255, 0.26);
+  /* Clay elevation — solid bottom edge, like the app's buttons */
+  --shadow-clay: 0 4px 0 var(--brand-strong),
+    0 10px 22px rgba(59, 140, 255, 0.22);
+  --shadow-clay-pressed: 0 1px 0 var(--brand-strong),
+    0 4px 10px rgba(59, 140, 255, 0.16);
+  --shadow-clay-hover: 0 5px 0 var(--brand-strong),
+    0 14px 28px rgba(59, 140, 255, 0.28);
   --shadow-card: 0 1px 2px rgba(41, 46, 56, 0.05),
     0 12px 32px rgba(41, 46, 56, 0.08);
   --shadow-phone: 0 4px 8px rgba(41, 46, 56, 0.1),
@@ -63,9 +82,9 @@ html {
 }
 
 body {
-  background: var(--canvas);
+  background: var(--page);
   color: var(--ink);
-  font-family: var(--font-dm-sans), system-ui, sans-serif;
+  font-family: var(--font-nunito), ui-rounded, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-synthesis: none;
@@ -75,41 +94,53 @@ body {
    pseudo-element via opacity so only transform/opacity animate. */
 .cta-clay {
   box-shadow: var(--shadow-clay);
-  transition-property: transform;
-  transition-duration: 160ms;
-  transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
-}
-
-.cta-clay::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  border-radius: inherit;
-  box-shadow: var(--shadow-clay-hover);
-  opacity: 0;
-  transition: opacity 160ms cubic-bezier(0.23, 1, 0.32, 1);
+  transition: transform 140ms cubic-bezier(0.23, 1, 0.32, 1),
+    box-shadow 140ms cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 @media (hover: hover) and (pointer: fine) {
   .cta-clay:hover {
-    transform: translateY(-2px);
-  }
-  .cta-clay:hover::after {
-    opacity: 1;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-clay-hover);
   }
 }
 
 .cta-clay:active {
-  transform: translateY(0) scale(0.97);
+  transform: translateY(3px);
+  box-shadow: var(--shadow-clay-pressed);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .cta-clay,
-  .cta-clay::after {
+  .cta-clay {
     transition: none;
   }
-  .cta-clay:hover {
+  .cta-clay:hover,
+  .cta-clay:active {
+    transform: none;
+  }
+}
+
+/* White CTA for brand-blue bands; same press behavior as .cta-clay. */
+.cta-light {
+  box-shadow: 0 4px 0 rgba(20, 60, 140, 0.35), 0 10px 22px rgba(20, 60, 140, 0.25);
+  transition: transform 140ms cubic-bezier(0.23, 1, 0.32, 1),
+    box-shadow 140ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+@media (hover: hover) and (pointer: fine) {
+  .cta-light:hover {
+    transform: translateY(-1px);
+  }
+}
+.cta-light:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 rgba(20, 60, 140, 0.35), 0 4px 10px rgba(20, 60, 140, 0.2);
+}
+@media (prefers-reduced-motion: reduce) {
+  .cta-light {
+    transition: none;
+  }
+  .cta-light:hover,
+  .cta-light:active {
     transform: none;
   }
 }
@@ -306,6 +337,27 @@ body {
   scrollbar-width: thin;
   scrollbar-color: var(--divider) transparent;
   -webkit-overflow-scrolling: touch;
+}
+
+/* The fixed header must never cover a focused or anchor target. */
+html {
+  scroll-padding-top: var(--header-h);
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: 0;
+  z-index: 100;
+  transform: translateY(-120%);
+  border-radius: 9999px;
+  background: var(--brand);
+  color: white;
+  padding: 0.6rem 1.1rem;
+  font-weight: 800;
+}
+.skip-link:focus {
+  transform: none;
 }
 
 ::selection {

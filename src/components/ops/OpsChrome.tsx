@@ -127,7 +127,7 @@ export function OpsChrome({ children }: { children: React.ReactNode }) {
           </button>
         </header>
 
-        <main className="mx-auto w-full max-w-3xl flex-1 px-4 pb-8 pt-1 md:px-8 md:pt-2">
+        <main id="main" className="mx-auto w-full max-w-3xl flex-1 px-4 pb-8 pt-1 md:px-8 md:pt-2">
           {children}
         </main>
       </div>

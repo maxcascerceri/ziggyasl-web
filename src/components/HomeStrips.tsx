@@ -1,6 +1,9 @@
 import Link from "next/link";
 import { CategoryCard } from "./CategoryCard";
 import { ArrowRight } from "./Icons";
+import { Sticker } from "./Sticker";
+import { SignYourNameBanner } from "./SignYourNameBanner";
+import { GUIDE_STICKERS, BLOG_STICKERS } from "@/content/stickers";
 import { FadeIn } from "./Motion";
 import { SignCard } from "./SignCard";
 import { SignVideo } from "./SignVideo";
@@ -112,10 +115,13 @@ export function LearnStrip() {
                   href={`/learn/${g.slug}`}
                   className={`card-lift tint-${g.tint} group flex h-full flex-col rounded-[24px] bg-[var(--tint)] p-5`}
                 >
-                  <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/80 text-sm font-bold text-ink">
-                    {i + 1}
+                  <span className="flex items-start justify-between">
+                    <Sticker name={GUIDE_STICKERS[g.slug] ?? "sign"} size={64} />
+                    <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-white/80 text-sm font-extrabold text-ink">
+                      {i + 1}
+                    </span>
                   </span>
-                  <p className="mt-4 text-lg font-bold leading-tight text-ink">{g.shortTitle}</p>
+                  <p className="mt-4 text-lg font-extrabold leading-tight text-ink">{g.shortTitle}</p>
                   <p className="mt-1.5 line-clamp-2 text-sm text-ink/70">{g.description}</p>
                   <span className="mt-auto inline-flex items-center gap-1 pt-4 text-sm font-semibold text-ink">
                     {g.minutes} min <ArrowRight size={14} className="transition-transform group-hover:translate-x-0.5" />
@@ -125,6 +131,9 @@ export function LearnStrip() {
             </li>
           ))}
         </ol>
+        <FadeIn>
+          <SignYourNameBanner className="mt-4" />
+        </FadeIn>
       </Container>
     </section>
   );
@@ -150,8 +159,9 @@ export function BlogStrip() {
                   href={`/blog/${p.slug}`}
                   className="card-lift group flex h-full flex-col rounded-[24px] bg-white p-5 outline outline-1 -outline-offset-1 outline-black/5"
                 >
-                  <p className="text-xs font-bold uppercase tracking-[0.12em] text-brand-shadow">{p.minutes} min read</p>
-                  <p className="mt-2 text-lg font-bold leading-tight text-ink">{p.title}</p>
+                  <Sticker name={BLOG_STICKERS[p.slug] ?? "talking"} size={72} />
+                  <p className="mt-4 text-xs font-extrabold text-brand-text">{p.minutes} min read</p>
+                  <p className="mt-1 text-lg font-extrabold leading-tight text-ink">{p.title}</p>
                   <p className="mt-2 line-clamp-2 text-sm text-secondary">{p.description}</p>
                 </Link>
               </FadeIn>

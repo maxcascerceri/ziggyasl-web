@@ -44,9 +44,12 @@ export function generateStaticParams() {
 
 type Params = { params: Promise<{ slug: string }> };
 
+/** "How to Sign Hello in ASL" — the query shape that ranks, kept under 60 chars. */
 function titleFor(sign: Sign): string {
-  const alias = sign.aliases.length ? ` / ${sign.aliases.join(" / ")}` : "";
-  return `${sign.display}${alias} in ASL`;
+  const base = `How to Sign ${sign.display} in ASL`;
+  if (base.length <= 60) return base;
+  const short = `${sign.display} in Sign Language (ASL)`;
+  return short.length <= 60 ? short : `${sign.display} in ASL`;
 }
 
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
@@ -54,8 +57,12 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const sign = getSignBySlug(slug);
   if (!sign) return {};
   const content = getSignContent(sign);
-  const title = `${titleFor(sign)}: How to Sign ${sign.display} (Video)`;
-  const description = `${content.summary} Free ASL video dictionary from Ziggy.`.slice(0, 158);
+  const title = titleFor(sign);
+  const description =
+    `How to sign “${sign.display}” in American Sign Language. ${content.summary}`
+      .replace(/\s+/g, " ")
+      .slice(0, 155)
+      .replace(/\s\S*$/, "") + ".";
   return {
     title,
     description,
@@ -97,6 +104,19 @@ export default async function SignPage({ params }: Params) {
   const tip = sign.tips[0];
   const url = absoluteUrl(`/sign/${sign.slug}`);
   const h1 = titleFor(sign);
+
+  const howToLd = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: h1,
+    description: content.summary,
+    totalTime: "PT1M",
+    step: content.steps.map((text, i) => ({
+      "@type": "HowToStep",
+      position: i + 1,
+      text,
+    })),
+  };
 
   const crumbs = [
     { label: "Dictionary", href: "/dictionary" },
@@ -190,8 +210,8 @@ export default async function SignPage({ params }: Params) {
   return (
     <>
       <Header solid />
-      <JsonLd data={[videoLd, breadcrumbLd, faqLd, termLd, pageLd]} />
-      <main className="flex-1 pt-28 sm:pt-32">
+      <JsonLd data={[videoLd, breadcrumbLd, faqLd, termLd, pageLd, howToLd]} />
+      <main id="main" className="flex-1 pt-28 sm:pt-32">
         <Container>
           <Breadcrumbs items={crumbs} />
 
@@ -260,7 +280,7 @@ export default async function SignPage({ params }: Params) {
 
               {components.length > 0 ? (
                 <div className="mt-8">
-                  <p className="text-sm font-bold uppercase tracking-[0.1em] text-secondary">
+                  <p className="text-sm font-extrabold text-secondary">
                     Signs in this phrase
                   </p>
                   <ol className="mt-3 flex flex-wrap items-center gap-2">
@@ -357,7 +377,7 @@ export default async function SignPage({ params }: Params) {
             <FadeIn>
               <SectionHeading
                 eyebrow="Keep going"
-                title={category ? `More ${category.title.toLowerCase()} signs` : "Related signs"}
+                title={category ? `More ${category.title.toLowerCase().replace(/ signs$/, "")} signs` : "Related signs"}
                 action={
                   category
                     ? { label: `All ${category.wordIds.length} signs`, href: `/dictionary/${category.slug}` }
@@ -385,7 +405,7 @@ export default async function SignPage({ params }: Params) {
               href={`/learn/${guide.slug}`}
               className="card-lift group rounded-[24px] bg-white p-5 outline outline-1 -outline-offset-1 outline-black/5"
             >
-              <p className="text-xs font-bold uppercase tracking-[0.1em] text-brand-shadow">Guide</p>
+              <p className="text-xs font-extrabold text-brand-text">Guide</p>
               <p className="mt-1.5 text-lg font-bold leading-tight text-ink">{guide.shortTitle}</p>
               <p className="mt-1 line-clamp-2 text-sm text-secondary">{guide.description}</p>
             </Link>
@@ -394,7 +414,7 @@ export default async function SignPage({ params }: Params) {
                 href={`/blog/${posts[0].slug}`}
                 className="card-lift group rounded-[24px] bg-white p-5 outline outline-1 -outline-offset-1 outline-black/5"
               >
-                <p className="text-xs font-bold uppercase tracking-[0.1em] text-brand-shadow">From the blog</p>
+                <p className="text-xs font-extrabold text-brand-text">From the blog</p>
                 <p className="mt-1.5 text-lg font-bold leading-tight text-ink">{posts[0].title}</p>
                 <p className="mt-1 line-clamp-2 text-sm text-secondary">{posts[0].description}</p>
               </Link>
@@ -407,7 +427,7 @@ export default async function SignPage({ params }: Params) {
             <nav aria-label="Previous and next sign" className="grid gap-4 sm:grid-cols-2">
               {prev ? (
                 <div>
-                  <p className="mb-2 flex items-center gap-1 text-xs font-bold uppercase tracking-[0.1em] text-secondary">
+                  <p className="mb-2 flex items-center gap-1 text-xs font-extrabold text-secondary">
                     <ChevronLeft size={14} /> Previous
                   </p>
                   <SignCard sign={toSignCardData(prev)} categoryTitle={category?.title} />
@@ -417,7 +437,7 @@ export default async function SignPage({ params }: Params) {
               )}
               {next ? (
                 <div>
-                  <p className="mb-2 flex items-center justify-end gap-1 text-xs font-bold uppercase tracking-[0.1em] text-secondary">
+                  <p className="mb-2 flex items-center justify-end gap-1 text-xs font-extrabold text-secondary">
                     Next <ChevronRight size={14} />
                   </p>
                   <SignCard sign={toSignCardData(next)} categoryTitle={category?.title} />

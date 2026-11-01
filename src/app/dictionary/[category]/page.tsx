@@ -103,7 +103,7 @@ export default async function CategoryPage({ params }: Params) {
     <>
       <Header solid />
       <JsonLd data={[listLd, pageLd, breadcrumbLd]} />
-      <main className="flex-1 pt-28 sm:pt-32">
+      <main id="main" className="flex-1 pt-28 sm:pt-32">
         <Container>
           <Breadcrumbs
             items={[

@@ -1,7 +1,6 @@
 "use client";
 
 import { useRef } from "react";
-import Image from "next/image";
 import {
   motion,
   useMotionValue,
@@ -14,6 +13,7 @@ import { PhoneMockup } from "./PhoneMockup";
 import { RiseIn } from "./Motion";
 import { SearchButton } from "./SearchCommand";
 import { StoreButtons } from "./StoreButtons";
+import { ZiggyMoment } from "./ZiggyMoment";
 
 export function Hero() {
   const reduceMotion = useReducedMotion();
@@ -42,20 +42,11 @@ export function Hero() {
 
   return (
     <section className="relative overflow-hidden pt-44 pb-20 sm:pt-52 sm:pb-28">
-      {/* Soft periwinkle wash behind the phone */}
-      <div
-        aria-hidden
-        className="absolute left-1/2 top-1/2 -z-10 h-[720px] w-[720px] -translate-x-1/2 -translate-y-1/3 rounded-full opacity-70"
-        style={{
-          background:
-            "radial-gradient(circle, var(--soft) 0%, rgba(204,227,252,0.35) 45%, transparent 70%)",
-        }}
-      />
 
       <div className="mx-auto grid max-w-6xl items-center gap-14 px-5 sm:px-8 lg:grid-cols-[1.1fr_0.9fr]">
         <div className="text-center lg:text-left">
           <RiseIn>
-            <h1 className="text-balance text-4xl font-bold leading-[1.08] tracking-tight text-ink sm:text-5xl lg:text-6xl">
+            <h1 className="text-balance text-4xl font-extrabold leading-[1.08] tracking-tight text-ink sm:text-5xl lg:text-6xl">
               {copy.hero.headline}
             </h1>
           </RiseIn>
@@ -104,15 +95,11 @@ export function Hero() {
                 priority
               />
             </motion.div>
-            {/* Ziggy peeking in beside the phone — decorative, captioned by the headline */}
-            <Image
-              src="/brand/ziggy-sign.png"
-              alt=""
-              aria-hidden
-              width={320}
-              height={320}
-              sizes="(max-width: 640px) 208px, 320px"
-              className="pointer-events-none absolute -bottom-12 -left-2 h-auto w-52 drop-shadow-[0_10px_20px_rgba(41,46,56,0.18)] sm:-left-32 sm:w-80"
+            {/* Ziggy waves once per visit, then holds the last frame */}
+            <ZiggyMoment
+              priority
+              className="pointer-events-none absolute -bottom-16 -left-2 sm:-left-36"
+              size={300}
             />
           </div>
         </motion.div>

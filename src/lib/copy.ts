@@ -9,10 +9,10 @@ export const copy = {
   },
 
   hero: {
-    headline: "Learn ASL the way it's actually signed",
+    headline: "Learn American Sign Language, one friendly sign at a time",
     subline:
-      "A free video dictionary of 700+ signs, beginner guides written by teachers, and an app with a friendly little guide who's happy you showed up.",
-    searchPlaceholder: "Search a sign, like “thank you”",
+      "Ziggy is the free way to learn ASL. Look up 700+ signs on real video, start with the alphabet, and practice sign language for five minutes a day in the app.",
+    searchPlaceholder: "How do you sign… “thank you”?",
     appStoreCta: "App Store",
     playStoreCta: "Google Play",
     screenshot: "home.png",
@@ -43,26 +43,27 @@ export const copy = {
   home: {
     dictionary: {
       eyebrow: "Free ASL dictionary",
-      title: "Every sign on real video, free",
+      title: "Look up any sign in American Sign Language",
       subtitle:
-        "Watch it, slow it down, read how it's made. Browse by topic or search anything.",
+        "700+ ASL signs and phrases, each filmed by a real signer. Slow it down, read how it's made, and search by word or topic.",
       cta: "Open the dictionary",
     },
     learn: {
       eyebrow: "Learn",
-      title: "Start with the guides a teacher would hand you",
-      subtitle: "Alphabet, numbers, greetings, and the first phrases, in the right order, with practice built in.",
+      title: "Learn ASL for beginners, step by step",
+      subtitle:
+        "The ASL alphabet, numbers, greetings, and your first phrases, in the order a teacher would teach them.",
       cta: "All guides",
     },
     blog: {
       eyebrow: "From the blog",
-      title: "Straight talk about learning ASL",
+      title: "Tips for learning ASL as a beginner",
       cta: "Read the blog",
     },
   },
 
   why: {
-    title: "Why people stay with Ziggy",
+    title: "Why Ziggy is the friendliest ASL app",
     items: [
       {
         title: "Video-first ASL",
@@ -83,8 +84,8 @@ export const copy = {
   },
 
   finalCta: {
-    headline: "Your first sign takes two minutes",
-    subline: "Start with a free lesson and see how it feels.",
+    headline: "Learn your first ASL sign in two minutes",
+    subline: "Download Ziggy free and start signing today. Ziggy will be thrilled you showed up.",
     appStoreCta: "App Store",
     playStoreCta: "Google Play",
   },

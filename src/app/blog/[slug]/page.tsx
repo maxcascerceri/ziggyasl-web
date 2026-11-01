@@ -90,7 +90,7 @@ export default async function BlogPost({ params }: Params) {
     <>
       <Header solid />
       <JsonLd data={[ld, breadcrumbLd]} />
-      <main className="flex-1 pt-28 sm:pt-32">
+      <main id="main" className="flex-1 pt-28 sm:pt-32">
         <Container narrow>
           <Breadcrumbs items={[{ label: "Blog", href: "/blog" }, { label: post.title }]} />
           <header className="mt-8">

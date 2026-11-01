@@ -1,4 +1,6 @@
 import type { MetadataRoute } from "next";
+import { statSync } from "node:fs";
+import { join } from "node:path";
 import { allCategories, allSigns } from "@/lib/catalog";
 import { LEARN_GUIDES } from "@/lib/learnGuides";
 import { BLOG_POSTS } from "@/lib/blog";
@@ -11,6 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: absoluteUrl("/"), lastModified: LAST_MODIFIED, changeFrequency: "weekly", priority: 1 },
     { url: absoluteUrl("/dictionary"), lastModified: LAST_MODIFIED, changeFrequency: "weekly", priority: 0.9 },
     { url: absoluteUrl("/learn"), lastModified: LAST_MODIFIED, changeFrequency: "weekly", priority: 0.8 },
+    { url: absoluteUrl("/learn/how-to-sign-your-name"), lastModified: new Date("2026-11-01"), changeFrequency: "monthly", priority: 0.8 },
     { url: absoluteUrl("/blog"), lastModified: LAST_MODIFIED, changeFrequency: "weekly", priority: 0.7 },
     { url: absoluteUrl("/about"), lastModified: LAST_MODIFIED, changeFrequency: "monthly", priority: 0.4 },
     { url: absoluteUrl("/privacy"), lastModified: LAST_MODIFIED, changeFrequency: "yearly", priority: 0.1 },
@@ -24,12 +27,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  const signs: MetadataRoute.Sitemap = allSigns().map((s) => ({
-    url: absoluteUrl(`/sign/${s.slug}`),
-    lastModified: LAST_MODIFIED,
-    changeFrequency: "monthly",
-    priority: 0.7,
-  }));
+  const signs: MetadataRoute.Sitemap = allSigns().map((s) => {
+    let lastModified = LAST_MODIFIED;
+    try {
+      lastModified = statSync(join(process.cwd(), "src/content/signs", `${s.id}.json`)).mtime;
+    } catch {
+      /* unauthored signs share the baseline date */
+    }
+    return {
+      url: absoluteUrl(`/sign/${s.slug}`),
+      lastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    };
+  });
 
   const guides: MetadataRoute.Sitemap = LEARN_GUIDES.map((g) => ({
     url: absoluteUrl(`/learn/${g.slug}`),

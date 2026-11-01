@@ -1,26 +1,27 @@
 import { links } from "@/lib/links";
 
 /**
- * Primary clay-blue CTA pill. Hover lift + shadow crossfade via an
- * ::after pseudo-element (opacity only — GPU friendly), press squish via
- * CSS transitions so it stays interruptible. Hover is gated to
- * hover-capable pointers in globals.css (.cta-clay rules).
+ * Primary clay-blue CTA pill. Hover lift and press squish come from the
+ * .cta-clay rules in globals.css. `light` is the white variant for use on
+ * brand-blue backgrounds.
  */
 export function AppStoreButton({
   label,
   compact = false,
+  light = false,
 }: {
   label: string;
   compact?: boolean;
+  light?: boolean;
 }) {
   return (
     <a
       href={links.appStore}
       target="_blank"
       rel="noopener noreferrer"
-      className={`cta-clay relative isolate inline-flex select-none items-center justify-center gap-1.5 rounded-full bg-brand font-semibold text-white ${
-        compact ? "px-4 py-2.5 text-sm sm:px-5 sm:py-3 sm:text-base" : "px-5 py-3.5 text-base sm:px-6 sm:py-4 sm:text-lg"
-      }`}
+      className={`relative isolate inline-flex select-none items-center justify-center gap-1.5 rounded-full font-extrabold ${
+        light ? "cta-light bg-white text-brand-text" : "cta-clay bg-brand text-white"
+      } ${compact ? "px-4 py-2.5 text-sm sm:px-5 sm:py-3 sm:text-base" : "px-5 py-3.5 text-base sm:px-6 sm:py-4 sm:text-lg"}`}
     >
       <AppleLogo className={compact ? "h-4 w-4 sm:h-5 sm:w-5" : "h-5 w-5"} />
       {label}
