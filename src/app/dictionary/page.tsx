@@ -8,7 +8,7 @@ import { FadeIn, RiseIn } from "@/components/Motion";
 import { SearchButton } from "@/components/SearchCommand";
 import { SignCard } from "@/components/SignCard";
 import { SignVideo } from "@/components/SignVideo";
-import { StickerDrift } from "@/components/StickerDrift";
+import { SceneDrift } from "@/components/SceneDrift";
 import { Container, Eyebrow, JsonLd, SectionHeading } from "@/components/ui";
 import {
   allCategories,
@@ -85,12 +85,12 @@ export default function DictionaryPage() {
       <JsonLd data={[setLd, collectionLd]} />
       <main id="main" className="flex-1 pt-32 sm:pt-36">
         <section className="relative">
-          <StickerDrift
+          <SceneDrift
             items={[
-              { name: "greetings", top: "-4%", side: "left", inset: "calc(50% - 31rem)", size: 84, rotate: -10, depth: 0.5, from: "lg" },
-              { name: "unit-sticker-alphabet", top: "58%", side: "left", inset: "calc(50% - 27rem)", size: 64, rotate: 8, depth: 0.8, from: "lg" },
-              { name: "questions", top: "2%", side: "right", inset: "calc(50% - 31rem)", size: 76, rotate: 9, depth: 0.6, from: "lg" },
-              { name: "unit-sticker-feelings", top: "62%", side: "right", inset: "calc(50% - 27rem)", size: 64, rotate: -7, depth: 0.9, from: "lg" },
+              { scene: "p1-u01", top: "-4%", side: "left", inset: "calc(50% - 31rem)", size: 92, rotate: -4, depth: 0.5, from: "lg" },
+              { scene: "p1-u60", top: "50%", side: "left", inset: "calc(50% - 27rem)", size: 72, rotate: 3, depth: 0.8, from: "lg" },
+              { scene: "p1-u06", top: "16%", side: "right", inset: "calc(50% - 31rem)", size: 84, rotate: 4, depth: 0.6, from: "lg" },
+              { scene: "p1-u27", top: "74%", side: "right", inset: "calc(50% - 27.5rem)", size: 68, rotate: -3, depth: 0.9, from: "lg" },
             ]}
           />
           <Container>

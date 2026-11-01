@@ -7,7 +7,7 @@ import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { NameSpeller, NameSpellerFromUrl, type LetterClip } from "@/components/learn/NameSpeller";
 import { SignClip } from "@/components/learn/SignClip";
-import { StickerDrift } from "@/components/StickerDrift";
+import { SceneDrift } from "@/components/SceneDrift";
 import { Breadcrumbs, Container, Eyebrow, JsonLd, MascotNote } from "@/components/ui";
 import { getCategory, getSigns } from "@/lib/catalog";
 import { signThumbURL, signVideoURL } from "@/lib/firebasePublic";
@@ -131,10 +131,10 @@ export default function SignYourNamePage() {
       <JsonLd data={[howToLd, faqLd, breadcrumbLd]} />
       <main id="main" className="flex-1 pt-28 sm:pt-32">
         <section className="relative">
-          <StickerDrift
+          <SceneDrift
             items={[
-              { name: "spell", top: "40%", side: "left", inset: "calc(50% - 30rem)", size: 84, rotate: -9, depth: 0.5, from: "lg" },
-              { name: "introductions", top: "26%", side: "right", inset: "calc(50% - 30rem)", size: 80, rotate: 8, depth: 0.6, from: "lg" },
+              { scene: "p1-u10", top: "40%", side: "left", inset: "calc(50% - 30rem)", size: 88, rotate: -4, depth: 0.5, from: "lg" },
+              { scene: "p1-u01", top: "26%", side: "right", inset: "calc(50% - 30rem)", size: 84, rotate: 3, depth: 0.6, from: "lg" },
             ]}
           />
           <Container>
