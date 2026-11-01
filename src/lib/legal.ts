@@ -2,20 +2,29 @@
 
 export const privacy = {
   title: "Privacy Policy",
-  updated: "Last updated: October 2026",
+  updated: "Last updated: November 2026",
   intro:
     "Ziggy ASL (“Ziggy,” “we,” “our,” or “the app”) is an American Sign Language learning app. This Privacy Policy explains what information Ziggy handles, why we handle it, and the choices available to you.",
   sections: [
     {
       heading: "1. Information stored on your device",
       body: [
-        "Your first name, onboarding answers, lesson progress, streaks, favorites, settings, and similar learning data are stored locally on your device. You can skip providing a first name.",
+        "Your first name, onboarding answers, lesson progress, streaks, favorites, settings, and similar learning data are stored locally on your device. You can skip providing a first name. If you choose to sign in, a copy of your learning progress is also saved to your account, as described in section 2.",
         "Practice recordings are stored in the app’s private storage. Ziggy does not upload those recordings unless you deliberately use a feature that sends or exports them.",
         "Depending on your device and account settings, Apple iCloud Backup or Android’s private Google backup service may back up eligible local app data. Those backup services are controlled by Apple or Google and your device settings.",
       ],
     },
     {
-      heading: "2. App services, analytics, and diagnostics",
+      heading: "2. Optional account",
+      body: [
+        "On iOS, you can choose to sign in with Apple or Google to keep your progress across devices. Signing in is never required to use Ziggy.",
+        "If you sign in, we receive your email address and an account identifier from Apple or Google. If you use Sign in with Apple and choose to hide your email, we receive a private relay address instead. We may also receive the first name you share with Apple or Google. We never receive your Apple or Google password.",
+        "While you are signed in, we store your learning progress with your account on Google Firebase, including completed lessons, stars, streaks, medals, and the first name you gave Ziggy. We use this only to restore your progress on your devices, not for advertising. Your subscription status is linked to the same account identifier through RevenueCat so Premium access follows you to your other devices.",
+        "You can sign out at any time in Settings, and your progress stays on your device. You can delete your account in Settings, which removes your account and the saved copy of your progress from our servers. Progress on your device is not affected, and your subscription is managed separately by Apple.",
+      ],
+    },
+    {
+      heading: "3. App services, analytics, and diagnostics",
       body: [
         "Ziggy uses Google Firebase to deliver app content and operate supporting services. Firebase may process app and installation identifiers, device and network information, and service request data.",
         "On iOS, Ziggy uses Google Analytics for Firebase to understand which screens and learning features people use, such as lessons, practice, and onboarding. These events use an anonymous app-install identifier. We do not send your name, your lesson or practice videos, payment details, or Apple’s advertising identifier for this, and we do not use this data for advertising or ads personalization.",
@@ -24,14 +33,14 @@ export const privacy = {
       ],
     },
     {
-      heading: "3. Subscriptions",
+      heading: "4. Subscriptions",
       body: [
         "On iOS, purchases are processed by Apple through the App Store. On Android, purchases are processed by Google through Google Play. We do not receive or store your complete payment-card details.",
         "We use RevenueCat to manage subscription access. RevenueCat may process an app-specific user identifier, purchase and subscription history, entitlement status, and device or platform information so Ziggy can determine whether Premium is active and restore purchases.",
       ],
     },
     {
-      heading: "4. Sign Notes",
+      heading: "5. Sign Notes",
       body: [
         "Some versions of Ziggy may let you send a recorded sign to a person you choose. Where this feature is available, Ziggy uploads the recording, a preview image, the sign’s label, an optional display name, and an anonymous identifier to Google Firebase so the recipient can open it. If you enable reply notifications, Ziggy also stores a notification token with that identifier.",
         "A recipient or anyone with the unique sharing link may be able to view the Sign Note. Sign Notes are displayed as available for up to 30 days. Removal from active systems or backups may take longer where reasonably necessary for service operation, security, abuse handling, or legal obligations.",
@@ -39,7 +48,7 @@ export const privacy = {
       ],
     },
     {
-      heading: "5. Providers, security, retention, and your choices",
+      heading: "6. Providers, security, retention, and your choices",
       body: [
         "Our service providers include Google Firebase, Google Analytics (including Google Analytics for Firebase and Google Analytics on the website), Google Cloud, RevenueCat, Apple, and Google Play. They process information on our behalf or as the applicable storefront under their own terms and privacy practices. We do not sell your personal information or share it with advertisers or data brokers.",
         "Information sent between Ziggy and our service providers is transmitted using encrypted connections. No storage or transmission method is completely secure.",
@@ -48,7 +57,7 @@ export const privacy = {
       ],
     },
     {
-      heading: "6. Children and changes to this policy",
+      heading: "7. Children and changes to this policy",
       body: [
         "Ziggy is not directed at children under 13, and we do not knowingly collect personal information from children under 13. If you believe a child has provided personal information, contact us so we can review and address it.",
         "We may update this policy as Ziggy or applicable requirements change. We will update the “Last updated” date when we do.",
