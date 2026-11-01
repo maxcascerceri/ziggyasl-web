@@ -8,7 +8,7 @@ import { FinalCTA } from "@/components/FinalCTA";
 import { Footer } from "@/components/Footer";
 import { BlogStrip, DictionaryStrip, LearnStrip } from "@/components/HomeStrips";
 import { HomeFAQ } from "@/components/HomeFAQ";
-import { StickerDrift } from "@/components/StickerDrift";
+import { SceneDrift } from "@/components/SceneDrift";
 
 export const metadata: Metadata = {
   title: "Learn American Sign Language (ASL) Free | Ziggy Sign Language App",
@@ -25,12 +25,12 @@ export default function Home() {
         <Hero />
 
         <div className="relative">
-          <StickerDrift
+          <SceneDrift
             items={[
-              { name: "unit-sticker-getting-started", top: "6%", side: "left", rotate: -8, depth: 0.8 },
-              { name: "unit-sticker-everyday-replies", top: "34%", side: "right", rotate: 7, size: 64, depth: 1.2 },
-              { name: "unit-sticker-alphabet", top: "64%", side: "left", rotate: 6, size: 68, depth: 1 },
-              { name: "unit-sticker-numbers", top: "88%", side: "right", rotate: -6, size: 60, depth: 0.7 },
+              { scene: "p1-u01", top: "6%", side: "left", rotate: -4, size: 88, depth: 0.8 },
+              { scene: "p1-u02", top: "34%", side: "right", rotate: 3, size: 80, depth: 1.2 },
+              { scene: "p1-u10", top: "64%", side: "left", rotate: 3, size: 84, depth: 1 },
+              { scene: "p1-u15", top: "88%", side: "right", rotate: -3, size: 76, depth: 0.7 },
             ]}
           />
           <DictionaryStrip />
@@ -38,11 +38,11 @@ export default function Home() {
         </div>
 
         <div className="relative space-y-28 py-12 sm:space-y-36 sm:py-16">
-          <StickerDrift
+          <SceneDrift
             items={[
-              { name: "sign", top: "8%", side: "left", rotate: -7, depth: 1 },
-              { name: "unit-sticker-getting-around", top: "44%", side: "right", rotate: 8, size: 68, depth: 0.9 },
-              { name: "10streak", top: "80%", side: "left", rotate: 6, size: 64, depth: 1.2 },
+              { scene: "p1-u22", top: "8%", side: "left", rotate: -3, size: 88, depth: 1 },
+              { scene: "p1-u74", top: "44%", side: "right", rotate: 4, size: 84, depth: 0.9 },
+              { scene: "p1-prove-01", top: "80%", side: "left", rotate: 3, size: 80, depth: 1.2 },
             ]}
           />
           {copy.features.map((feature, i) => (
@@ -60,10 +60,10 @@ export default function Home() {
 
         <WhyZiggy />
         <div className="relative">
-          <StickerDrift
+          <SceneDrift
             items={[
-              { name: "talking", top: "10%", side: "right", rotate: 7, size: 68, depth: 1 },
-              { name: "questions", top: "52%", side: "left", rotate: -6, size: 64, depth: 0.9 },
+              { scene: "p1-u81", top: "10%", side: "right", rotate: 3, size: 84, depth: 1 },
+              { scene: "p1-u05", top: "52%", side: "left", rotate: -3, size: 80, depth: 0.9 },
             ]}
           />
           <BlogStrip />
