@@ -2,7 +2,7 @@
 
 export const privacy = {
   title: "Privacy Policy",
-  updated: "Last updated: October 2026",
+  updated: "Last updated: November 2026",
   intro:
     "Ziggy ASL (“Ziggy,” “we,” “our,” or “the app”) is an American Sign Language learning app. This Privacy Policy explains what information Ziggy handles, why we handle it, and the choices available to you.",
   sections: [
@@ -44,7 +44,7 @@ export const privacy = {
         "Our service providers include Google Firebase, Google Analytics (including Google Analytics for Firebase and Google Analytics on the website), Google Cloud, RevenueCat, Apple, and Google Play. They process information on our behalf or as the applicable storefront under their own terms and privacy practices. We do not sell your personal information or share it with advertisers or data brokers.",
         "Information sent between Ziggy and our service providers is transmitted using encrypted connections. No storage or transmission method is completely secure.",
         "We retain service and diagnostic information only for as long as reasonably necessary to operate, secure, support, and improve Ziggy or meet legal obligations. Provider retention periods may also apply.",
-        "You can remove data stored only on your device by using available in-app controls or uninstalling Ziggy. Device backups may remain until removed through your Apple or Google account settings. Where an in-app deletion control is available, you may use it; you may also contact support@ziggyasl.com to ask about deletion of information associated with Ziggy.",
+        "You can remove data stored only on your device by using available in-app controls or uninstalling Ziggy. Uninstalling Ziggy deletes local lesson progress, streaks, favorites, settings, and similar learning data from that device. Device backups may remain until removed through your Apple or Google account settings. Where an in-app deletion control is available, you may use it; you may also contact support@ziggyasl.com to ask about deletion of information associated with Ziggy.",
       ],
     },
     {
@@ -59,7 +59,7 @@ export const privacy = {
 
 export const terms = {
   title: "Terms of Use",
-  updated: "Last updated: September 2026",
+  updated: "Last updated: November 2026",
   intro:
     "By downloading or using Ziggy ASL (“the app,” “we,” “our”), you agree to these Terms. If you do not agree, do not use the app.",
   sections: [
@@ -68,7 +68,14 @@ export const terms = {
       body: "Ziggy ASL is a personal, non-commercial American Sign Language learning app. It includes lessons, practice, and progress tracking for your own use.",
     },
     {
-      heading: "2. Subscriptions",
+      heading: "2. Progress and local data",
+      body: [
+        "Lesson progress, streaks, favorites, settings, and similar learning data are stored on your device, not in a Ziggy account. If you delete or uninstall Ziggy, that local progress is removed from the device and is not recoverable through Ziggy, unless a device backup you control restores it.",
+        "Uninstalling Ziggy does not cancel your subscription. Manage or cancel Premium through the App Store or Google Play account used for the purchase. See our Privacy Policy for more detail on data stored on your device.",
+      ],
+    },
+    {
+      heading: "3. Subscriptions",
       body: [
         "A Ziggy Premium subscription is required for full access after any onboarding preview. Available plans, localized prices, billing periods, and any trial for which you are eligible are shown before purchase.",
         "Subscriptions automatically renew for the displayed billing period unless canceled before renewal. If you begin an eligible free trial and do not cancel before it ends, the subscription converts to the displayed paid plan and continues to renew automatically.",
@@ -76,15 +83,15 @@ export const terms = {
       ],
     },
     {
-      heading: "3. Cancellation and refunds",
+      heading: "4. Cancellation and refunds",
       body: "You can manage or cancel your subscription through the store account used to purchase it. Canceling stops future renewals but generally does not refund the current billing period. Refund eligibility is determined by Apple, Google Play, applicable law, and any policy we expressly provide.",
     },
     {
-      heading: "4. Educational content only",
+      heading: "5. Educational content only",
       body: "Lessons and signs are for general learning only. Sign language varies by region and community. The app is not a substitute for certified instruction, interpretation, or professional advice. We do not guarantee any particular learning result.",
     },
     {
-      heading: "5. User content",
+      heading: "6. User content",
       body: [
         "Some versions of Ziggy may let you record, export, or send content. You keep any rights you hold in your content and give us a limited license to host, process, transmit, and display it only as needed to provide and protect the feature.",
         "Only share content you have the right and permission to share. You are responsible for the recipients you choose and for content shared outside Ziggy through your device’s sharing tools.",
@@ -92,26 +99,26 @@ export const terms = {
       ],
     },
     {
-      heading: "6. Acceptable use",
+      heading: "7. Acceptable use",
       body: "You may not misuse Ziggy; harass, threaten, exploit, or impersonate others; share illegal, abusive, hateful, sexually exploitative, infringing, or deceptive content; attempt unauthorized access; reverse-engineer the app except where law permits; copy or resell its content; or use Ziggy in a way that violates law or harms others. We may remove content or restrict access when these Terms are violated.",
     },
     {
-      heading: "7. Intellectual property",
+      heading: "8. Intellectual property",
       body: "Ziggy, its design, branding, lessons, and media belong to us or our licensors. These Terms give you a limited, personal, non-transferable right to use the app for its intended purpose. They do not transfer ownership of Ziggy content or trademarks.",
     },
     {
-      heading: "8. Disclaimer of warranties",
+      heading: "9. Disclaimer of warranties",
       body: "Ziggy is provided “as is” and “as available,” without warranties of any kind, express or implied, including merchantability, fitness for a particular purpose, and non-infringement. We do not guarantee that the app will be uninterrupted, error-free, or accurate.",
     },
     {
-      heading: "9. Limitation of liability and indemnity",
+      heading: "10. Limitation of liability and indemnity",
       body: [
         "To the fullest extent permitted by law, we and our affiliates are not liable for indirect, incidental, special, consequential, or punitive damages, or for loss of data, profits, or goodwill, arising from your use of Ziggy. Our total liability for a claim related to Ziggy will not exceed the amount you paid us in the twelve months before the claim, or zero if you paid nothing. Some jurisdictions do not allow certain limits; where that applies, liability is limited only as permitted by law.",
         "To the extent permitted by law, you agree to defend and hold us harmless from claims, damages, or expenses arising from your misuse of Ziggy, your content, or your violation of these Terms.",
       ],
     },
     {
-      heading: "10. Changes and general terms",
+      heading: "11. Changes and general terms",
       body: [
         "We may update these Terms by posting a new version and updating the date above. Continued use after an update means the revised Terms apply.",
         "These Terms are governed by the laws of the United States and the state in which we operate, without regard to conflict-of-law rules. If any provision is unenforceable, the remaining provisions remain in effect. Our failure to enforce a provision is not a waiver.",
