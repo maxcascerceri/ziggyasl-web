@@ -7,7 +7,7 @@ import { privacy } from "@/lib/legal";
 export const metadata: Metadata = {
   title: "Privacy Policy — Ziggy ASL",
   description:
-    "How Ziggy ASL handles local learning data, subscriptions, diagnostics, and optional sharing features.",
+    "How Ziggy ASL handles local learning data, analytics, subscriptions, diagnostics, and optional sharing features.",
 };
 
 export default function PrivacyPolicyPage() {
